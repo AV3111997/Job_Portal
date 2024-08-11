@@ -1,0 +1,392 @@
+.navbar {
+    padding: 2% 1% 2% 1%;
+    
+}
+
+.navbar-custom-bg {
+    background-color: #e6f2ff !important;
+}
+
+.custom-btn {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.login-reg-btn {
+    background-color: #cce5ff;
+    color: #1967D2;
+}
+
+.login-reg-btn:hover {
+    background-color: #1967D2;
+    color: white;
+    transition-duration: 0.3s;
+}
+
+.btn-blue {
+    background-color: #1967D2;
+}
+
+.btn-blue:hover {
+    background-color: #0033cc;
+    transition-duration: 0.3s;
+}
+
+.notification-btn {
+    margin-left: 10px;
+    font-size: x-large;
+    color: #262626;
+}
+
+.notification-btn:hover {
+    color: #1967D2;
+    transition-duration: 0.5s;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.footer-column {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.footer-column h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.footer-column p,
+.footer-column ul {
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 5px;
+}
+
+.footer-column ul li a {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+}
+
+.contact-number {
+    color: #1967D2;
+    font-size: larger;
+}
+
+.banner-background {
+    background-image: url('../img/banner-bg.jpg');
+    background-repeat: no-repeat;
+    margin: 0%;
+    width: 100%;
+    height: 700px;
+}
+
+.banner-background-color {
+    background-color: #e6f2ff;
+}
+
+.banner-content {
+    margin-top: 15%;
+    margin-left: 5%;
+}
+
+.banner-form {
+    display: inline-flex;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    gap: 20px;
+}
+
+.banner-desc {
+    margin-bottom: 5%;
+}
+
+.banner-desc #p1 {
+    font-size: 40px;
+    text-align: left;
+}
+
+.banner-desc #p2 {
+    text-align: left;
+}
+
+.form-inline {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-group-text {
+    background-color: transparent;
+    border: none;
+    color: #6c757d;
+}
+
+.form-control {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+input::placeholder, select {
+    color: #6c757d;
+}
+
+.btn-primary {
+    background-color: #1967D2;
+    padding: 10px 20px;
+    white-space: nowrap;
+    font-size: 16px;
+    line-height: 1;        
+    display: inline-flex;  
+    align-items: center;   
+}
+
+.btn-primary:hover {
+    color: #1967D2;
+    background-color: white;
+    border: 1px #1967D2 solid;
+    transition-duration: 0.3s;
+}
+
+
+
+.banner-form button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #1967D2;
+    color: white;
+    transition-duration: 0.3s;
+}
+
+.job-box {
+    border: 1px solid #e6e6e6 !important;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+}
+
+.custom-icon-bg {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-icon i {
+    font-size: 28px;
+    color: #1967D2;
+}
+
+.job-box h5 {
+    margin: 0;
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.job-box:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.job-box:hover h5 {
+    color: #1967D2;
+    transition-duration: 0.5s;
+}
+
+.job-box:hover .custom-icon {
+    background-color: #1967D2;
+    transition-duration: 0.5s;
+}
+
+.job-box:hover i {
+    color: white;
+    transition-duration: 0.5s;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+.job-card {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+.job-card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.section-divider {
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.job-details {
+    display: flex;
+}
+
+.job-type-badge {
+    background-color: #99ccff;
+    color: #1a75ff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.urgent-badge {
+    background-color: #ffdd99;
+    color: #ffaa00;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.sticky-badge {
+    background-color: grey;
+    width: 250px;
+    height: 150px;
+    position: absolute;
+    left: 40%;
+    top: 415%;
+    border-radius: 5px;
+}
+
+@media (max-width: 576px) {
+    .sticky-badge {
+        display: none; /* Hide the badge */
+    }
+}
+
+/* For medium screens (tablets) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .sticky-badge {
+        display: none; /* Hide the badge if necessary */
+    }
+}
+
+/* For large screens (desktops) */
+@media (min-width: 769px) {
+    .sticky-badge {
+        display: block; /* Ensure the badge is visible on larger screens */
+    }
+}
+.report-bar {
+    margin-top: 150px;
+}
+
+.custom-font-size {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.download-app-btn {
+    width: auto;
+    height: auto;
+    border: none;
+    background-color: #000;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.download-app-btn a {
+    color: white;
+    text-decoration: none; 
+    color: inherit; 
+    display: flex; 
+    align-items: center; 
+}
+
+.download-app-btn i {
+    font-size: 2rem; 
+    margin-right: 0.5rem;
+}
+
+.download-app-btn:hover {
+    background-color: #1967D2;
+    transition-duration: 0.5s;
+}
+
+.test-background {
+    height: 700px;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start; 
+    text-align: left; 
+    padding: 0 15px; 
+    height: 100vh; 
+}
+
+.banner-desc, .form-content {
+    width: 100%;
+}
+
+.form-group {
+    max-width: 500px;
+    display: flex;
+    gap: 10px;
+}
+
+.recruit-banner-background {
+    background-color: #e6f2ff !important;
+    border-radius: 5px;
+
+}
