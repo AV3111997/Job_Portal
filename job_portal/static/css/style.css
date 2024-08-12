@@ -256,7 +256,7 @@ h2 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
-.card-title {
+.job-card-title {
     font-size: 1.25rem;
     font-weight: 600;
     color: #343a40;
@@ -390,3 +390,21 @@ h2 {
     border-radius: 5px;
 
 }
+
+/* Karthika Styles */
+/* start */
+
+.card-img-top {
+    padding: 10px; 
+    box-sizing: border-box; 
+    transition: transform 0.3s ease; 
+    display: block; 
+    width: 100%; 
+    border-radius: 20px;
+}
+.card-img-top:hover {
+            transform: scale(1.1); 
+            cursor: pointer; 
+        }
+        
+/* end */

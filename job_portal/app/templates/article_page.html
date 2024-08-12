@@ -1,0 +1,136 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}
+<title>Articles</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="text-center mt-5 mb-5">
+        <h2 class="mb-3">5 Tips For Your Job Interviews</h2>
+        <p class="text-muted">by Admin • April 26, 2021 • Education • 3 Comments</p>
+    </div>
+    <div class="image-placeholder mb-5">
+        <img src="{% static 'img/blog1.jpg' %}" alt="">
+    </div>
+    <div class="row d-flex justify-content-center flex-block mb-3">
+        <div class="col-md-6">
+            <h5>Course Description</h5>
+            <p>Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Duis eget ex nec lectus faucibus
+                tincidunt. Aliquam vitae nibh facilisis, aliquet nisl id, consequat neque. Cum sociis natoque penatibus
+                et magnis dis parturient montes, nascetur ridiculus mus. Curabitur tempus urna at turpis condimentum
+                lobortis.</p>
+
+            <div class="quote-section">
+                <p class="mb-2" style="font-style: italic;">Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Duis eget ex nec
+                    lectus faucibus tincidunt. Aliquam vitae nibh facilisis, aliquet nisl id, consequat neque.</p>
+                <footer>Luke Pickford</footer>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+        <div class="col-md-6">
+            <h5 class="mb-3">What you'll learn</h5>
+            <div class="row d-flex custom-gap text-muted">
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> Become a UI/UX designer.</li>
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> You will be able to start earning money Figma skills.</li>
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> Build a UI project from beginning to end.</li>
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> Work with colors & fonts.</li>
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> You will create your own UI Kit.</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> Build & test a complete mobile app.</li>
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> Learn to design mobile apps & websites.</li>
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> Design & share logos.</li>
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> Create your daily uniform.</li>
+                        <li class="mb-3"><i class="fa-solid fa-square-check"></i> Downloadable exercise files.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+        <div class="col-md-6">
+            <img src="{% static 'img/detail-blog.jpg' %}" alt="">
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6 section-divider pb-5">
+            <div class="requirements">
+                <h5>Requirements</h5>
+                <ul>
+                    <li class="mb-3">We do not require any previous experience or pre-defined skills to take this course. A great orientation
+                        would be enough to master UI/UX design.</li>
+                    <li class="mb-3">A computer with a good internet connection.</li>
+                    <li class="mb-3">Adobe Photoshop (OPTIONAL).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+        <div class="col-md-6 section-divider py-5">
+            <span class="fw-bold">Share this post</span>
+            <button class="article-share-btn article-share-btn-f"><i class="fa-brands fa-facebook-f"></i>&nbsp;Facbook</button>
+            <button class="article-share-btn article-share-btn-t"><i class="fa-brands fa-twitter"></i>&nbsp;twitter</button>
+            <button class="article-share-btn article-share-btn-p"> <i class="fa-brands fa-pinterest"></i>&nbsp;pintrest</button>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+        <div class="col-md-6">
+            <div class="comments-section">
+                <h5 class="mb-4">3 Comments</h5>
+                <div class="comment-item d-flex align-items-start">
+                    <div class="comment-image-placeholder me-3"></div>
+                    <div>
+                        <p><strong>Admin</strong> • March 11, 2021</p>
+                        <p>Duis mattis laoreet neque, et ornare neque sollicitudin ac.</p>
+                    </div>
+                </div>
+                <div class="comment-item d-flex align-items-start">
+                    <div class="comment-image-placeholder me-3"></div>
+                    <div>
+                        <p><strong>Admin</strong> • March 11, 2021</p>
+                        <p>Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec.</p>
+                    </div>
+                </div>
+                <div class="comment-item d-flex align-items-start">
+                    <div class="comment-image-placeholder me-3"></div>
+                    <div>
+                        <p><strong>Tufan</strong> • March 24, 2021</p>
+                        <p>Duis mattis laoreet neque, et ornare neque sollicitudin ac.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center mb-3">
+        <div class="col-md-6 comment-form-bg">
+            <div class="comment-form">
+                <h5>Leave a Comment</h5>
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control custom-input" id="name" placeholder="Name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Your Email</label>
+                            <input type="email" class="form-control custom-input" id="email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Your Comment</label>
+                        <textarea class="form-control custom-input" id="comment" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+            
+{% endblock content %}
