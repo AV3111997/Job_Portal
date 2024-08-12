@@ -11,3 +11,6 @@ class FAQView(TemplateView):
 
 class PricingView(TemplateView):
     template_name = 'pricing.html' 
+
+def candidate_view(request):
+    return render(request, 'candidate.html')
