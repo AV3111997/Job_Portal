@@ -14,3 +14,9 @@ class PricingView(TemplateView):
 
 def candidate_view(request):
     return render(request, 'candidate.html')
+
+def Joblist_view(request):
+    return render(request,'findjoblist.html')
+
+def Employerslist_view(request):
+    return render(request,'employerslist.html')
