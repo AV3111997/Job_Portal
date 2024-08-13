@@ -14,3 +14,12 @@ class PricingView(TemplateView):
 
 def candidate_view(request):
     return render(request, 'candidate.html')
+
+def terms_view(request):
+    return render(request, 'terms.html')
+
+def contact_view(request):
+    return render(request, 'contact.html')
+
+def profile_view(request):
+    return render(request, 'profile.html')

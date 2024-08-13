@@ -1,0 +1,415 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}
+<title>Candidate Profile</title>
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/KTprofile.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="main">
+    <div class="profile-header">
+        <img src="https://i.pinimg.com/564x/99/ff/28/99ff28218b7cfabc42e4ddf131cfbc9a.jpg" alt="Candidate Image">
+        <h2>Ali Tufan</h2>
+        <p>Job Title</p>
+        <div class="profile-info" >
+            <div class="skills">
+                <a href="#"><span>Administrative</span></a>
+                <a href="#"><span>App</span></a>
+                <a href="#"><span>Jobs</span></a>
+                <a href="#"><span>PHP</span></a>
+            </div>
+            <div class="details">
+                <a href="#"><span><i class="fas fa-map-marker-alt"></i> New York</span></a>
+            
+                <span><i class="fas fa-money-bill-wave"></i> $2000 / year</span>
+            </div>
+            <div class="profile-actions">
+                <button class="btn btn-primary">Download CV</button>
+                <button class="btn btn-primary">Invite</button>
+                <button class="btn btn-outline-primary"><i class="fas fa-bookmark"></i> </button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4 left-grid">
+            
+            <div class="card" style="background-color: #f7f9fc; padding: 24px; border-radius: 10px;">
+                <div class="card-body">
+                    <div class="detail-2">
+                        <div class="card-title">
+                            <i class="fas fa-dollar-sign" style="color: #007bff;"></i>
+                            <h5 class="card-title">Offered Salary</h5>
+                        </div>
+                        <p>$2000/year</p>
+        
+                        <div class="card-title">
+                            <i class="fas fa-venus" style="color: #007bff;"></i>
+                            <h5 class="card-title">Gender</h5>
+                        </div>
+                        <p>Female</p>
+        
+                        <div class="card-title">
+                            <i class="fas fa-calendar-alt" style="color: #007bff;"></i>
+                            <h5 class="card-title">Age</h5>
+                        </div>
+                        <p>20-25</p>
+        
+                        <div class="card-title">
+                            <i class="fas fa-graduation-cap" style="color: #007bff;"></i>
+                            <h5 class="card-title">Qualification</h5>
+                        </div>
+                        <p>Master's Degree</p>
+        
+                        <div class="card-title">
+                            <i class="fas fa-language" style="color: #007bff;"></i>
+                            <h5 class="card-title">Languages</h5>
+                        </div>
+                        <p>English</p>
+        
+                        <div class="card-title">
+                            <i class="fas fa-envelope" style="color: #007bff;"></i>
+                            <h5 class="card-title">Email</h5>
+                        </div>
+                        <p>ali@apus.com</p>
+        
+                        <div class="card-title">
+                            <i class="fas fa-phone-alt" style="color: #007bff;"></i>
+                            <h5 class="card-title">Phone Number</h5>
+                        </div>
+                        <p>(+88) 123 456 *** 
+                            <button class="btn btn-primary" 
+                                    style="font-size: 15px;height: 20px;width: 40px; padding: 0; border: none; text-decoration: none; margin-left: 5px;">Show
+                            </button>
+                        </p>
+        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" style="background-color: #f7f9fc;">
+                <div class="card-body" style="display: flex;height: 100px; align-items: center; justify-content: space-between;">
+                    <h5 class="card-title" style="margin: 0;">Social Profiles :</h5>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="background-color: #f7f9fc;">
+                <div class="card-body">
+                    <h5 class="card-title">Professional Skills</h5>
+                    <div class="skill" >
+                        <a href="#"><span class="btn btn-light">Administrative</span></a>
+                        <a href="#"><span class="btn btn-light">App</span></a>
+                        <a href="#"><span class="btn btn-light">Jobs</span></a>
+                        <a href="#"><span class="btn btn-light">Php</span></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" style="background-color: #f7f9fc; padding: 10px; border-radius: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #333;">CV</h5>
+                    <div style="background-color: #caebff; padding: 10px; border-radius: 5px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <a href="#" style="color: #0066cc; display: flex; align-items: center; text-decoration: none;">
+                            cv_candidate.pdf
+                            <i class="fas fa-file-download" style="font-size: 1.5em; color: #0066cc;margin-left: 150px"></i>
+                        </a>
+                    </div>
+                    <div style="background-color: #caebff; padding: 10px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;">
+                        <a href="#" style="color: #0066cc; display: flex; align-items: center; text-decoration: none;">
+                            cv_candidate123.pdf
+                            <i class="fas fa-file-download" style="font-size: 1.5em; color: #0066cc; margin-left:125px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="background-color: #f7f9fc; padding: 20px; border-radius: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-weight: bold; margin-bottom: 20px;">Contact Ali Tufan</h5>
+                    <form>
+                        <div style="margin-bottom: 15px;">
+                            <input type="text" class="form-control" placeholder="Subject" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #e0e0e0;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <input type="email" class="form-control" placeholder="E-mail" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #e0e0e0;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <input type="text" class="form-control" placeholder="Phone" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #e0e0e0;">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <textarea class="form-control" placeholder="Message" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #e0e0e0;"></textarea>
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-primary" style="background-color: #0061f2; border: none; padding: 10px 20px; border-radius: 5px;">Send Message</button>
+                        </div>
+                    </form>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <a href="#" style="font-size: 12px; color: #7b7b7b;">Private Message</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 right-grid">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">About Candidate</h5>
+                    <p>Hello my name is Nicole Wells and I am a web developer from Portland. In pharetra orci dignissim, blandit mi semper, ultricies diam. Suspendisse malesuada suscipit nunc non volutpat. Sed porta nulla id orci laoreet tempor non consequat enim. Sed vitae aliquam velit.</p>
+                    <p>Mauris nec erat ut libero vulputate pulvinar. Aliquam ante erat, blandit at pretium et, accumsan ac est. Integer vehicula rhoncus molestie. Morbi ornare ipsum sed sem condimentum, et pulvinar tortor luctus. Suspendisse condimentum lorem ut elementum aliquam.</p>
+
+                    <div class="share-container">
+                        <div class="share-text">Share This Post</div>
+                        <div class="social-buttons">
+                            <button class="btn btn-facebook"><i class="fab fa-facebook-f"></i> Facebook</button>
+                            <button class="btn btn-twitter"><i class="fab fa-twitter"></i> Twitter</button>
+                            <button class="btn btn-pinterest"><i class="fab fa-pinterest-p"></i> Pinterest</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Location</h5>
+                    <div class="location-map" id="map"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Education</h3>
+                    
+                    <!-- Education Timeline Starts Here -->
+                    <div class="timeline E">
+                        <div class="timeline-item" data-letter="B" >
+                            <h5 class="timeline-title">Bachlors in Fine Arts</h5>
+                            <span class="timeline-date" style="color: #dc3545;">05/2012 - 06/2014</span>
+                            <h6 class="timeline-subtitle" style="color: #dc3545;">Modern College</h6>
+                            <p class="timeline-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. 
+                                Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                        </div>
+                        <div class="timeline-item" data-letter="C">
+                            <h5 class="timeline-title" >Computer Science </h5>
+                            <span class="timeline-date" style="color: #dc3545;">05/2014 - 07/2018</span>
+                            <h6 class="timeline-subtitle" style="color: #dc3545;">Harvard University</h6>
+                            <p class="timeline-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus.
+                                 Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Education Timeline Ends Here -->
+                </div>
+            </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Work & Experience</h3>
+                        <!-- work Timeline Starts Here -->
+                        <div class="timeline W">
+                            <div class="timeline-item " data-letter="P">
+                                <h5 class="timeline-title">Product Designer</h5>
+                                <span class="timeline-date" style="color: #3078e3;">05/04/2005 - 05/04/2008</span>
+                                <h6 class="timeline-subtitle" style="color: #3078e3;">Spotify Inc.</h6>
+                                <p class="timeline-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. 
+                                    Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                            </div>
+                            <div class="timeline-item " data-letter="U">
+                                <h5 class="timeline-title">UX Engineer </h5>
+                                <span class="timeline-date" style="color: #3078e3;">05/05/2012 - 05/05/2018</span>
+                                <h6 class="timeline-subtitle" style="color: #3078e3;">Dropbox Inc.</h6>
+                                <p class="timeline-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus.
+                                     Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                            </div>
+                        </div>
+
+                        <!-- work Timeline Ends Here -->
+                    </div>
+                </div>
+            
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Portfolio</h5>
+                        <div class="portfolio">
+                            <img src="https://i.pinimg.com/564x/e5/65/ea/e565ead9137be458a805485e6821d67f.jpg" alt="Portfolio Item">
+                            <img src="https://i.pinimg.com/564x/63/75/e6/6375e613497e19b86dd9dc30faba1754.jpg" alt="Portfolio Item">
+                            <img src="https://i.pinimg.com/564x/79/aa/c7/79aac73f4b4b32914cd532f09379253e.jpg" alt="Portfolio Item">
+                            <div class="image-wrapper">
+                                <img src="https://i.pinimg.com/564x/90/1e/02/901e02cce68a19f6adea332fb6b77a5a.jpg" alt="Portfolio Item">
+                                <div class="more" id="toggleMore">+3</div>
+                            </div>
+                            <div class="extra-images hidden" id="extraImages">
+                                <img src="https://i.pinimg.com/736x/b4/59/51/b45951c39ad482017c76851234eac9e2.jpg" alt="Portfolio Item">
+                                <img src="https://i.pinimg.com/564x/5e/27/dd/5e27dd289e974f9397e38a101838fe8d.jpg" alt="Portfolio Item">
+                                <img src="https://i.pinimg.com/564x/b5/0e/23/b50e23d5c404fd715a16b2f4196efba2.jpg" alt="Portfolio Item">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Award</h3>
+                            
+                            <!-- Education Timeline Starts Here -->
+                            <div class="timeline A">
+                                <div class="timeline-item " data-letter="P" >
+                                    <h5 class="timeline-title">Perfect Attendance Programs</h5>
+                                    <span class="timeline-date" style="color: #e18f2a;">2012-2014</span>
+                                    <p class="timeline-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. 
+                                        Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                                </div>
+                                <div class="timeline-item " data-letter="T">
+                                    <h5 class="timeline-title">Top Performer Recognition</h5>
+                                    <span class="timeline-date" style="color: #e18f2a;">2014-2016</span>
+                                    <p class="timeline-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus.
+                                         Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Video</h5>
+                            <div>
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/your-video-id" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="container my-5" >
+                        <h5>Related Candidates</h5>
+                        <div class="candidate-card">
+                            <div class="candidate-img">
+                                <img src="https://i.pinimg.com/564x/f9/38/ab/f938aba00b513bf8cbcc5c5be6f10b32.jpg" alt="Brooklyn Simmons">
+                            </div>
+                            <div class="candidate-info">
+                                <h6>Brooklyn Simmons</h6>
+                                <p class="skil">advertising</p>
+                                <p class="location">
+                                    <i class="fas fa-map-marker-alt"></i> New York
+                                </p>
+                                <p class="salary">
+                                    <i class="fas fa-money-bill"></i> $350 / week
+                                </p>
+                                <div class="candidate-tags">
+                                    <span class="badge bg-light text-dark">App</span>
+                                    <span class="badge bg-light text-dark">Jobs</span>
+                                    <span class="badge bg-light text-dark">Superio</span>
+                                </div>
+                            </div>
+                            <div class="button-group">
+                                <button class="save-btn" style="border: none;border-radius: 5px;padding: 20px; height: 35px;background:none;color: #0066cc;">
+                                    <i class="fas fa-bookmark" ></i>
+                                </button>
+                                <button class="view-profile-btn">View Profile</button>
+                            </div>
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="container my-5">
+                        <h5>2 Comments</h5>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div style="border-radius: 50%; margin-right: 20px;">
+                                        <img src="https://i.pinimg.com/564x/08/f6/ab/08f6ab55f4fee638c809481861e9993e.jpg" alt="Profile" class="rounded-circle me-3" style="width: 70px; height: 70px;">
+                                    </div>
+                                    <div style="width: 100%;">
+                                        <div class="d-flex justify-content-between align-items-center mb-1">
+                                            <h6 class="card-title mb-0">Admin</h6>
+                                            <div class="rating">
+                                                <span>5.0</span>
+                                                <span class="text-warning">&#9733;</span>
+                                                <span class="text-warning">&#9733;</span>
+                                                <span class="text-warning">&#9733;</span>
+                                                <span class="text-warning">&#9733;</span>
+                                                <span class="text-warning">&#9733;</span>
+                                            </div>
+                                        </div>
+                                        <p class="card-subtitle text-muted mb-2">March 24, 2021</p>
+                                        <p class="card-text">Duis mattis laoreet neque, et ornare neque sollicitudin at. Proin sagittis dolor sed mi elementum pretium. Donec et justo ante. Vivamus egestas sodales est, eu rhoncus urna semper eu.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container my-5">
+                        <div class="card p-4" style=" border: 1px solid #dee2e6;">
+                            <h5>Add a review</h5>
+                            <div class="mb-3" style="display: flex;">
+                                <div class="rating-container">
+                                    <div class="text-warning">
+                                        &#9733; &#9733; &#9733; &#9733; &#9733;
+                                    </div>
+                                </div>
+                                <label class="form-label">Your Rating</label>
+
+                            </div>
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Name">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Your Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="mb-3 form-check" >
+                                    <input type="checkbox" class="form-check-input" id="saveInfo" >
+                                    <label class="form-check-label" for="saveInfo" style="margin-left: 10px;">Save my name, email, and website in this browser for the next time I comment.</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="comment" class="form-label">Your Comment</label>
+                                    <textarea class="form-control" id="comment" rows="6" placeholder="Comment" style="text-align: left;"></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<!-- <script src="{% static 'js/.js' %}"></script> -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    // Map initialization
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    L.marker([51.505, -0.09]).addTo(map)
+        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+        .openPopup();
+
+    // Portfolio show more functionality
+    document.getElementById('toggleMore').addEventListener('click', function() {
+            var extraImages = document.getElementById('extraImages');
+            if (extraImages.style.display === "none" || extraImages.style.display === "") {
+                extraImages.style.display = "flex";
+                this.style.display = "none"; // Hide the "+4" after clicking
+            } 
+        });
+        
+</script>
+{% endblock js %}
