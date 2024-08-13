@@ -407,11 +407,13 @@ h2 {
             cursor: pointer; 
         }
 /* haritha style         */
-h2{
+/* employerslist */
+
+.emp_head{
     font-size: 20px;
     margin-right: auto;
 }
-.container-fluid {
+.container-fluidEmp {
     background-color: #ebedf0;
     margin-bottom: 20px;
     padding-bottom: 45px;
@@ -442,7 +444,7 @@ h2{
     background-color: lightblue;
 }
 
-.image img{
+.empimage img{
     width: 40px;
     height: 40px;
     border-radius: 3px;
@@ -452,7 +454,7 @@ h2{
     color: green;
     font-weight: bold;
 }
-body {
+.emplistbody {
     font-family: Arial, sans-serif;
     margin: 10px;
     
@@ -625,7 +627,7 @@ input:checked + .switch-label .switch-slider:before {
     padding: 5px 10px;
     width: 180px;
 }
-.employee-alert input{
+.emp-alert input{
     width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -633,7 +635,7 @@ input:checked + .switch-label .switch-slider:before {
     font-size: 16px;
 }
 
-.employee-alert button{
+.emp-alert button{
     align-items: center;
     padding: 10px 20px;
     background-color: #007bff;
@@ -644,7 +646,7 @@ input:checked + .switch-label .switch-slider:before {
     cursor: pointer;
 }
 
-.employee-alert button:hover{
+.emp-alert button:hover{
     background-color: #0056b3;
 }
 
@@ -658,11 +660,13 @@ text-align: center;
 
 
 }
+/* haritha jobliststyle */
 
-h2{
+.job_head{
     font-size: 20px;
-}
-.container-fluid {
+    font-weight: bold;
+    }
+.container-fluidjob {
     background-color: #ebedf0;
     margin-bottom: 20px;
     padding-bottom: 45px;
@@ -697,12 +701,12 @@ h2{
     color: green;
     font-weight: bold;
 }
-body {
+.findjoblist {
     font-family: Arial, sans-serif;
     margin: 10px;
     
 }
-.image img{
+.job_image img{
     width: 40px;
     height: 40px;
     border-radius: 3px;
@@ -882,7 +886,7 @@ input:checked + .switch-label .switch-slider:before {
     padding: 5px 10px;
     width: 180px;
 }
-.job-alert input[type="text"]{
+.job-alert input{
     width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -906,7 +910,7 @@ input:checked + .switch-label .switch-slider:before {
     background-color: #0056b3;
 }
 
-.pagination > li > a, .pagination > li > span{
+.jobpagination > li > a, .jobpagination > li > span{
 border-radius: 100px;
 width: 50px;
 height: 50px;
@@ -915,6 +919,8 @@ padding-top: 13px;
 text-align: center;
 
 }
+
+
 /* end */
 .search-section {
     background-color: #f1f9fd;
