@@ -1,0 +1,606 @@
+/* General Styles */
+.profile-header {
+    text-align: center;
+    background-color: #e6ebf1;
+    padding: 10px;
+}
+
+.profile-header img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.profile-header h2 {
+    margin-top: 10px;
+    font-size: 2rem;
+}
+
+.profile-header .btn {
+    margin: 10px 5px;
+    padding: 10px 15px; /
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; 
+}
+
+.skills {
+    margin-left: 80px;
+}
+
+.skills a, .details a {
+    text-decoration: none;
+}
+
+.skills span {
+    background-color: #b8d1e8;
+    color: #007bff;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-right: 5px;
+}
+
+.skills a:hover span {
+    background-color: blue;
+    color: white; 
+}
+
+.details {
+    margin-right: 60px;
+}
+
+.details a {
+    text-decoration: none;
+    padding: 5px 50px;
+}
+
+.details span {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 10px;
+    margin-right: 80px;
+}
+
+.skills .badge {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.left-grid, .right-grid {
+    margin-top: 20px;
+}
+
+.left-grid .card, .right-grid .card {
+    margin-bottom: 20px;
+}
+
+.left-grid .card-body {
+    padding: 15px;
+}
+
+.col-md-8.right-grid .card {
+    border: none; 
+    background-color: transparent; 
+}
+.left-grid .card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    margin-bottom: 10px; 
+}
+.left-grid .card-title i {
+    font-size: 20px; 
+    width: 20px; 
+    text-align: center; 
+}
+.left-grid .card-title h5 {
+    margin: 0; 
+    font-size: 1.1rem; 
+    
+}
+
+.left-grid .detail-2 i {
+    color: #007bff;
+    margin-right: 30px;
+    flex-shrink: 0;
+} 
+.left-grid .detail-2 button {
+    font-size: 25px;
+} 
+
+.left-grid .detail-2 p {
+    font-size: 16px;
+    margin-left: 61px;
+    margin-bottom: 30px;
+}
+
+
+.left-grid .card-body h5 {
+    font-size: 15px;
+    align-items: center;
+}
+
+.social-links a {
+    padding: 15px;
+    color: #333;
+}
+.right-grid  {
+    width: 100%; /* Ensure that cards take full width of their container */
+    max-width: 800px; /* Set a maximum width if needed */
+    margin: 0 auto 0 50px; /* Center cards if they are smaller than the container */
+}
+
+.right-grid .share-container {
+    display: flex;
+    align-items: center; 
+}
+.share-text {
+    margin-right: 10px;
+    margin-top: 25px;
+}
+
+.social-buttons button {
+    margin-left: 5px; 
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.location-map {
+    width: 100%;
+    height: 200px;
+}
+
+.portfolio {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.portfolio img {
+    width: 180px;
+    height: 150px;
+    margin-right: 5px;
+    border-radius: 10px;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.more {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.extra-images {
+    display: none;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.extra-images img {
+    margin-top: 10px; /* To start images in the next line */
+}
+
+.related-candidates img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.card {
+    border: none; 
+    border-radius: 10px; 
+    background-color: #f7f9fc; 
+    margin-bottom: 20px; 
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.card-body p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Share This Post */
+.share-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Social Media Buttons */
+.social-buttons {
+    margin-top: 10px;
+}
+
+.social-buttons .btn {
+    margin-right: 10px;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.btn-twitter {
+    background-color: #d058ff;
+    color: #fff;
+}
+
+.btn-pinterest {
+    background-color: #bd081c;
+    color: #fff;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    margin-left: 50px;
+    padding: 20px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    padding-left: 5px; 
+}
+
+.timeline-item::before {
+    content: attr(data-letter);
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    left: -80px;
+    top: 0;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.timeline-item:after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: calc(100% + 10px);
+    background: transparent;
+    left: -60px;
+    top: 40px;
+    border-left: 2px dotted;
+    z-index: 1;
+}
+
+.timeline-item:last-child:after {
+    display: none;
+}
+
+/* Timeline E Styling */
+.timeline.E .timeline-item::before {
+    background: #efbcbc;
+    color: #f40c0c;
+}
+
+.timeline.E .timeline-item:after {
+    border-left: 2px dotted #efbcbc;
+}
+
+/* Timeline W Styling */
+.timeline.W .timeline-item::before {
+    background: #c7c7f6;
+    color: #0a36fa;
+}
+
+.timeline.W .timeline-item:after {
+    border-left: 2px dotted #e2e2f5;
+}
+
+/* Timeline A Styling */
+.timeline.A .timeline-item::before {
+    background: #ead4a9;
+    color: #f49c04;
+}
+
+.timeline.A .timeline-item:after {
+    border-left: 2px dotted #e6c78d;
+}
+
+/* Additional Styles */
+.timeline-title {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #000;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.timeline-date {
+    font-size: 0.7rem;
+}
+
+.timeline-subtitle {
+    margin-bottom: 10px;
+}
+
+h5.timeline-subtitle {
+    font-size: 1rem;
+}
+
+.timeline-description {
+    color: #6c757d;
+}
+.container h5{
+    font-weight: bold;
+}
+.candidate-card {
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px  solid #dee2e6;
+    width: 100%;
+    height: 170px;
+    
+}
+
+.candidate-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.candidate-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.candidate-info {
+    flex-grow: 1;
+    
+}
+
+.candidate-info h6 {
+    padding:9px;
+    margin: 0;
+    font-weight: bold;
+    
+}
+
+.candidate-info .location,
+.candidate-info .salary {
+    font-size: 14px;
+    color: #666;
+}
+
+.candidate-tags {
+    margin-top: 10px;
+}
+
+.candidate-info p {
+    display: inline; 
+    padding-left: 7px;
+    margin-right: 15px;
+}
+
+.candidate-info .skil {
+    color: blue; 
+}
+
+.candidate-info h5:hover,
+.candidate-info .skil:hover {
+    color: darkblue; 
+}
+
+.candidate-tags .badge {
+    margin-right: 5px;
+}
+
+.view-profile-btn {
+    margin-left: auto;
+    padding: 7px 15px;
+    background-color: #f0f4ff;
+    color: #007bff;
+    border-radius: 5px;
+    border: none;
+}
+
+.view-profile-btn:hover {
+    background-color: #1d4ff1;
+    color: white;
+}
+.right-grid .row input,
+.right-grid .row textarea,
+.mb-3 textarea {
+    background-color: #f0f4ff;
+    border-radius: 5px;
+    
+}
+.right-grid .row input,
+.right-grid .row textarea{
+    height: 60px;
+}
+.rating-container {
+    align-items: center;
+    margin-right: 20px;
+}
+
+.right-grid .row input::placeholder,
+.right-grid .row textarea::placeholder {
+    color: #b0b4bc !important;
+    text-align: left !important;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .profile-info, .profile-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .skills, .details {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .timeline {
+        margin-left: 30px;
+    }
+
+    .candidate-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .candidate-img {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .right-grid {
+        margin: 0 auto;
+        text-align: center;
+        width: 95%;
+    }
+
+    
+    .profile-header {
+        padding: 20px 10px;
+    }
+
+    .profile-header img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .profile-info, .profile-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .skills, .details {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+    .left-grid .detail-2 .carp {
+        margin-left: 100px;
+    }
+
+    .timeline {
+        margin-left: 20px;
+    }
+
+    .left-grid .detail-2 p {
+        margin-right: 20px;
+    }
+
+    .portfolio img {
+        width: 100px;
+        height: 80px;
+        margin-right: 5px;
+        align-items: center;
+    }
+
+    .location-map {
+        height: 150px;
+    }
+    .social-buttons {
+        margin-top: 10px;
+    }
+    
+    .social-buttons .btn {
+        margin-right: 10px;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+    .share-container {
+        display: flex;
+
+        flex-wrap: wrap;
+    }
+
+    .share-text {
+        margin-right: 5px; 
+        flex: 1;
+    }
+
+    .social-buttons {
+        display: flex;
+        gap: 5px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-header img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .portfolio img {
+        width: 80px;
+    }
+
+    .timeline-item::before {
+        left: -60px;
+    }
+
+    .timeline-item:after {
+        left: -45px;
+    }
+}

@@ -1,0 +1,251 @@
+.emp_head{
+    font-size: 20px;
+    margin-right: auto;
+}
+.container-fluidEmp {
+    background-color: #ebedf0;
+    margin-bottom: 20px;
+    padding-bottom: 45px;
+}
+.gray-background {
+    background-color: rgb(237, 240, 238);
+}
+.my-custom-heading {
+    margin-top: 5rem; 
+    margin-bottom: 0.2rem;
+    padding-top: 4%;
+}
+.my-custom-subheading {
+    margin-top: 0; 
+    margin-bottom: 1rem;
+    font-weight: 100;
+}
+.employee-listing {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    
+}
+.employee-listing .badge {
+    margin-right: 5px;
+    color: black;
+    background-color: lightblue;
+}
+
+.empimage img{
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+}
+
+.featured {
+    color: green;
+    font-weight: bold;
+}
+.emplistbody {
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    
+}
+.search-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.search-container input,
+.search-container select {
+    width: 100%;
+    padding: 10px 40px 10px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.search-container .radius-slider {
+    display: flex;
+    align-items: center;
+}
+.search-container .radius-slider input {
+    margin-left: 10px;
+    flex: 1;
+} 
+.search-container .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px; 
+    transform: translateY(-50%);
+    color: #aaa;
+}
+@media (max-width: 768px) {
+    .my-custom-heading {
+        margin-top: 3rem;
+    }
+    .search-container {
+        gap: 10px;
+    }
+}
+@media (max-width: 576px) {
+    body {
+        margin: 10px;
+    }
+    .my-custom-heading {
+        margin-top: 2rem;
+        padding-top: 2%;
+    }
+    .employee-listing {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+}
+.location-input {
+position: relative;
+display: inline-block;
+}
+
+.location-icon {
+position: absolute;
+top: 50%;
+left: 10px; 
+transform: translateY(-50%);
+font-size: 16px; 
+color: #6c757d;
+}
+
+.form-control {
+padding-left: 40px; 
+}
+.show-more {
+    cursor: pointer;
+    color: #007bff;
+    
+}
+.show-more:hover {
+    color: #0056b3;
+}
+.plus-symbol {
+    font-size: 18px;
+    
+}
+.switch {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.switch input {
+    display: none;
+}
+.switch-label {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+}
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    transition: .4s;
+    border-radius: 24px;
+}
+.switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: #ccc;
+    transition: .4s;
+}
+input:checked + .switch-label .switch-slider {
+    background-color: #4a13cc;
+}
+input:checked + .switch-label .switch-slider:before {
+    transform: translateX(26px);
+}
+.switch-status {
+    font-size: 16px;
+    margin-left: 10px;
+}
+.radius-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 300px; 
+    margin: 20px 0; 
+}
+.square-button {
+    width: 300px; 
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px; 
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.square-button:hover {
+    background-color: #0056b3; 
+}
+
+.square-button:focus {
+    outline: none;
+}
+.sort-by-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.sort-by-section select {
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 180px;
+}
+.emp-alert input{
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.emp-alert button{
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.emp-alert button:hover{
+    background-color: #0056b3;
+}
+
+.pagination > li > a, .pagination > li > span{
+border-radius: 100px;
+width: 50px;
+height: 50px;
+margin-left: 10px;
+padding-top: 13px;
+text-align: center;
+
+
+}

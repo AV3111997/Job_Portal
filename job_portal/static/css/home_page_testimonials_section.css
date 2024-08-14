@@ -1,0 +1,30 @@
+/* Center the testimonial section on the page */
+.container-xxl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    text-align: center;
+}
+
+/* Additional styling to ensure the content is nicely formatted */
+.testimonial-item {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.carousel-inner {
+    margin: 0 auto; /* Ensure the carousel is centered */
+}
+
+/* Make the carousel controls invisible and remove the rectangular appearance */
+.carousel-control-prev, .carousel-control-next {
+    width: 0;
+    opacity: 0; /* Make controls invisible */
+}
+
+/* Optional: add a custom cursor to indicate clickable area */
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    cursor: pointer;
+    opacity: 0.5; /* Slightly visible on hover to indicate action */
+}

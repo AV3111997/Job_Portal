@@ -3,20 +3,16 @@ from django.views.generic import TemplateView
 
 # Create your views here.
 
-
 class IndexView(TemplateView):
     template_name = 'index.html'
 
 class ArticlesView(TemplateView):
     template_name = 'article_page.html'
 
-
 class FAQView(TemplateView):
-    template_name = 'faq.html'
-
+    template_name = 'faq.html' 
 
 class PricingView(TemplateView):
-    template_name = 'pricing.html'
     template_name = 'pricing.html'
 
 class JobDetailsView(TemplateView):

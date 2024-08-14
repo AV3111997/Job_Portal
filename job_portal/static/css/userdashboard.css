@@ -1,0 +1,370 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  overflow: hidden;
+  background-color: #b2c4e0;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 470px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  padding-right: 15px;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 0; /* Hide the scrollbar */
+}
+
+.sidebar:hover::-webkit-scrollbar {
+  width: 5px; /* Show the scrollbar when hovering */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+.profile-section {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 50%;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  margin-bottom: 20px;
+}
+
+.profile-img-container {
+  flex: 1;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  padding: px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-img {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 15px;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.profile-info p {
+  margin: 5px 0;
+  color: #777;
+  font-size: 16px;
+}
+
+.view-profile-btn {
+  padding: 5px 20px;
+  background-color: #007bff;
+  width: 70%;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.view-profile-btn:hover {
+  background-color: #105eb2;
+}
+
+.nav-links {
+  margin-top: 30px;
+}
+
+.nav-links a {
+  display: block;
+  color: #333;
+  padding: 20px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+  background-color: #d5e1ed;
+}
+
+.skills-percentage {
+  text-align: left;
+  font-weight: bold;
+}
+
+.skills-percentage span {
+  color: #aa1919;
+  font-weight: normal;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #ebf1f7;
+  padding: 40px;
+}
+
+.header h1 {
+  margin-bottom: 50px;
+}
+
+.stats-cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card {
+  flex: 1;
+  height: 70px;
+  margin: 0 10px;
+  padding: 30px;
+  background-color: #ffffff;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.card-nom1 {
+  text-align: right;
+  color: #0675c4;
+  font-weight: 500;
+  line-height: 0;
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+.card-nom2 {
+  text-align: right;
+  color: #faf600;
+  font-weight: 500;
+  line-height: 0;
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+.card-nom3 {
+  text-align: right;
+  color: #ce2b49;
+  font-weight: 500;
+  line-height: 0;
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+.card-nom4 {
+  text-align: right;
+  color: #71c671;
+  font-weight: 500;
+  line-height: 0;
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+
+.icon-box {
+  /* insidw icon box color */
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+}
+.icon1 {
+  font-size: 30px;
+  line-height: 70px;
+  width: 20px;
+  height: 20px;
+  /* background-color: #0675c4; */
+  color: #0675c4;
+}
+.icon2 {
+  font-size: 30px;
+  line-height: 70px;
+  width: 20px;
+  height: 20px;
+  /* background-color: #0675c4; */
+  color: #faf600;
+}
+.icon3 {
+  font-size: 30px;
+  line-height: 70px;
+  width: 20px;
+  height: 20px;
+  /* background-color: #0675c4; */
+  color: #d43636;
+}
+.icon4 {
+  font-size: 30px;
+  line-height: 70px;
+  width: 20px;
+  height: 20px;
+  /* background-color: #0675c4; */
+  color: #3bb43d;
+}
+.card p {
+  text-align: right;
+  margin-top: auto;
+}
+.chart-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  white-space: 100px;
+}
+
+.box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 2000px;
+  height: 400px;
+  padding: 16px;
+  background-color: #ffffff;
+}
+.box img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+.box-content {
+  padding: 16px;
+}
+.box-content h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+}
+.box-content p {
+  margin: 0;
+}
+
+.box-notification {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px auto;
+  height: 600px;
+  padding: 20px;
+  background-color: #fff;
+  margin-left: 15%;
+}
+
+.notifications-section p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.notifications-section p b {
+  color: #007bff;
+}
+
+.jobs-applied {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.jobs-applied h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+/* *
+*
+*
+* */
+.job-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  justify-content: space-between;
+}
+.job-logo {
+  margin-right: 15px;
+}
+.job-logo img {
+  height: auto;
+  width: 50px; /* Adjust size as needed */
+  border-radius: 5px;
+}
+.job-info {
+  flex-grow: 1; /* Take up remaining space */
+  display: flex;
+  flex-direction: column; /* Align text vertically */
+  justify-content: center;
+}
+.job-info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+.job-info a {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+.job-info a:hover {
+  color: #007bff;
+}
+.job-info p {
+  margin: 5px 0;
+  color: #777;
+}
+
+/* .tags {
+    margin-top: 10px;
+} */
+
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 12px;
+  color: white;
+}
+
+.tag.full-time {
+  background-color: #007bff;
+}
+
+.tag.urgent {
+  background-color: #ffc107;
+}
