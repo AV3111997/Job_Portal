@@ -4,6 +4,11 @@
 <title>Home</title>
 {% endblock title %}
 
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/candidate.css' %}">
+{% endblock css_styles %}
+
 {% block content %}
 <div class="col-md-9">
     <!-- Candidate Heading Section -->

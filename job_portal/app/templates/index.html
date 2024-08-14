@@ -1,13 +1,21 @@
 {% extends 'shared/base.html' %}
+{% load static %}
 {% block title %}
 <title>Home</title>
 {% endblock title %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/rayif_styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/karthika_styles.css' %}">
+
+{% endblock css_styles %}
 
 {% block content %}
 
 {% include 'shared/banner.html' %}
 {% include 'shared/popular_jobs_categories.html' %}
 {% include 'shared/featured_jobs.html' %}
+{% include 'shared/testimonials.html' %}
 {% include 'shared/get_started.html' %}
 {% include 'shared/articles.html' %}
 {% include 'shared/app_advertisement.html' %}

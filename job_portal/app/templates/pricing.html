@@ -1,13 +1,13 @@
 {% extends 'shared/base.html' %}
+{% load static %}
 {% block title %}
-<title>Pricing</title>
+<title>Joblist</title>
 {% endblock title %}
 
-{% block css %}
-{% load static %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/pricing.css' %}">
-{% endblock css %}
-
+{% endblock css_styles %}
 {% block content %}
 <div class="container-fluid">
     <div class="row bg-body-secondary mb-5 p-3">
@@ -28,12 +28,12 @@
                 <h5 class="text-primary fw-semibold">Basic</h5>
                 <div class="price">$199.00</div>
                 <ul class="features fw-lighter">
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}"></i>30 job posting</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">3 featured job</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Job displayed for 15 days</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Premium Support 24/7</li>
+                    <li class="mb-2"><img src="assets/tick.png"></i>30 job posting</li>
+                    <li class="mb-2"><img src="assets/tick.png">3 featured job</li>
+                    <li class="mb-2"><img src="assets/tick.png">Job displayed for 15 days</li>
+                    <li class="mb-2"><img src="assets/tick.png">Premium Support 24/7</li>
                 </ul>
-                <button class="btn btn-primary btn-block mt-4 fw-semibold justify-content-center">Add to cart</button>
+                <button class="btn btn-primary btn-block mt-4 fw-semibold">Add to cart</button>
             </div>
             <div class="card p-4" style="width: 20rem;">
                 <div class="d-flex justify-content-between align-items-center">
@@ -42,26 +42,25 @@
                 </div>
                 <div class="price">$499.00</div>
                 <ul class="features fw-lighter">
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">40 job posting</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">5 featured job</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Job displayed for 30 days</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Premium Support 24/7</li>
+                    <li class="mb-2"><img src="assets/tick.png">40 job posting</li>
+                    <li class="mb-2"><img src="assets/tick.png">5 featured job</li>
+                    <li class="mb-2"><img src="assets/tick.png">Job displayed for 30 days</li>
+                    <li class="mb-2"><img src="assets/tick.png">Premium Support 24/7</li>
                 </ul>
-                <button class="btn btn-primary btn-block mt-4 fw-semibold justify-content-center">Add to cart</button>
+                <button class="btn btn-primary btn-block mt-4 fw-semibold">Add to cart</button>
             </div>
             <div class="card p-4" style="width: 20rem;">
                 <h5 class="text-primary fw-semibold">Extended</h5>
                 <div class="price">$799.00</div>
                 <ul class="features fw-lighter">
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">50 job posting</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">10 featured job</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Job displayed for 60 days</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Premium Support 24/7</li>
+                    <li class="mb-2"><img src="assets/tick.png">50 job posting</li>
+                    <li class="mb-2"><img src="assets/tick.png">10 featured job</li>
+                    <li class="mb-2"><img src="assets/tick.png">Job displayed for 60 days</li>
+                    <li class="mb-2"><img src="assets/tick.png">Premium Support 24/7</li>
                 </ul>
-                <button class="btn btn-primary btn-block mt-4 fw-semibold justify-content-center">Add to cart</button>
+                <button class="btn btn-primary btn-block mt-4 fw-semibold">Add to cart</button>
             </div>
         </div>
     </div>
 </div>
 {% endblock content %}
-    

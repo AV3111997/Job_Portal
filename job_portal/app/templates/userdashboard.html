@@ -1,0 +1,147 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/userdashboard.css' %}">
+{% endblock css_styles %}
+
+{% block content %}
+
+<div class="container">
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-img-container">
+            <img src="image/candidateprof.png" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h2>Candidate</h2>
+                <p>New York</p>
+                <button class="view-profile-btn">View Profile</button>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="#"><i class="bi bi-journal-check"></i>  User Dashboard</a>
+            <a href="#"><i class="bi bi-person"></i>  Profile</a>
+            <a href="#"><i class="bi bi-file-earmark-person-fill"></i>  My Resume</a>
+            <a href="#"><i class="bi bi-megaphone"></i>  My Applied</a>
+            <a href="#"><i class="bi bi-bookmark-check"></i>  Shortlist Jobs</a>
+            <a href="#"><i class="bi bi-person-fill-add"></i>  Following Employers</a>
+            <a href="#"><i class="bi bi-megaphone"></i>  Alerts Jobs</a>
+            <a href="#"><i class="bi bi-chat-dots"></i>  Messages</a>
+            <a href="#"><i class="bi bi-person-lines-fill"></i>  Meetings</a>
+            <a href="#"><i class="bi bi-key"></i>  Change Password</a>
+            <a href="#"><i class="bi bi-trash3-fill"></i>  Delete Profile</a>
+            <a href="#"><i class="bi bi-box-arrow-left"></i>  Logout</a>
+        </nav>
+        <div class="skills-percentage">
+            <p>Skills Percentage: <span>100%</span></p>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <h1>Applications statistics</h1>
+        </div>
+        <div class="stats-cards">
+               <div class="card">
+                
+                    <div class="icon1">
+                        <i class="bi bi-briefcase"></i>        
+                    </div>
+                
+                    <div class="card-nom1">
+                    <p>5</p>
+                    </div>
+                    <p>Applied Jobs</p>
+                </div>
+            
+            <div class="card">
+                <div class="icon2">
+                    <i class="bi bi-chat-dots"></i>
+            </div>
+                <div class="card-nom2">
+                <p>2</p>
+                 </div>
+                <p>Review</p>
+            </div>
+            <div class="card">
+                
+                    <div class="icon3">
+                        <i class="bi bi-eye"></i>
+                   </div>
+               
+                <div class="card-nom3">
+                <p>2301</p>
+                 </div>
+                <p>Views</p>
+            </div>
+            <div class="card">
+                <div class="icon4">
+                    <i class="bi bi-bookmark i1"></i>
+                </div>
+                <div class="card-nom4">
+                <p>3</p>
+                </div>
+                <p>Shortlisted</p>
+            </div>
+        </div>
+        <div class="content-wrapper">
+        <div class="chart-section">
+            <div class="box">
+                <h2>Your Profile Views</h2>
+                <div class="box-content">
+                    <h2>Title</h2>
+                    <img src="https://th.bing.com/th/id/OIP.1FKStrEMRdWq_oscUHygswHaEV?w=672&h=394&rs=1&pid=ImgDetMain" alt="Profile Views Chart">
+
+                </div>
+            </div>
+        <div class="notifications-section">
+            <div class="box-notification">
+            <h2>Notifications</h2>
+            <p>The application is undo approved on your job <b>Junior Graphic Designer (Web)</b> by Employer.</p>
+            <p>10 months ago</p>
+        </div>
+        </div>
+        </div>
+        </div><br>
+        <div class="jobs-applied">
+            <h2>Jobs Applied Recently</h2>
+        
+            <div class="job-card">
+                <div class="job-logo">
+                    <img src="image/comlogo.png" alt="Company Logo">
+                </div>
+                <div class="job-info">
+                    <a href="#"><h3>Junior Graphic Designer (Web)</h3></a>
+                    <p>Design, Development</p>
+                    <p>New York</p>
+                    <p>$150 - $180 / week</p>
+                    <div class="tags">
+                        <span class="tag full-time">Full Time</span>
+                        <span class="tag urgent">Urgent</span>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="job-card">
+                <div class="job-logo">
+                    <img src="image/comlogo2.png" alt="Company Logo">
+                </div>
+                <div class="job-info">
+                    <a href="#"><h3>Finance Manager & Health</h3></a>
+                    <p>Design</p>
+                    <p>New York</p>
+                    <p>$450 - $500 / month</p>
+                    <div class="tags">
+                        <span class="tag full-time">Full Time</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock content %}
