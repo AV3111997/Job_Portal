@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>Home</title>
+<title>User Dashboard</title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -14,7 +14,7 @@
     <div class="sidebar">
         <div class="profile-section">
             <div class="profile-img-container">
-            <img src="image/candidateprof.png" alt="Profile Picture">
+            <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture">
             </div>
             <div class="profile-info">
                 <h2>Candidate</h2>
@@ -111,7 +111,7 @@
         
             <div class="job-card">
                 <div class="job-logo">
-                    <img src="image/comlogo.png" alt="Company Logo">
+                    <img src="{% static 'img/comlogo.png' %}" alt="Company Logo">
                 </div>
                 <div class="job-info">
                     <a href="#"><h3>Junior Graphic Designer (Web)</h3></a>
@@ -127,7 +127,7 @@
         
             <div class="job-card">
                 <div class="job-logo">
-                    <img src="image/comlogo2.png" alt="Company Logo">
+                    <img src="{% static 'img/comlogo2.png' %}" alt="Company Logo">
                 </div>
                 <div class="job-info">
                     <a href="#"><h3>Finance Manager & Health</h3></a>
@@ -139,8 +139,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </div> 
     </div>
 </div>
 

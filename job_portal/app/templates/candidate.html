@@ -1,14 +1,13 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>Home</title>
+<title>Candidate</title>
 {% endblock title %}
 
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/candidate.css' %}">
 {% endblock css_styles %}
-
 {% block content %}
 <div class="col-md-9">
     <!-- Candidate Heading Section -->
@@ -36,7 +35,7 @@
                     <path
                         d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                 </svg>
-                <input type="text" class="form-control ps-5" placeholder="Candidate title, keywords">
+                <input type="text" class="form-control ps-4" placeholder=" Candidate title,keywords">
             </div>
 
 
@@ -55,8 +54,8 @@
                         d="M7.293 11.293a1 1 0 0 0 1.414 0L12 8.414 10.707 7.121 8 9.828 5.293 7.121 4 8.414l3.293 3.293z" />
                 </svg>
                 <!-- Dropdown menu -->
-                <select class="form-control" aria-label="Location">
-                    <option value="" disabled selected>Select a city or postcode</option>
+                <select class="form-control ps-4" aria-label="Location">
+                    <option value="" disabled selected> Select a city or postcode</option>
                     <option value="12345">City 1 - 12345</option>
                     <option value="67890">City 2 - 67890</option>
                     <option value="54321">City 3 - 54321</option>
@@ -69,29 +68,6 @@
                 <input type="range" class="slider" id="radiusSlider" min="0" max="100" value="50"
                     oninput="updateSlider(this.value)">
             </div>
-            <script>
-
-                function updateSlider(value) {
-                    const slider = document.getElementById('radiusSlider');
-                    const max = slider.max;
-                    const percentage = (value / max) * 100;
-
-                    // Update the gradient background to fill up to the current slider value
-                    slider.style.background = `linear-gradient(to right, #007bff ${percentage}%, #ddd ${percentage}%)`;
-
-                    // Update the displayed radius value
-                    document.getElementById('radiusValue').textContent = `${value} miles`;
-                }
-            </script>
-
-            <script>
-                document.addEventListener('DOMContentLoaded', (event) => {
-                    const slider = document.getElementById('slider');
-                    slider.addEventListener('input', function () {
-                        console.log('Slider value:', this.value); // Log current value to console
-                    });
-                });
-            </script>
             <h5>Category</h5>
             <div class="mb-3 position-relative">
                 <!-- Message SVG icon -->
@@ -157,20 +133,6 @@
                     <i class="fas fa-minus"></i> <span>Show Less</span>
                 </button>
 
-                <script>
-                    document.getElementById("showMoreBtn").addEventListener("click", function () {
-                        document.getElementById("showMoreBtn").style.display = "none";
-                        document.getElementById("showLessBtn").style.display = "inline";
-                        // Add your logic here to show more content
-                    });
-
-                    document.getElementById("showLessBtn").addEventListener("click", function () {
-                        document.getElementById("showLessBtn").style.display = "none";
-                        document.getElementById("showMoreBtn").style.display = "inline";
-                        // Add your logic here to show less content
-                    });
-                </script>
-
             </div>
 
             <!-- Experience Section -->
@@ -228,19 +190,6 @@
                     <i class="fas fa-minus"></i> <span>Show Less</span>
                 </button>
 
-                <script>
-                    document.getElementById("showMoreBtn").addEventListener("click", function () {
-                        document.getElementById("showMoreBtn").style.display = "none";
-                        document.getElementById("showLessBtn").style.display = "inline";
-                        // Add your logic here to show more content
-                    });
-
-                    document.getElementById("showLessBtn").addEventListener("click", function () {
-                        document.getElementById("showLessBtn").style.display = "none";
-                        document.getElementById("showMoreBtn").style.display = "inline";
-                        // Add your logic here to show less content
-                    });
-                </script>
             </div>
 
             <!-- Qualification Section -->
@@ -521,17 +470,6 @@
                 </li>
             </ul>
         </nav>
-
-
-
-
-
-
-        <!-- Additional candidate cards can go here -->
-    </div>
-</div>
-
-
 
 </div>
 
