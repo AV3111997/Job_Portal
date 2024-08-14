@@ -1,0 +1,222 @@
+{% extends 'shared/base.html' %} {% load static %} {% block title %}
+<title>Job Title</title>
+{% endblock title %} {% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/job_details.css' %}" />
+{% endblock css_styles %} {% block content %}
+    <header class="bg-light text-center py-4 shadow-sm">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-2">
+                    <img src="{% static 'img/job_details/logo.jpg' %}" alt="Company Logo" class="logt rounded-circle img-fluid">
+                </div>
+                <div class="col-md-10 text-md-start">
+                    <h2 class="d-flex align-items-center gap-2">
+                        Junior Graphic Designer (Web)
+                        <img src="{% static 'img/job_details/3592846_crest_crown_general_item_jewellery_icon.png' %}" alt="Crest Icon" class="imget img-fluid">
+                        <span class="text-danger fw-bold">Filled</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="mt-3 mb-4">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item me-3">
+                        <img src="{% static 'img/job_details/briefcase.png' %}" alt="Briefcase Icon" class="imget">
+                        Design, Development
+                    </li>
+                    <li class="list-inline-item me-3">
+                        <img src="{% static 'img/job_details/211766_location_icon (1).png' %}" alt="Location Icon" class="imget">
+                        New York
+                    </li>
+                    <li class="list-inline-item me-3">
+                        <img src="{% static 'img/job_details/time.png' %}" alt="Time Icon" class="imget">
+                        June 20, 2021
+                    </li>
+                    <li class="list-inline-item me-3">
+                        <img src="{% static 'img/job_details/$.png' %}" alt="Salary Icon" class="imget">
+                        $150 - $180 / week
+                    </li>
+                    <li class="list-inline-item">
+                        Application ends: <span>May 18, 2026</span>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <button class="btn btn-warning rounded-pill text-dark me-2">Full Time</button>
+                    <button class="btn btn-danger rounded-pill text-light">Urgent</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary me-2">Apply now</button>
+                    <button type="button" class="btn btn-outline-secondary">
+                        <img src="{% static 'img/job_details/bookmark_favorite_love_save_like_icon.png' %}" alt="Bookmark Icon" class="imget img-fluid">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container my-5">
+        <div class="row">
+            <section class="col-md-8">
+                <article>
+                    <h4>Job Description</h4>
+                    <p class="text-mutedt">As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product, and data talent. You will help the team design beautiful interfaces that solve business challenges for our clients. We work with a number of Tier 1 banks on building web-based applications for AML, KYC, and Sanctions List management workflows. This role is ideal if you are looking to segue your career into the FinTech or Big Data arenas.</p>
+                </article>
+
+                <article>
+                    <h4>Key Responsibilities</h4>
+                    <ul class="text-mutedt">
+                        <li>Be involved in every step of the product design cycle from discovery to developer handoff and user acceptance testing.</li>
+                        <li>Work with BAs, product managers, and tech teams to lead the Product Design.</li>
+                        <li>Maintain quality of the design process and ensure that when designs are translated into code they accurately reflect the design specifications.</li>
+                        <li>Accurately estimate design tickets during planning sessions.</li>
+                        <li>Contribute to sketching sessions involving non-designers. Create, iterate, and maintain UI deliverables including sketch files, style guides, high-fidelity prototypes, micro-interaction specifications, and pattern libraries.</li>
+                        <li>Ensure design choices are data-led by identifying assumptions to test each sprint, and work with the analysts in your team to plan moderated usability test sessions.</li>
+                        <li>Design pixel-perfect responsive UIs and understand that adopting common interface patterns is better for UX than reinventing the wheel.</li>
+                        <li>Present your work to the wider business at Show & Tell sessions.</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h4>Skills & Experience</h4>
+                    <ul class="text-mutedt">
+                        <li>You have at least 3 years of experience working as a Product Designer.</li>
+                        <li>You have experience using Sketch and InVision or Framer X.</li>
+                        <li>You have some previous experience working in an agile environment – think two-week sprints.</li>
+                        <li>You are familiar with using Jira and Confluence in your workflow.</li>
+                    </ul>
+                </article>
+
+                <article class="my-4">
+                    <h4>Share this post</h4>
+                    <button type="button" class="btn btn-primary">Facebook</button>
+                    <button type="button" class="btn btn-info text-light">Twitter</button>
+                    <button type="button" class="btn btn-danger">Pinterest</button>
+                </article>
+
+                <article>
+                    <h4>Photos</h4>
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <img src="{% static 'img/job_details/photo/business-man-1572059_1280.jpg' %}" alt="Business Man" class="{% static 'img-fluid rounded photo-sizet">
+                        <img src="{% static 'img/job_details/photo/office-620817_1280.jpg' %}" alt="Office" class="log img-fluid rounded photo-sizet">
+                        <img src="{% static 'img/job_details/photo/telework-5059653_1280.png' %}" alt="Telework" class="log img-fluid rounded photo-sizet">
+                        <img src="{% static 'img/job_details/photo/telework-6795505_1280.jpg' %}" alt="Telework" class="log img-fluid rounded photo-sizet">
+                    </div>
+                </article>
+
+                <article class="mb-4">
+                    <h4>Video</h4>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/HxGbPjIfx1M?si=IQLVBsgG57zq1006" title="YouTube video player" allowfullscreen></iframe>
+                    </div>
+                </article>
+
+                <section class="related-job bg-light p-4 rounded shadow-sm">
+                    <h5>Related Jobst</h5>
+                    <div class="d-flex flex-column gap-3">
+                        <!-- First Job Item -->
+                        <div class="job-item d-flex align-items-start p-3 bg-white rounded shadow-sm">
+                            <img src="{% static 'img/job_details/company-logo.png' %}" alt="Company Logo" class="rounded-circle img-fluid me-3" style="width: 50px;">
+                            <div class="w-100">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="mb-1">Finance Manager & Health <span class="badge bg-success">Featured</span></h5>
+                                    <button class="btn-t btn btn-outline-dark rounded-circle p-1">
+                                        <img src="{% static 'img/job_details/bookmark_favorite_love_save_like_icon.png' %}" alt="Bookmark Icon" class="{% static 'img-fluid">
+                                    </button>
+                                </div>
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item"><img src="{% static 'img/job_details/briefcase.png' %}" alt="Briefcase Icon" class="imget"> Design, Development</li>
+                                    <li class="list-inline-item"><img src="{% static 'img/job_details/location.png' %}" alt="Location Icon" class="imget"> New York</li>
+                                    <li class="list-inline-item"><img src="{% static 'img/job_details/$.png' %}" alt="Salary Icon" class="imget"> $150 - $180 / week</li>
+                                </ul>
+                                <div class="mt-2">
+                                    <button class="btn btn-warning rounded-pill text-dark">Full Time</button>
+                                    <button class="btn btn-danger rounded-pill text-light">Urgent</button>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Second Job Item -->
+                        <div class="job-item d-flex align-items-start p-3 bg-white rounded shadow-sm">
+                            <div class="logo me-3">
+                                <img src="{% static 'img/job_details/company.png' %}" alt="Company Logo" class="{% static 'img-fluid" style="width: 50px;">
+                            </div>
+                            <div class="w-100">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="mb-1">General Ledger Accountant <span class="badge">Featured</span></h5>
+                                    <button type="button" class="btn-t btn btn-outline-dark rounded-circle p-1">
+                                        <img src="{% static 'img/job_details/bookmark_favorite_love_save_like_icon.png' %}" alt="Bookmark Icon" class="{% static 'img-fluid">
+                                    </button>
+                                </div>
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item"><img src="{% static 'img/job_details/briefcase.png' %}" alt="Briefcase Icon" class="imget"> Design, Development</li>
+                                    <li class="list-inline-item"><img src="{% static 'img/job_details/location.png' %}" alt="Location Icon" class="imget"> New York</li>
+                                    <li class="list-inline-item"><img src="{% static 'img/job_details/$.png' %}" alt="Salary Icon" class="imget"> $150 - $180 / week</li>
+                                </ul>
+                                <div class="mt-2">
+                                    <button class="btn btn-warning rounded-pill text-dark">Full Time</button>
+                                    <button class="btn btn-danger rounded-pill text-light">Urgent</button>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Repeat the job-item block for additional jobs -->
+                    </div>
+                </section>
+                
+            </section>
+
+            <aside class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Job Overview</h4>
+                        <ul class="list-unstyled">
+                            <li><img class="imget img-fluid" src="{% static 'img/job_details/time.png' %}" alt="Date Posted"> Date Posted</li>
+                            <li><img class="imget img-fluid" src="{% static 'img/job_details/location.png' %}" alt="Location"> Location</li>
+                            <li><img class="imget img-fluid" src="{% static 'img/job_details/$.png' %}" alt="Salary"> Offered Salary: $150 - $180 / week</li>
+                            <li><img class="imget img-fluid" src="{% static 'img/job_details/time.png' %}" alt="Expiration Date"> Expiration date: May 6, 2026</li>
+                            <li><img class="imget img-fluid" src="{% static 'img/job_details/time.png' %}" alt="Experience"> Experience: 4 Years</li>
+                            <li><img class="imget img-fluid" src="{% static 'img/job_details/book.png' %}" alt="Qualification"> Qualification: Bachelor Degree</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h4>Location</h4>
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15658.798589581538!2d75.9001528596357!3d11.135732278364104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba64e2fd4f9e347%3A0xc41c253259e7d340!2sPallikal%2C%20Kerala!5e0!3m2!1sen!2sin!4v1723380531687!5m2!1sen!2sin" 
+                                width="100%" 
+                                height="400" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Card for Job Skills -->
+                <div class="card mt-4 shadow-sm">
+                    <div class="card-body text-center">
+                        <h4>Job Skills</h4>
+                        <div class="card-container1">
+                            <div class="card1">
+                                <div class="card2">
+                                    <button type="button" class="btn btn-outline-dark">App</button>
+                                    <button type="button" class="btn btn-outline-dark">Job</button>
+                                    <button type="button" class="btn btn-outline-dark">Superior</button>
+                                    <button type="button" class="btn btn-outline-dark">Support</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+{% endblock content %}

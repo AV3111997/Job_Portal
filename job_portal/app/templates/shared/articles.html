@@ -1,3 +1,4 @@
+{% load static %}
 <div class="text-center">
     <h3>Recent News Articles</h3>
     <p>Fresh job related news content posted each day</p>
@@ -6,7 +7,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card mb-4">
-                <img src="static/img/article1.jpg" class="card-img-top" alt="Two people shaking hands">
+                <img src="{% static 'img/article1.jpg' %}" class="card-img-top" alt="Two people shaking hands">
                 <div class="card-body">
                     <span class="card-date">April 26, 2021</span>
                     <div class="card-comments">1 Comments</div>
@@ -18,7 +19,7 @@
         </div>
         <div class="col-md-4">
             <div class="card mb-4">
-                <img src="static/img/article2.jpg" class="card-img-top" alt="Close-up of a hand">
+                <img src="{% static 'img/article2.jpg' %}" class="card-img-top" alt="Close-up of a hand">
                 <div class="card-body">
                     <span class="card-date">April 26, 2021</span>
                     <div class="card-comments">3 Comments</div>
@@ -30,7 +31,7 @@
         </div>
         <div class="col-md-4">
             <div class="card mb-4">
-                <img src="static/img/office1.jpg" class="card-img-top" alt="Close-up of a hand">
+                <img src="{% static 'img/office1.jpg' %}" class="card-img-top" alt="Close-up of a hand">
                 <div class="card-body">
                     <span class="card-date">April 26, 2021</span>
                     <div class="card-comments">0 Comments</div>
