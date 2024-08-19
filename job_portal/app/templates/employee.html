@@ -64,19 +64,16 @@
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select id="category" name="category" required>
-                        <option value="">Select a job type</option>
-                        <option value="fullTime">Full-Time</option>
-                        <option value="partTime">Part-Time</option>
-                        <option value="contract">Contract</option>
-                        <option value="internship">Internship</option>
+                        <option value=""></option>
+                        <option value="accounting">Accounting</option>
+                        <option value="finance">Finance</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="type">Type</label>
                     <select id="category" name="category" required>
-                        <option value="">Select a job type</option>
-                        <option value="fullTime">Full-Time</option>
-                        <option value="partTime">Part-Time</option>
+                        <option value=""></option>
+                        <option value="freelance">Freelance</option>
                         <option value="contract">Contract</option>
                         <option value="internship">Internship</option>
                     </select>
@@ -88,14 +85,18 @@
                 <div class="form-group">
                     <label for="Gender">Gender</label>
                     <select id="category" name="category" required>
-                        <option value="">Select a job type</option>
+                        <option value=""></option>
                         <option value="Male">Male</option>
                         <option value="female">Female</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="Apply">Job Apply Type</label>
-                    <input type="text" id="Apply" name="Apply" required>
+                    <select id="category" name="category" required>
+                        <option value="">Select a job type</option>
+                        <option value="online">online</option>
+                        <option value="inperson">Inperson</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="URL">External URL for Apply Job</label>
@@ -107,7 +108,11 @@
                 </div>
                 <div class="form-group">
                     <label for="Salary">Salary Type</label>
-                    <input type="text" id="Salary" name="Salary" required>
+                    <select id="category" name="category" required>
+                        <option value=""></option>
+                        <option value="cheque">Cheque</option>
+                        <option value="cash">Cash</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="min">Min. Salary</label>
@@ -119,49 +124,64 @@
                 </div>
                 <div class="form-group">
                     <label for="Experience">Experience</label>
-                    <input type="text" id="Experience" name="Experience" required>
+                    <select id="category" name="category" required>
+                        <option value=""></option>
+                        <option value="year1">0-1</option>
+                        <option value="year2">2-3</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="Career">Career Level</label>
-                    <input type="text" id="Career" name="Career" required>
+                    <select id="category" name="category" required>
+                        <option value=""></option>
+                        <option value="entry">Entry-Level</option>
+                        <option value="sen">Senior-Level</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="Qualif">Qualification</label>
-                    <input type="text" id="Qualif" name="Qualif" required>
+                    <select id="category" name="category" required>
+                        <option value=""></option>
+                        <option value="pg">Post-Graduate</option>
+                        <option value="gd">Graduate</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="vidio">Introduction Video URL</label>
                     <input type="text" id="Video" name="vidio" required>
+                </div>
+                <div class="form-group">
+                    <label for="photo">photos</label>
+                    <input type="file" id="photo" name="photo" required>
                 </div>
             </div>
             <!-- Two-column layout ends here -->
 
             <div class="form-group">
                 <label for="Deadline">Application Deadline date</label>
-                <select id="Deadline" name="Deadline" required>
-                    <option value="">Select a job type</option>
-                    <option value="fullTime">Full-Time</option>
-                    <option value="partTime">Part-Time</option>
-                    <option value="contract">Contract</option>
-                    <option value="internship">Internship</option>
+                <input type="text" id="Deadline" name="Deadline" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Friendly Address</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+                <select id="category" name="category" required>
+                    <option value=""></option>
+                    <option value="florida">Florida</option>
+                    <option value="france">France</option>
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="requirements">Requirements</label>
-                <textarea id="requirements" name="requirements" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="applicationDeadline">Application Deadline</label>
-                <input type="date" id="applicationDeadline" name="applicationDeadline" required>
-            </div>
-
-            <div class="form-group full-width">
-                <button type="submit">Post Job</button>
-            </div>
+           
             <div class="container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.875294846224!2d76.30561067421397!3d10.027148290079673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080dafbed183bf%3A0x5951f316ba13a37e!2sLuLu%20International%20Shopping%20Mall!5e0!3m2!1sen!2sin!4v1724063480593!5m2!1sen!2sin" width="530" height="330" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="form-group full-width">
+                <button type="submit">Save & preview</button>
             </div>
         </form>
     </div>

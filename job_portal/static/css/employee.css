@@ -170,7 +170,7 @@ form {
     display: inline-block;
 }
 .form-group button {
-    background-color: #28a745;
+    background-color: #3552c5;
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -179,7 +179,7 @@ form {
     font-size: 16px;
 }
 .form-group button:hover {
-    background-color: #218838;
+    background-color: #4a43c7;
 }
 
 /* Two-column layout for specific fields */
