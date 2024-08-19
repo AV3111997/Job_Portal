@@ -1,0 +1,82 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}
+<title>Manage Jobs</title>
+{% endblock title %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/manage_jobs.css' %}"> <!-- Link to external CSS -->
+{% endblock css_styles %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="sidebar">
+        <div class="profile-section mb-4">
+            <div class="profile-img-container text-center mb-3">
+                <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture" class="img-fluid rounded-circle">
+            </div>
+            <div class="profile-info text-center">
+                <h2>Candidate</h2>
+                <p>New York</p>
+                <button class="btn btn-primary">View Profile</button>
+            </div>
+        </div>
+        <nav class="nav flex-column">
+            <a class="nav-link" href="#"><i class="bi bi-journal-check"></i> User Dashboard</a>
+            <a class="nav-link" href="#"><i class="bi bi-person"></i> Profile</a>
+            <a class="nav-link" href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
+            <a class="nav-link" href="#"><i class="bi bi-megaphone"></i> My Applied</a>
+            <a class="nav-link" href="#"><i class="bi bi-bookmark-check"></i> Shortlist Jobs</a>
+            <a class="nav-link" href="#"><i class="bi bi-person-fill-add"></i> Following Employers</a>
+            <a class="nav-link" href="#"><i class="bi bi-megaphone"></i> Alerts Jobs</a>
+            <a class="nav-link" href="#"><i class="bi bi-chat-dots"></i> Messages</a>
+            <a class="nav-link" href="#"><i class="bi bi-person-lines-fill"></i> Meetings</a>
+            <a class="nav-link" href="#"><i class="bi bi-key"></i> Change Password</a>
+            <a class="nav-link" href="#"><i class="bi bi-trash3-fill"></i> Delete Profile</a>
+            <a class="nav-link" href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
+        </nav>
+        <div class="skills-percentage mt-4">
+            <p>Skills Percentage: <span>100%</span></p>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header mb-4">
+            <h1>Manage Jobs</h1>
+        </div>
+        <div class="manage-jobs">
+            <h2>Manage Jobs</h2>
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Applicants</th>
+                        <th>Created & Expired</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Junior Graphic Designer (Web)</td>
+                        <td><a href="#">557 Applicant(s)</a></td>
+                        <td>Created: June 20, 2021<br>Expiry date: May 6, 2026</td>
+                        <td><span class="badge bg-success">Published</span></td>
+                        <td>
+                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                            <a href="#" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-text"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Add more job rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (include Popper and Bootstrap's JS plugins) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+{% endblock content %}
