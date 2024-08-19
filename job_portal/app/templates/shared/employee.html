@@ -1,0 +1,170 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}
+<title>User Dashboard</title>
+{% endblock title %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/employee.css' %}">
+{% endblock css_styles %}
+
+{% block content %}
+
+<div class="container-fluid d-flex">
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-img-container">
+                <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h2>Candidate</h2>
+                <p>New York</p>
+                <button class="view-profile-btn">View Profile</button>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="#"><i class="bi bi-journal-check"></i> User Dashboard</a>
+            <a href="#"><i class="bi bi-person"></i> Profile</a>
+            <a href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
+            <a href="#"><i class="bi bi-megaphone"></i> My Applied</a>
+            <a href="#"><i class="bi bi-bookmark-check"></i> Shortlist Jobs</a>
+            <a href="#"><i class="bi bi-person-fill-add"></i> Following Employers</a>
+            <a href="#"><i class="bi bi-megaphone"></i> Alerts Jobs</a>
+            <a href="#"><i class="bi bi-chat-dots"></i> Messages</a>
+            <a href="#"><i class="bi bi-person-lines-fill"></i> Meetings</a>
+            <a href="#"><i class="bi bi-key"></i> Change Password</a>
+            <a href="#"><i class="bi bi-trash3-fill"></i> Delete Profile</a>
+            <a href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
+        </nav>
+    </div>
+    
+    <div class="container">
+        <h3>Post a New Job</h3>
+
+        <!-- Image preview -->
+
+        <form action="/submit-job-posting" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="featuredImageUpload">Featured Image</label>
+                <input type="file" id="featuredImageUpload" name="featuredImage" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="jobTitle">Job Title</label>
+                <input type="text" id="jobTitle" name="jobTitle" required>
+            </div>
+
+            <div class="form-group">
+                <label for="jobDescription">Job Description</label>
+                <textarea id="jobDescription" name="jobDescription" required></textarea>
+            </div>
+
+            <!-- Two-column layout starts here -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a job type</option>
+                        <option value="fullTime">Full-Time</option>
+                        <option value="partTime">Part-Time</option>
+                        <option value="contract">Contract</option>
+                        <option value="internship">Internship</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a job type</option>
+                        <option value="fullTime">Full-Time</option>
+                        <option value="partTime">Part-Time</option>
+                        <option value="contract">Contract</option>
+                        <option value="internship">Internship</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tag">Tag</label>
+                    <input type="text" id="tag" name="tag" required>
+                </div>
+                <div class="form-group">
+                    <label for="Gender">Gender</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a job type</option>
+                        <option value="Male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Apply">Job Apply Type</label>
+                    <input type="text" id="Apply" name="Apply" required>
+                </div>
+                <div class="form-group">
+                    <label for="URL">External URL for Apply Job</label>
+                    <input type="text" id="URL" name="URL" required>
+                </div>
+                <div class="form-group">
+                    <label for="Email">Job Apply Email</label>
+                    <input type="text" id="Email" name="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="Salary">Salary Type</label>
+                    <input type="text" id="Salary" name="Salary" required>
+                </div>
+                <div class="form-group">
+                    <label for="min">Min. Salary</label>
+                    <input type="text" id="min" name="min" required>
+                </div>
+                <div class="form-group">
+                    <label for="max">Max. Salary</label>
+                    <input type="text" id="max" name="max" required>
+                </div>
+                <div class="form-group">
+                    <label for="Experience">Experience</label>
+                    <input type="text" id="Experience" name="Experience" required>
+                </div>
+                <div class="form-group">
+                    <label for="Career">Career Level</label>
+                    <input type="text" id="Career" name="Career" required>
+                </div>
+                <div class="form-group">
+                    <label for="Qualif">Qualification</label>
+                    <input type="text" id="Qualif" name="Qualif" required>
+                </div>
+                <div class="form-group">
+                    <label for="vidio">Introduction Video URL</label>
+                    <input type="text" id="Video" name="vidio" required>
+                </div>
+            </div>
+            <!-- Two-column layout ends here -->
+
+            <div class="form-group">
+                <label for="Deadline">Application Deadline date</label>
+                <select id="Deadline" name="Deadline" required>
+                    <option value="">Select a job type</option>
+                    <option value="fullTime">Full-Time</option>
+                    <option value="partTime">Part-Time</option>
+                    <option value="contract">Contract</option>
+                    <option value="internship">Internship</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="requirements">Requirements</label>
+                <textarea id="requirements" name="requirements" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="applicationDeadline">Application Deadline</label>
+                <input type="date" id="applicationDeadline" name="applicationDeadline" required>
+            </div>
+
+            <div class="form-group full-width">
+                <button type="submit">Post Job</button>
+            </div>
+            <div class="container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.875294846224!2d76.30561067421397!3d10.027148290079673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080dafbed183bf%3A0x5951f316ba13a37e!2sLuLu%20International%20Shopping%20Mall!5e0!3m2!1sen!2sin!4v1724063480593!5m2!1sen!2sin" width="530" height="330" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

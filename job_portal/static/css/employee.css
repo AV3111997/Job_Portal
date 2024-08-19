@@ -1,0 +1,219 @@
+.sidebar {
+    width: 25%;
+    background-color: #ffffff;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+  
+  .sidebar::-webkit-scrollbar {
+    width: 0; /* Hide the scrollbar */
+  }
+  
+  .sidebar:hover::-webkit-scrollbar {
+    width: 5px; /* Show the scrollbar when hovering */
+  }
+  
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 5px;
+  }
+  
+  .sidebar::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  
+  .profile-section {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50%;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    margin-bottom: 20px;
+  }
+  
+  .profile-img-container {
+    flex: 1;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    padding: px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .profile-img {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  
+  .profile-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15px;
+  }
+  
+  .profile-info h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .profile-info p {
+    margin: 5px 0;
+    color: #777;
+    font-size: 16px;
+  }
+  
+  .view-profile-btn {
+    padding: 5px 20px;
+    background-color: #007bff;
+    width: 70%;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .view-profile-btn:hover {
+    background-color: #105eb2;
+  }
+  
+  .nav-links {
+    margin-top: 30px;
+  }
+  
+  .nav-links a {
+    display: block;
+    color: #333;
+    padding: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    background-color: #d5e1ed;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: aliceblue;
+   
+  
+  }
+  
+  .header h1 {
+    margin-bottom: 50px;
+  }
+  
+.container {
+    max-width: 600px;
+    margin: 20px auto; /* Center align with margin auto */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.featured-image {
+    width: 100%;
+    height: auto;
+    max-height: 300px; /* Adjust based on image aspect ratio */
+    object-fit: cover; /* Ensure the image covers the area */
+    border-radius: 8px;
+    margin-bottom: 20px; /* Space between image and form */
+}
+h3 {
+    color: #333;
+    text-align: left; /* Align title to the left */
+}
+form {
+    background-color: #f9f9f9; /* Light gray background for the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left; /* Align label text to the left */
+}
+.form-group input[type="text"], 
+.form-group input[type="date"], 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+.form-group input[type="file"] {
+    width: auto; /* Adjust width */
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+}
+.form-group button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.form-group button:hover {
+    background-color: #218838;
+}
+
+/* Two-column layout for specific fields */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between columns */
+}
+.form-row .form-group {
+    flex: 1 1 calc(50% - 20px); /* Two columns with gap */
+}
+
+/* Ensure full-width for other form elements */
+.full-width {
+    flex: 1 1 100%;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #696969;
+}
+th {
+    background-color: #b8b2b2; /* Light gray background for table headers */
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray background for even rows */
+}
+tr:nth-child(odd) {
+    background-color: #ffffff; /* White background for odd rows */
+}
