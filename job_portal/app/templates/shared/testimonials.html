@@ -1,49 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials</title>
-    <!-- Include Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Include any other CSS files here -->
-
-    <style>
-        /* Center the testimonial section on the page */
-        .container-xxl {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Full viewport height */
-            text-align: center;
-        }
-
-        /* Additional styling to ensure the content is nicely formatted */
-        .testimonial-item {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .carousel-inner {
-            margin: 0 auto; /* Ensure the carousel is centered */
-        }
-
-        /* Make the carousel controls invisible and remove the rectangular appearance */
-        .carousel-control-prev, .carousel-control-next {
-            width: 0;
-            opacity: 0; /* Make controls invisible */
-        }
-
-        /* Optional: add a custom cursor to indicate clickable area */
-        .carousel-control-prev:hover, .carousel-control-next:hover {
-            cursor: pointer;
-            opacity: 0.5; /* Slightly visible on hover to indicate action */
-        }
-    </style>
-</head>
-<body>
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5 wow fadeInUp mb-5 section-divider" data-wow-delay="0.1s">
         <div class="container">
             <div class="text-center">
                 <h5 class="section-title ff-secondary text-center text-primary fw-normal">Testimonial</h5>
@@ -133,8 +89,3 @@
             </div>
         </div>
     </div>
-
-    <!-- Include Bootstrap 5.3 JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
