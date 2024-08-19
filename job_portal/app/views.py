@@ -50,3 +50,6 @@ class ContactView(TemplateView):
 
 class ProfileView(TemplateView):
     template_name = 'profile.html'
+
+class AppliedJobsView(TemplateView):
+    template_name = 'applied_jobs.html'
