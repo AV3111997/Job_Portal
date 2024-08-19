@@ -1,12 +1,13 @@
 {% extends 'shared/base.html' %}
+{% load static %}
 {% block title %}
-<title>Terms</title>
+<title>Joblist</title>
 {% endblock title %}
 
-{% block css %}
-{% load static %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/KTcontact.css' %}">
-{% endblock css %}
+{% endblock css_styles %}
 
 {% block content %}
 

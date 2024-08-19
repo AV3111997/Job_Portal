@@ -1,0 +1,91 @@
+{% load static %}
+    <div class="container py-5 wow fadeInUp mb-5 section-divider" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="text-center">
+                <h5 class="section-title ff-secondary text-center text-primary fw-normal">Testimonial</h5>
+                <h1 class="mb-5">What Our Clients Say!</h1>
+            </div>
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                </div>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <!-- First Testimonial -->
+                    <div class="carousel-item active">
+                        <div class="testimonial-item text-start bg-transparent border rounded p-4">
+                            <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>"I was extremely satisfied with the service. The team was professional, efficient, and went above and beyond to meet my needs. Highly recommended!"</p>
+                            <div class="d-flex align-items-center">
+                                <img class="img-fluid flex-shrink-0 rounded-circle" src="{% static 'img/testimonial-1.jpg' %}" style="width: 60px; height: 60px;" alt="Client Image">
+                                <div class="ps-3">
+                                    <h5 class="mb-1">John Doe</h5>
+                                    <small>CEO, Company Inc.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Testimonial -->
+                    <div class="carousel-item">
+                        <div class="testimonial-item text-center bg-transparent border rounded p-4">
+                            <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>"The quality of work was outstanding, and the customer support was top-notch. I would definitely use their services again."</p>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img class="img-fluid flex-shrink-0 rounded-circle" src="{% static 'img/testimonial-2.jpg' %}" style="width: 60px; height: 60px;" alt="Client Image">
+                                <div class="ps-3">
+                                    <h5 class="mb-1">Jane Smith</h5>
+                                    <small>Marketing Director, XYZ Ltd.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Third Testimonial -->
+                    <div class="carousel-item">
+                        <div class="testimonial-item text-end bg-transparent border rounded p-4">
+                            <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>"An exceptional experience from start to finish. The attention to detail and dedication to delivering quality was evident throughout."</p>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <img class="img-fluid flex-shrink-0 rounded-circle" src="{% static 'img/testimonial-3.jpg' %}" style="width: 60px; height: 60px;" alt="Client Image">
+                                <div class="ps-3">
+                                    <h5 class="mb-1">Alice Johnson</h5>
+                                    <small>Freelancer</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fourth Testimonial -->
+                    <div class="carousel-item">
+                        <div class="testimonial-item text-start bg-transparent border rounded p-4">
+                            <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>"I was extremely satisfied with the service. The team was well systematic, efficient, and went above and beyond to meet my needs. Highly recommended!"</p>
+                            <div class="d-flex align-items-center">
+                                <img class="img-fluid flex-shrink-0 rounded-circle" src="{% static 'img/testimonial-5.jpg' %}" style="width: 60px; height: 60px;" alt="Client Image">
+                                <div class="ps-3">
+                                    <h5 class="mb-1">Tony Holland</h5>
+                                    <small>CEO, Stark Company Inc.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Left and right controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
