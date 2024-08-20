@@ -97,6 +97,7 @@
     text-decoration: none;
     transition: background-color 0.3s;
   }
+
   
   .nav-links a:hover {
     background-color: #d5e1ed;
@@ -131,15 +132,17 @@
     margin-bottom: 20px; /* Space between image and form */
 }
 h3 {
-    color: #333;
+    color: #c3baba;
     text-align: left; /* Align title to the left */
 }
 form {
-    background-color: #746969; /* Light gray background for the form */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #e0f7fa; /* Light blue background for the form */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+
 .form-group {
   margin-bottom: 20px; /* Increased margin for more space between form elements */
 }
@@ -155,7 +158,7 @@ form {
 .form-group textarea {
     width: 100%;
     padding: 8px;
-    border: 1px solid #5f5656;
+    border: 1px solid #cec6c6;
     border-radius: 4px;
 }
 .form-group textarea {
@@ -206,14 +209,16 @@ table {
 th, td {
     padding: 12px;
     text-align: center;
-    border: 1px solid #554f4f;
+    border: 1px solid #ccc5c5;
 }
 th {
-    background-color: #514d4d; /* Light gray background for table headers */
+  background-color: #dbd4d4; /* Light gray background for table headers */
 }
+
 tr:nth-child(even) {
-    background-color: #706c7f; /* Light gray background for even rows */
+  background-color: #bcbac2; /* Light gray background for even rows */
 }
+
 tr:nth-child(odd) {
-    background-color: #766fcc; /* White background for odd rows */
+  background-color: #766fcc; /* Purple background for odd rows */
 }
