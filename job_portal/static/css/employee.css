@@ -135,17 +135,17 @@ h3 {
     text-align: left; /* Align title to the left */
 }
 form {
-    background-color: #f9f9f9; /* Light gray background for the form */
+    background-color: #746969; /* Light gray background for the form */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 20px; /* Increased margin for more space between form elements */
 }
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: bold;
     text-align: left; /* Align label text to the left */
 }
@@ -155,7 +155,7 @@ form {
 .form-group textarea {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #5f5656;
     border-radius: 4px;
 }
 .form-group textarea {
@@ -205,15 +205,15 @@ table {
 }
 th, td {
     padding: 12px;
-    text-align: left;
-    border: 1px solid #696969;
+    text-align: center;
+    border: 1px solid #554f4f;
 }
 th {
-    background-color: #b8b2b2; /* Light gray background for table headers */
+    background-color: #514d4d; /* Light gray background for table headers */
 }
 tr:nth-child(even) {
-    background-color: #f2f2f2; /* Light gray background for even rows */
+    background-color: #706c7f; /* Light gray background for even rows */
 }
 tr:nth-child(odd) {
-    background-color: #ffffff; /* White background for odd rows */
+    background-color: #766fcc; /* White background for odd rows */
 }
