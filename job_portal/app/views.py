@@ -52,5 +52,12 @@ class ProfileView(TemplateView):
     template_name = 'profile.html'
 
 
+
 class TermView(TemplateView):
     template_name = 'terms.html'    
+
+class AppliedJobsView(TemplateView):
+    template_name = 'applied_jobs.html'
+
+class ManageJobsView(TemplateView):
+    template_name = 'manage_jobs.html'

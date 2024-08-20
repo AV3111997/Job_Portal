@@ -8,5 +8,3 @@ document.getElementById('toggleMore').addEventListener('click', function() {
         this.style.display = "none"; // Hide the "+4" button after it is clicked
     }
 });
-
-
