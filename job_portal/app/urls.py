@@ -14,9 +14,13 @@ urlpatterns = [
     path('contact/', views.ContactView.as_view(), name='contact'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('about/', views.AboutView.as_view(), name='about'),
+<<<<<<< HEAD
     path('terms/', views.TermView.as_view(), name='terms'),
     path('applied_jobs', views.AppliedJobsView.as_view(), name='applied_jobs'),
     path('applicants_jobs', views.ApplicantsJobsView.as_view(), name='applicants_jobs'),
     path('manage_jobs/', views.ManageJobsView.as_view(), name='manage_jobs'),
 
+=======
+    path('jobpost/',views.EmployeeJobsView.as_view(), name='jobpost'),
+>>>>>>> articles
 ]
