@@ -207,9 +207,9 @@ table {
     margin-top: 20px;
 }
 th, td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ccc5c5;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ccc5c5;
 }
 th {
   background-color: #dbd4d4; /* Light gray background for table headers */
