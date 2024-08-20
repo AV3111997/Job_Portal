@@ -59,5 +59,8 @@ class TermView(TemplateView):
 class AppliedJobsView(TemplateView):
     template_name = 'applied_jobs.html'
 
+class ApplicantsJobsView(TemplateView):
+    template_name = 'applicants_jobs.html'
+    
 class ManageJobsView(TemplateView):
     template_name = 'manage_jobs.html'

@@ -16,6 +16,7 @@ urlpatterns = [
     path('about/', views.AboutView.as_view(), name='about'),
     path('terms/', views.TermView.as_view(), name='terms'),
     path('applied_jobs', views.AppliedJobsView.as_view(), name='applied_jobs'),
+    path('applicants_jobs', views.ApplicantsJobsView.as_view(), name='applicants_jobs'),
     path('manage_jobs/', views.ManageJobsView.as_view(), name='manage_jobs'),
 
 ]
