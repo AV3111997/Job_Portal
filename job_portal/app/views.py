@@ -53,3 +53,6 @@ class ProfileView(TemplateView):
 
 class AppliedJobsView(TemplateView):
     template_name = 'applied_jobs.html'
+
+class ApplicantsJobsView(TemplateView):
+    template_name = 'applicants_jobs.html'
