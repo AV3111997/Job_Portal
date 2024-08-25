@@ -148,17 +148,17 @@
     color: #6c757d;
 }
 
-.form-control {
+/* .form-control {
     border: none;
     border-radius: 0;
     box-shadow: none;
-}
+} */
 
 input::placeholder, select {
     color: #6c757d;
 }
 
-.btn-primary {
+/* .btn-primary {
     background-color: #1967D2;
     padding: 10px 20px;
     white-space: nowrap;
@@ -173,7 +173,7 @@ input::placeholder, select {
     background-color: white;
     border: 1px #1967D2 solid;
     transition-duration: 0.3s;
-}
+} */
 
 
 
@@ -381,7 +381,7 @@ h2 {
 
 .form-group {
     max-width: 500px;
-    display: flex;
+    /* display: flex; */
     gap: 10px;
 }
 

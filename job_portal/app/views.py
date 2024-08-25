@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -40,8 +41,11 @@ class JobListView(TemplateView):
     template_name = 'findjoblist.html'
 
 
-class UserDashboardView(TemplateView):
+class UserDashboardView(LoginRequiredMixin,TemplateView):
     template_name = 'userdashboard.html'
+
+    login_url = ''  # URL to redirect to for login
+    redirect_field_name = 'next'  # Default is 'next'
 
 
 class ContactView(TemplateView):

@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/home_page_testimonials_section.css' %}">
 <link rel="stylesheet" href="{% static 'css/home_page_article_section.css' %}">
+<link rel="stylesheet" href="{% static 'css/loginRegister.css' %}"> 
 {% endblock css_styles %}
 
 {% block content %}
@@ -18,6 +19,6 @@
 {% include 'shared/get_started.html' %}
 {% include 'shared/articles.html' %}
 {% include 'shared/app_advertisement.html' %}
-{% include 'shared/loginRegister.html' %}
+{% include 'accounts/loginRegister.html' %}
 
 {% endblock content %}
