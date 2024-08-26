@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from accounts.models import CustomUser
 
 # Create your models here.
 
@@ -54,7 +55,7 @@ class Candidate(models.Model):
         ('Yearly', 'Yearly'),
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='candidate_profile')
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='candidate_profile')
     profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     fullname = models.CharField(max_length=100, verbose_name='Full Name')
     date_of_birth = models.DateField(null=True, blank=True, verbose_name='Date of Birth')
@@ -72,7 +73,7 @@ class Candidate(models.Model):
     description = models.TextField()
 
 class SocialNetwork(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='social_networks')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='social_networks')
     name = models.CharField(max_length=100)
     url_pattern = models.CharField(max_length=255, blank=True)  
 
@@ -80,6 +81,6 @@ class SocialNetwork(models.Model):
         return self.name
     
 class Contact(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='contacts')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='contacts')
     address = models.CharField(max_length=200, verbose_name='Address')
     location = models.CharField(max_length=100, verbose_name='Location')

@@ -43,11 +43,8 @@ class JobListView(TemplateView):
     template_name = 'findjoblist.html'
 
 
-class UserDashboardView(LoginRequiredMixin,TemplateView):
+class UserDashboardView(TemplateView):
     template_name = 'userdashboard.html'
-
-    login_url = ''  # URL to redirect to for login
-    redirect_field_name = 'next'  # Default is 'next'
 
 
 class ContactView(TemplateView):
