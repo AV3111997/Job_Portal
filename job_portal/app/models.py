@@ -87,6 +87,7 @@ class Contact(models.Model):
 
 
 class Employer(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='employers')
     employer_name= models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     email= models.CharField(max_length=255)
