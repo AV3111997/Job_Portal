@@ -1,0 +1,52 @@
+.loginRegister_input {
+  background: #f0f5f7;
+  padding: 10px 25px;
+  border: none;
+  color: #77838f;
+}
+
+.loginRegister_forgot_pass {
+  text-decoration: none;
+  color: black;
+}
+
+.user-type-selection {
+  display: flex;
+  gap: 10px;
+}
+
+.user-type-selection input[type="radio"] {
+  display: none !important;
+}
+
+.user-type-label {
+  padding: 10px 50px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #e9f0fb;
+  background-color: #e9f0fb;
+  color: #1e73be;
+  transition: all 0.3s ease;
+}
+
+.user-type-label i {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.user-type-selection input[type="radio"]:checked + .user-type-label {
+  background-color: #1e73be;
+  color: white;
+  border-color: #1e73be;
+}
+
+.user-type-selection
+  input[type="radio"]:not(:checked)
+  + .user-type-label:hover {
+  background-color: #d0e4fb;
+  border-color: #d0e4fb;
+}
