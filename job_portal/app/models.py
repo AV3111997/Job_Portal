@@ -84,3 +84,31 @@ class Contact(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='contacts')
     address = models.CharField(max_length=200, verbose_name='Address')
     location = models.CharField(max_length=100, verbose_name='Location')
+
+
+class Employer(models.Model):
+    employer_name= models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    email= models.CharField(max_length=255)
+    phone_no=models.CharField(max_length=20)
+    website=models.urlfield(max_length=200)
+    founded_date = models.DateField()
+    logo = models.ImageField(upload_to='employer_logos/')
+    cover_photo = models.ImageField(upload_to='employer_coverphoto/')
+    company_size=models.Charfield(max_length=20)
+    introduction_video_url=models.urlfield(max_length=200)
+    description=models.CharField(max_length=255)
+    profile_url=models.urlfield(max_length=200)
+    is_open_job = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.employer_name
+
+
+class ProfilePhoto(models.Model):
+	employer=models.ForeignKey(Employer,related_name='profile_photos',on_delete=models.CASCADE)
+	image=models.ImageField(upload_to='employer_profilephoto/')
+
+class Member(models.Model):
+	employer=models.ForeignKey(Employer,related_name='members',on_delete=models.CASCADE)
+	name=models.CharField(max_length=255)
