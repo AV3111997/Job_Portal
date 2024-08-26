@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.urls import reverse_lazy
+from django.views.generic.edit import FormView
+from .models import JobPosting
+from .forms import JobPostingForm
 
 # Create your views here.
 
@@ -59,13 +63,23 @@ class TermView(TemplateView):
 class AppliedJobsView(TemplateView):
     template_name = 'applied_jobs.html'
 
-<<<<<<< HEAD
 class ApplicantsJobsView(TemplateView):
     template_name = 'applicants_jobs.html'
     
 class ManageJobsView(TemplateView):
     template_name = 'manage_jobs.html'
-=======
-class EmployeeJobsView(TemplateView):
-    template_name = 'employee.html'
->>>>>>> articles
+
+# class EmployeeJobsView(TemplateView):
+#     template_name = 'employee.html'
+
+
+
+class JobPostingCreateView(FormView):
+    model = JobPosting
+    form_class = JobPostingForm
+    template_name = 'employee.html'  # Ensure this template exists and is set up correctly
+    success_url = reverse_lazy('jobform')  # Redirect after successful form submission
+
+    def form_valid(self, form):
+        # Here you can perform additional actions if needed before saving
+        return super().form_valid(form)
