@@ -19,5 +19,5 @@ urlpatterns = [
     path('applicants_jobs', views.ApplicantsJobsView.as_view(), name='applicants_jobs'),
     path('manage_jobs/', views.ManageJobsView.as_view(), name='manage_jobs'),
     path('jobpost/',views.EmployeeJobsView.as_view(), name='jobpost'),
-
+    path('candidate_profile/',views.CandidateProfile.as_view(), name='candodate_profile'),
 ]
