@@ -10,6 +10,19 @@
 {% endblock css_styles %}
 {% block content %}
 
+<div class="container-fluidjob badge-primary gray-background">
+    <h3 class="my-custom-heading text-center">Job List</h3>
+    <h6 class="my-custom-subheading text-center">Home / Job List</h6>
+</div>
+<div class="container">
+    <div class="row">
+        <!-- Search section -->
+        <div class="col-md-4 gray-background">
+            <div class="search-container">
+                <!-- Search fields -->
+                <h6><b>Search by Keywords</b></h6>
+
+
 <div class="findjoblist">
     <div class="container-fluidjob badge-primary gray-background">
         <h3 class="my-custom-heading text-center">Job List</h3>
@@ -19,6 +32,7 @@
         <div class="row">
             <!-- Search section -->
             <div class="col-md-4 gray-background">
+
                 <div class="search-container">
                     <!-- Search fields -->
                     <h6><b>Search by Keywords</b></h6>
@@ -178,6 +192,215 @@
                 </div>
                 
             </div>
+
+        </section>
+            </div>
+            
+        </div>
+    
+        <div class="col-md-8">
+            <!-- Sort By and Results Count -->
+            <div class="sort-by-section">
+                <h5 class="mb-0">Showing 1-9 of 32 results</h5>
+                <div class="d-flex align-items-center" style="background-color: #ebf2fa;">
+                    <select class="custom-select" style="border: none;">
+                        <option value="default"  selected>Sort by (Default)</option>
+                        <option value="relevance">Newest</option>
+                        <option value="date">Oldest</option>
+                        <option value="salary">Random</option>
+                    </select>
+                    <select class="custom-select ml-3" style="border: none; background-color: white; border-radius: 10px;">
+                        <option value="9" selected>All</option>
+                        <option value="15">9 per page</option>
+                        <option value="30">18 per page</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+        <!-- Job listings section -->
+        <div class="col-md-8" style="width: auto;">
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://tse3.mm.bing.net/th?id=OIP.arMbVZyyUDI6KzQb3PnzlAHaHa&pid=Api&P=0&h=180" alt="job-listing"></div>
+                    <h2 class="job_head">Junior Graphic Designer (Web)</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Design, Development 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge">Full Time</span>
+                    <span class="badge">Urgent</span>
+                </div>
+            </div>
+
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://tse2.mm.bing.net/th?id=OIP.7DWXljTMZ9WRrQA-nIJd_gHaHa&pid=Api&P=0&h=180" alt="job-listing"></div>
+                    <h2 class="job_head">Finance Manager & Health</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Design 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge">Full Time</span>
+                    <span class="badge">Urgent</span>
+                </div>
+            </div>
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://tse1.mm.bing.net/th?id=OIP.FmC7zwiirBMwHqwUsYIQIQHaH2&pid=Api&P=0&h=180" alt="job-listing"></div>
+                    <h2 class="job_head">Executive, HR Operations</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Customer, Marketing 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge bg-primary">Temporary</span>
+                    <span class="badge bg-warning">Urgent</span>
+                </div>
+            </div>
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://tse3.mm.bing.net/th?id=OIP.eNXr_GNF5ACskaSjKvgAQAHaE7&pid=Api&P=0&h=180" alt="job-listing"></div>
+                    <h2 class="job_head">Senior Product Designer</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Design, Development 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge bg-light">Full Time</span>
+                    <span class="badge bg-warning">Urgent</span>
+                </div>
+            </div>
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
+                    <h2 class="job_head">Product Designer</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Design, Development 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge bg-primary">Full Time</span>
+                    <span class="badge bg-warning">Urgent</span>
+                </div>
+            </div>
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
+                    <h2 class="job_head">General Ledger Accountant</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Design, Development 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge bg-primary">Full Time</span>
+                    <span class="badge bg-warning">Urgent</span>
+                </div>
+            </div>
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
+                    <h2 class="job_head">Assistant/Store Keeper</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Design, Development 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge bg-primary">Full Time</span>
+                    <span class="badge bg-warning">Urgent</span>
+                </div>
+            </div>
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
+                    <h2 class="job_head">Product Sales Specialist</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Design, Development 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge bg-primary">Full Time</span>
+                    <span class="badge bg-warning">Urgent</span>
+                </div>
+            </div>
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
+                    <h2 class="job_head">Restaurant Team Member</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Design, Development 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge bg-primary">Full Time</span>
+                    <span class="badge bg-warning">Urgent</span>
+                </div>
+            </div>
+            <div class="job-listing">
+                <div class="d-flex justify-content-between">
+                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
+                    <h2 class="job_head">Software Engineer</h2>
+                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
+                </div>
+                <p class="text-muted">
+                    <i class="fas fa-briefcase"></i> Design, Development 
+                    <i class="fas fa-map-marker-alt ml-3"></i> New York
+                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                </p>
+                <div>
+                    <span class="badge bg-primary">Full Time</span>
+                    <span class="badge bg-warning">Urgent</span>
+                </div>
+            </div>
+            
+            </div>
+            <!-- pagination buttons -->
+            <nav aria-label="..."text-center >
+                <ul class="jobpagination">
+                  <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+
+        </div>
+
         
             <div class="col-md-8">
                 <!-- Sort By and Results Count -->
