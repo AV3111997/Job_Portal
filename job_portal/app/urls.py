@@ -1,3 +1,29 @@
+<<<<<<< HEAD
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='home'),
+    path('faq/', views.FAQView.as_view(), name='faq'),
+    path('pricing/', views.PricingView.as_view(), name='pricing'),
+    path('candidate', views.candidate_view, name='candidate'),
+    path('joblist',views.Joblist_view,name='joblist'),
+    path('employerslist',views.Employerslist_view,name='Employers')
+]
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='home'),
+    path('faq/', views.FAQView.as_view(), name='faq'),
+    path('pricing/', views.PricingView.as_view(), name='pricing'),
+    path('candidate', views.candidate_view, name='candidate'),
+    path('about', views.about_view, name='about'),
+]
+
+=======
 from django.urls import path
 from . import views
 
@@ -23,3 +49,4 @@ urlpatterns = [
     # path('jobpost/',views.EmployeeJobsView.as_view(), name='jobpost'),
     path('jobform/', views.JobPostingCreateView.as_view(), name='jobform'),
 ]
+>>>>>>> main

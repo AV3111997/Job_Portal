@@ -11,7 +11,11 @@
 
 {% block content %}
 
+<<<<<<< HEAD
+<body class="emplistbody">
+=======
 <div class="emplistbody">
+>>>>>>> main
     <div class="container-fluidEmp badge-primary gray-background">
         <h3 class="my-custom-heading text-center">Employers</h3>
         <h6 class="my-custom-subheading text-center">Home / Employers List</h6>
@@ -25,32 +29,60 @@
                     <h6>Search by Keywords</h6>
                     <div class="search-container">
                         <i class="fas fa-search search-icon"></i>
+<<<<<<< HEAD
+                        <input type="text" class="form-control" placeholder="    Company title, Keyword" />
+=======
                         <input type="text" class="form-control" placeholder="Company title, Keyword" />
+>>>>>>> main
                     </div>
                     <h6>Location</h6>
                     <div class="location-input">
                         <span class="location-icon"><i class="fa-solid fa-location-dot"></i></span>
                         <input type="text" class="form-control" placeholder="   City or postcode" />
                     </div>
+<<<<<<< HEAD
+    
+                    <div class="radius-slider">
+                        <label class="text-primary"  for="radius">Radius: 50 miles</label>
+                        <input type="range" id="radius" name="radius" min="1" max="100" value="50">
+                    </div>
+    
+=======
                     <div class="radius-slider">
                         <label class="text-primary" for="radius">Radius: 50 miles</label>
                         <input type="range" id="radius" name="radius" min="1" max="100" value="50">
                     </div>
+>>>>>>> main
                     <h6>Category</h6>
                     <select class="form-control">
                         <option value=""> &#x1F4C3; Choose a category &#x25BE;</option>
                         <option value="1">Design</option>
                         <option value="2">Marketing</option>
                         <option value="3">Development</option>
+<<<<<<< HEAD
+                        <!-- Add categories here -->
+                    </select>
+=======
                         </select>
+>>>>>>> main
                     <h6><b>Founded Date</b></h6>
                     <div class="radius-slider">
                         <label for="radius" class="slider-label">1992-2011</label>
                         <input type="range" id="radius" name="radius" min="1" max="100" value="100" width="350px">
                         <button class="square-button">Find Employers</button>
                     </div>
+<<<<<<< HEAD
+                    
+                    
+                    
+                </div>
+                
+            </div>
+        
+=======
                 </div>
             </div>
+>>>>>>> main
             <div class="col-md-8">
                 <!-- Sort By and Results Count -->
                 <div class="sort-by-section">
@@ -69,6 +101,75 @@
                         </select>
                     </div>
                 </div>
+
+            <!-- Employers listings section -->
+
+            <div class="col-md-8" style="width: auto;">
+                
+                <div class="employee-listing">
+                    
+                    <div class="d-flex justify-content-between">
+                        <div class="empimage"><img src="https://via.placeholder.com/50" alt="employee-listing"></div>
+                        <h2 class="emp_head">Udamy</h2>
+                        
+                        <span class="badge">Open job</span>
+                    </div>
+                    <p class="text-muted">
+                        
+                        <i class="fas fa-map-marker-alt ml-3"></i> New York
+                        
+                    </p>
+                
+                    
+                </div>
+            
+                <div class="employee-listing">
+                    <div class="d-flex justify-content-between">
+                        <div class="empimage"><img src="" ></div>
+                        <h2 class="emp_head">Medium</h2>
+                        
+                        <span class="badge">Open job</button></span>
+                    </div>
+                    <p class="text-muted">
+                        
+                        <i class="fas fa-map-marker-alt ml-3"></i> New York
+                        
+                    </p>
+                    
+                </div>
+                <div class="employee-listing">
+                    <div class="d-flex justify-content-between">
+                        <div class="empimage"><img src=""></div>
+                        <h2 class="emp_head">Upwork</h2>
+                        
+                        <span class="badge">Open job</span>
+                    </div>
+                    <p class="text-muted">
+                        
+                        <i class="fas fa-map-marker-alt ml-3"></i> New York
+                        
+                    </p>
+                    
+                </div>
+            <!-- pagination buttons -->
+             
+            <nav aria-label="..."text-center >
+                <ul class="pagination">
+                  <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            
+
     
                 <!-- Employers listings section -->
     
@@ -123,9 +224,9 @@
                     </nav>
                 </div>
             </div>
+
         </div>
     </div>
-</div>
 
 
 {% endblock content %}
