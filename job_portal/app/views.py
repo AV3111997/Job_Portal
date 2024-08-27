@@ -48,6 +48,7 @@ class AboutView(TemplateView):
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+
 class ArticlesView(TemplateView):
     template_name = 'article_page.html'
 >>>>>>> main

@@ -39,6 +39,7 @@ urlpatterns = [
     path('candidate', views.CandidateView.as_view(), name='candidate'),
     path('userdashboard', views.UserDashboardView.as_view(), name='userdashboard'),
     path('contact/', views.ContactView.as_view(), name='contact'),
+    path('managejobs/', views.ManageJobsView.as_view(), name='managejobs'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('about/', views.AboutView.as_view(), name='about'),
     path('terms/', views.TermView.as_view(), name='terms'),
