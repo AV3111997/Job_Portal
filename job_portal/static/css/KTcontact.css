@@ -1,0 +1,237 @@
+/* Main styling */
+.main {
+    width: 100%;
+    background-color: #fffa;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: -50px;
+    position: relative;
+    z-index: 1;
+    width: 70%;
+    max-width: 1000px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.contact-info .info-item {
+    margin-bottom: 20px;
+    flex: 1 1 30%; 
+}
+
+.contact-info .info-item i {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.contact-info .info-item .bold-text {
+    font-weight: bold;
+}
+
+.contact-form {
+    width: 100%; 
+    max-width: 600px; 
+    margin: 0 auto; 
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #b1b1b1;
+    border-radius: 5px;
+}
+
+.contact-form h5 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contact-form .form-row {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+}
+
+.contact-form #subject,
+.contact-form #comment {
+    width: 100%;
+    padding-left: 10px; 
+    padding-right: 10px;
+    box-sizing: border-box; 
+    margin-bottom: 20px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.contact-form .form-row .form-group {
+    flex: 1 1 48%; 
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form .form-row .form-group:last-child {
+    margin-right: 0;
+}
+
+.contact-form .form-control {
+    background-color: #f1f3f6;
+    border: none;
+    margin-top: 5px;
+    border-radius: 2px;
+}
+
+.contact-form .form-control::placeholder {
+    color: #b0b4bc;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.contact-form .form-group label {
+    display: block; 
+}
+
+.contact-form button {
+    width: 150px; 
+    background-color: #007bff;
+    border: none;
+    margin: 20px auto 0; 
+    display: block; 
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Recruiting Section */
+.recruiting {
+    width: 100%;
+    background-color: #e2e8ec;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.recruiting h2 {
+    color: #000;
+    font-size: 24px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.recruiting p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.btn-recruiting {
+    font-size: 16px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: #007bff;
+    border: none;
+}
+
+.recruiting-img {
+    width: 100%; 
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .map-container {
+        width: 95%;
+    }
+
+    .content-wrapper {
+        width: 90%; 
+    }
+
+    .contact-form .form-row .form-group {
+        flex: 1 1 100%; 
+        margin-right: 0;
+    }
+
+    .contact-info .info-item {
+        flex: 1 1 100%; 
+    }
+
+    .contact-form #subject,
+    .contact-form #comment {
+        width: 80%; 
+        padding-left: 10px; 
+        padding-right: 10px;
+        box-sizing: border-box; 
+    }
+}
+
+/* Terms style */
+.header {
+    background-color: #e9eef5;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.header p {
+    font-size: 1.0em;
+    color: #6c757d;
+}
+
+.content-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+h3 {
+    font-size: 1.25em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    color: #5d5a5a;
+}

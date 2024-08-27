@@ -1,17 +1,16 @@
 {% extends 'shared/base.html' %}
-{% block title %}
-<title>Pricing</title>
-{% endblock title %}
-
-{% block css %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
-{% endblock css %}
-
+{% block title %}
+<title>Price</title>
+{% endblock title %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/price.css' %}">
+{% endblock css_styles %}
 {% block content %}
-<div class="container-fluid">
-    <div class="row bg-body-secondary mb-5 p-3">
-        <nav aria-label="breadcrumb">
+<div class="container-fluid mb-5">
+    <div class="row bg-body-secondary py-4">
+        <nav aria-label="breadcrumb" class="custom-breadcrumb">
             <h4 class="h4 text-center fw-semibold">Pricing</h4>
             <ol class="breadcrumb d-flex justify-content-center">
                 <li class="breadcrumb-item active" aria-current="page">Home</li>
@@ -20,48 +19,47 @@
         </nav>
     </div>
     <div class="row ">
-        <h2 class=" text-center fw-semibold">
+        <h2 class="pricing-header mt-5 text-center">
             Save Up to 10%
         </h2>
         <div class="row gap-5 d-flex justify-content-center container-fluid mt-4">
-            <div class="card p-4" style="width: 20rem;">
+            <div class="card p-4 card-custom" style="width: 20rem;">
                 <h5 class="text-primary fw-semibold">Basic</h5>
                 <div class="price">$199.00</div>
                 <ul class="features fw-lighter">
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}"></i>30 job posting</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">3 featured job</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Job displayed for 15 days</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Premium Support 24/7</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>30 job posting</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>3 featured job</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>Job displayed for 15 days</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>Premium Support 24/7</li>
                 </ul>
-                <button class="btn btn-primary btn-block mt-4 fw-semibold justify-content-center">Add to cart</button>
+                <button class="btn btn-primary btn-block mt-4 fw-semibold btn-custom">Add to cart</button>
             </div>
-            <div class="card p-4" style="width: 20rem;">
+            <div class="card p-4 card-custom" style="width: 20rem;">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="text-primary fw-semibold">Standard</h5>
                     <span class="recommended-badge">Recommended</span>
                 </div>
                 <div class="price">$499.00</div>
                 <ul class="features fw-lighter">
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">40 job posting</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">5 featured job</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Job displayed for 30 days</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Premium Support 24/7</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>40 job posting</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>5 featured job</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>Job displayed for 30 days</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>Premium Support 24/7</li>
                 </ul>
-                <button class="btn btn-primary btn-block mt-4 fw-semibold justify-content-center">Add to cart</button>
+                <button class="btn btn-primary btn-block mt-4 fw-semibold btn-custom">Add to cart</button>
             </div>
-            <div class="card p-4" style="width: 20rem;">
+            <div class="card p-4 card-custom" style="width: 20rem;">
                 <h5 class="text-primary fw-semibold">Extended</h5>
                 <div class="price">$799.00</div>
                 <ul class="features fw-lighter">
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">50 job posting</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">10 featured job</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Job displayed for 60 days</li>
-                    <li class="mb-2"><img src="{% static 'img/tick.png' %}">Premium Support 24/7</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>50 job posting</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>10 featured job</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>Job displayed for 60 days</li>
+                    <li class="mb-2"><ion-icon name="checkmark-outline"></ion-icon>Premium Support 24/7</li>
                 </ul>
-                <button class="btn btn-primary btn-block mt-4 fw-semibold justify-content-center">Add to cart</button>
+                <button class="btn btn-primary btn-block mt-4 fw-semibold btn-custom">Add to cart</button>
             </div>
         </div>
     </div>
 </div>
 {% endblock content %}
-    

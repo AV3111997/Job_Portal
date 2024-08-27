@@ -1,0 +1,48 @@
+.logt {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.imget {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.photo-sizet {
+    width: 20%;
+    height: auto;
+    object-fit: cover;
+}
+
+.related-jobt .job-item {
+    transition: all 0.3s ease;
+}
+
+.related-jobt .job-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.related-jobt .btn-t {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.btn-t img {
+    width: 16px;
+    height: 16px;
+}
+
+.btn-t:hover img {
+    transform: scale(1.1);
+}
+
+.text-mutedt {
+    color: #6c757d !important;
+}
+
+span {
+    color: red;
+}

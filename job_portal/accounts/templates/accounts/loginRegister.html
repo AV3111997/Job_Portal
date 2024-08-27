@@ -1,0 +1,203 @@
+<div class="container-fluid">
+  {% comment %} csrf for login and register  {% endcomment %}
+
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="d-flex justify-content-between p-3">
+            <h5 class="modal-title fw-semibold">Login to Jobportal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form class="p-3" id="loginForm">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+              <label for="loginEmail" class="form-label">Email</label>
+              <input name="email" type="email" class="loginRegister_input form-control" id="loginEmail" placeholder="Email" />
+            </div>
+            <div class="form-group mb-3">
+              <label for="loginPassword" class="form-label">Password</label>
+              <input type="password" name="password" class="loginRegister_input form-control" id="loginPassword" placeholder="Password" />
+            </div>
+
+            <div class="justify-content-between d-flex mb-1">
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                <label class="form-check-label" for="exampleCheck1">Keep me signed In</label>
+              </div>
+              <a class="loginRegister_forgot_pass"  data-bs-toggle="modal" data-bs-target="#passResetModal" class="switch-modal">forgotten password ?</a>
+            </div>
+            <div class="d-grid gap-2 mb-3">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <p class="text-center">
+              Do you have an Account ?<a  data-bs-toggle="modal" data-bs-target="#registerModal" class="switch-modal">Register</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %}register modal{% endcomment %}
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="d-flex justify-content-between p-3">
+            <h5 class="modal-title fw-semibold">Create a free Job account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form class="p-3" id="registerForm">
+            <div class="user-type-selection d-flex justify-content-around">
+              <input type="radio" name="userType" id="candidate" value="candidate" checked>
+              <label for="candidate" class="user-type-label">
+                <i class="bi bi-person"></i> Candidate
+              </label>
+              
+              <input type="radio" name="userType" id="employer" value="employer">
+              <label for="employer" class="user-type-label">
+                <i class="bi bi-briefcase"></i> Employer
+              </label>
+            </div>
+            
+            
+            <div class="form-group mb-3">
+              <label for="loginEmail" class="form-label">Email</label>
+              <input name="email" type="email" class="loginRegister_input form-control" id="loginEmail" placeholder="Email" />
+            </div>
+            <div class="form-group mb-3">
+              <label for="loginPassword" class="form-label">Password</label>
+              <input name="password" type="password" class="loginRegister_input form-control" id="loginPassword" placeholder="Password" />
+            </div>
+            <div class="form-group mb-3">
+              <label for="loginPassword" class="form-label">Confirm Password</label>
+              <input name="confirmpassword" type="password" class="loginRegister_input form-control" id="loginConfimrPassword" placeholder="Confirm Password" />
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+              <label  class="form-check-label" for="exampleCheck1">You accept our <a href="">Terms and Conditions and Privacy Policy</a></label>
+            </div>
+            <div class="d-grid gap-2 mb-3">
+              <button type="submit" class="btn btn-primary">Register Now</button>
+            </div>
+            <p class="text-center">
+              Already have an account ?<a data-bs-toggle="modal" data-bs-target="#loginModal" class="switch-modal">Login</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="passResetModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="d-flex justify-content-between p-3">
+            <h5 class="modal-title fw-semibold">Login to Superio</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form class="p-3" id="registerForm">
+            <div class="form-group mb-3">
+              <h5>Reset Password</h5>
+              <label for="loginEmail" class="form-label">Please Enter Username or Email</label>
+              <input name="email" type="email" class="form-control" id="loginEmail" placeholder="Username or Email" />
+            </div>
+            <div class="d-grid gap-2 mb-3">
+              <button type="submit" class="btn btn-primary">Get new Password</button>
+            </div>
+            <p>
+              <a data-bs-toggle="modal" data-bs-target="#loginModal" class="switch-modal">Login</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var modals = document.querySelectorAll('.switch-modal');
+    modals.forEach(function (modalLink) {
+        modalLink.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            var targetModal = event.target.getAttribute('data-bs-target');
+            var currentModal = event.target.closest('.modal');
+            
+            if (currentModal) {
+                var bootstrapModal = bootstrap.Modal.getInstance(currentModal);
+                bootstrapModal.hide();
+            }
+
+            // Remove any existing backdrops
+            var backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+                backdrop.remove();
+            }
+
+            // Small delay to ensure the current modal is fully hidden before showing the new one
+            setTimeout(function () {
+                var newModal = new bootstrap.Modal(document.querySelector(targetModal));
+                newModal.show();
+            }, 50);
+        });
+    });
+});
+
+
+  
+  function getCookie(name) {
+    let cookieValue = null
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';')
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim()
+        if (cookie.substring(0, name.length + 1) === name + '=') {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+          break
+        }
+      }
+    }
+    return cookieValue
+  }
+  
+  function submitForm(formId, url) {
+    const form = document.getElementById(formId)
+    form.addEventListener('submit', function (event) {
+      event.preventDefault()
+      console.log('i')
+      const formData = new FormData(form) // Collect form data
+      const csrfToken = getCookie('csrftoken') // Get CSRF token from the cookie
+  
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrfToken, // Include CSRF token in the request headers
+          'X-Requested-With': 'XMLHttpRequest' // Optional: Indicate that this is an AJAX request
+        },
+        body: formData
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            // Handle success (e.g., redirect, show a success message, etc.)
+            alert('Form submitted successfully!')
+          } else {
+            // Handle errors (e.g., show error messages)
+            console.error(data.errors)
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    })
+  }
+  
+  // Example usage
+  submitForm('loginForm', "{% url 'accounts:login' %}")
+  submitForm('registerForm', "{% url 'accounts:register' %}")
+</script>

@@ -148,17 +148,17 @@
     color: #6c757d;
 }
 
-.form-control {
+/* .form-control {
     border: none;
     border-radius: 0;
     box-shadow: none;
-}
+} */
 
 input::placeholder, select {
     color: #6c757d;
 }
 
-.btn-primary {
+/* .btn-primary {
     background-color: #1967D2;
     padding: 10px 20px;
     white-space: nowrap;
@@ -173,7 +173,7 @@ input::placeholder, select {
     background-color: white;
     border: 1px #1967D2 solid;
     transition-duration: 0.3s;
-}
+} */
 
 
 
@@ -381,16 +381,16 @@ h2 {
 
 .form-group {
     max-width: 500px;
-    display: flex;
+    /* display: flex; */
     gap: 10px;
 }
 
 .recruit-banner-background {
     background-color: #e6f2ff !important;
-    border-radius: 5px;
-
+    border-radius: 5px
 }
 
+<<<<<<< HEAD
 /* Karthika Styles */
 /* start */
 
@@ -467,150 +467,29 @@ h2 {
 }
 .search-container input,
 .search-container select {
+=======
+.image-placeholder {
+>>>>>>> main
     width: 100%;
-    padding: 10px 40px 10px 20px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.search-container .radius-slider {
-    display: flex;
-    align-items: center;
-}
-.search-container .radius-slider input {
-    margin-left: 10px;
-    flex: 1;
-} 
-.search-container .search-icon {
-    position: absolute;
-    top: 50%;
-    left: 10px; 
-    transform: translateY(-50%);
-    color: #aaa;
-}
-@media (max-width: 768px) {
-    .my-custom-heading {
-        margin-top: 3rem;
-    }
-    .search-container {
-        gap: 10px;
-    }
-}
-@media (max-width: 576px) {
-    body {
-        margin: 10px;
-    }
-    .my-custom-heading {
-        margin-top: 2rem;
-        padding-top: 2%;
-    }
-    .employee-listing {
-        padding: 15px;
-        margin-bottom: 15px;
-    }
-}
-.location-input {
-position: relative;
-display: inline-block;
+    height: auto;
+    background-repeat: no-repeat;
 }
 
-.location-icon {
-position: absolute;
-top: 50%;
-left: 10px; 
-transform: translateY(-50%);
-font-size: 16px; 
-color: #6c757d;
+.content-section {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-.form-control {
-padding-left: 40px; 
-}
-.show-more {
-    cursor: pointer;
-    color: #007bff;
-    
-}
-.show-more:hover {
-    color: #0056b3;
-}
-.plus-symbol {
-    font-size: 18px;
-    
-}
-.switch {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-}
-.switch input {
-    display: none;
-}
-.switch-label {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 20px;
-}
-.switch-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: white;
-    transition: .4s;
-    border-radius: 24px;
-}
-.switch-slider:before {
-    position: absolute;
-    content: "";
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    left: 4px;
-    bottom: 4px;
-    background-color: #ccc;
-    transition: .4s;
-}
-input:checked + .switch-label .switch-slider {
-    background-color: #4a13cc;
-}
-input:checked + .switch-label .switch-slider:before {
-    transform: translateX(26px);
-}
-.switch-status {
-    font-size: 16px;
-    margin-left: 10px;
-}
-.radius-slider {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    width: 300px; 
-    margin: 20px 0; 
-}
-.square-button {
-    width: 300px; 
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 8px; 
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.course-description,
+.requirements {
+    margin-top: 20px;
 }
 
-.square-button:hover {
-    background-color: #0056b3; 
+.comments-section {
+    margin-top: 40px;
 }
 
+<<<<<<< HEAD
 .square-button:focus {
     outline: none;
 }
@@ -932,330 +811,107 @@ text-align: center;
     background-color: #ffffff;
     border-radius: 10px;
     padding: 60px;
+=======
+.comment-item {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 15px;
+>>>>>>> main
     margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    height: 200px;
-    width: 900px;
-}
-.featured {
-    color: green;
-}
-.candidate-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-.slider {
-    width: 800%;
 }
 
-/* Toggle switch styles */
-.form-check {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-.form-check-input[type="checkbox"].toggle-checkbox {
-    display: none;
-}
-.form-check-label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-.form-check-label .toggle {
-    position: relative;
-    display: inline-block;
-    width: 45px;
-    height: 25px;
-    margin-right: 10px;
-}
-.form-check-label .toggle input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-.form-check-label .toggle-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left:0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
-.form-check-label .toggle-slider:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 26px;
-    border-radius: 50%;
-    left: 3px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-}
-.form-check-input.toggle-checkbox:checked + .toggle-slider {
-    background-color: #2196F3;
-}
-.form-check-input.toggle-checkbox:checked + .toggle-slider:before {
-    transform: translateX(26px);
+.comment-item:last-child {
+    border-bottom: none;
 }
 
-/* Circular checkbox styles for Date Posted section */
-.form-check-input.circle-checkbox {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-right: 10px;
-    cursor: pointer;
-    appearance: none;
-    background-color: #fff;
-    border: 2px solid #ccc;
-    outline: none;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-.form-check-input.circle-checkbox:checked {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.candidate-heading-section {
-    background-color: #f1f9fd;
-    width: 135%;
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.news-articles .card {
     margin-bottom: 20px;
 }
-.position-relative {
-    position: relative;
+
+.comment-form {
+    margin-top: 30px;
 }
-.form-control {
-    padding-left: 2.5rem; /* Adjust as needed */
-    padding-right: 2.5rem; /* Adjust as needed */
+
+.recent-articles {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
-.bi {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+
+
+
+
+.custom-gap {
+    gap: 8rem;
 }
-.bi-geo-alt-fill {
-    left: 0.5rem;
-}
-.bi-caret-down-fill {
-    right: 0.5rem;
-}
-.position-relative {
-    position: relative;
-}
-.form-control {
-    padding-left: 3rem; /* Adjust to fit all icons */
-    padding-right: 3rem; /* Adjust to fit all icons */
-}
-.bi {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.bi-envelope {
-    left: 0.5rem; /* Position the message icon */
-}
-.bi-caret-down-fill {
-    right: 0.5rem;
-}
-.bi-message {
-    right: 2.5rem; /* Position the additional icon appropriately */
-}
-.slider-container {
-    width: 100%;
-    padding: 20px;
+
+.row {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    align-items: flex-start;
 }
 
-.slider {
-  
-    /* Remove default styles */
-    width: 100%;
-    height: 8px;
-    /* Track height */
-    background: #0d92b7;
-    /* Track color */
+.col {
+    flex: 1;
+}
+
+.list-unstyled {
+    margin: 0;
+    padding: 0;
+}
+
+.comment-form-bg {
+    border: 1px solid #dee2e6;
     border-radius: 5px;
-    outline: none;
-    opacity: 0.7;
-    transition: opacity .2s;
+    padding: 10px;
 }
 
-.slider:hover {
-    opacity: 1;
-    /* Full opacity on hover */
+.custom-input {
+    background-color: #e6f2ff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
 }
 
-/* Custom handle styles */
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    /* Remove default styling */
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #c7bfbc; /* Handle color (change this to your desired color) */
+.quote-section {
+    background-color: #e6f2ff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 40px;
+    font-size: small;
+}
+
+.article-share-btn {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px;
+    transition-duration: 0.4s;
     cursor: pointer;
-    border-radius: 50%;
-    /* Circular handle */
-}
+  }
 
-.slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: #decac4; /* Handle color (change this to your desired color) */
-    cursor: pointer;
-    border-radius: 50%;
-    /* Circular handle */
-}
+  .article-share-btn-f {
+    background-color: #0073e6;
+  }
 
-.slider::-ms-thumb {
-    width: 25px;
-    height: 25px;
-    background: #0e94f4; /* Handle color (change this to your desired color) */
-    cursor: pointer;
-    border-radius: 50%;
-    /* Circular handle */
-}
-.view-profile-button {
-background-color: #f0f4ff; /* Light blue background */
-color: #1a73e8; /* Blue text */
-border: none;
-padding: 10px 20px;
-border-radius: 5px;
-font-size: 16px;
-cursor: pointer;
-}
+  .article-share-btn-t {
+    background-color: #00ccff;
+  }
 
-.view-profile-button:focus {
-outline: none;
-}
+  .article-share-btn-p {
+    background-color: #ff0000;
+  }
 
-.view-profile-button.clicked {
-background-color: #1a73e8; /* Darker blue background when clicked */
-color: #ffffff; /* White text when clicked */
-}.btn-badge {
-background-color: #d6e3ef; /* Light background */
-color: #292621; /* Dark text */
-border: none;
-padding: 0.5em 1em;
-font-size: -1em;
-border-radius: 1rem;
-cursor: pointer;
-transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.btn-badge:hover {
-background-color: #010508; /* Darker light background on hover */
-color: #f8f7f7; /* Slightly darker text on hover */
-}
-
-.btn-badge:focus {
-outline: none;
-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Blue outline when focused */
+  .comment-image-placeholder {
+    width: 50px;
+    height: 50px;      
+    background-color: #ccc; 
+    border-radius: 50%; 
+    display: inline-block; 
 }
 
 
-
-.view-profile-button {
-background-color: #d6e3ef; /* Primary color background */
-color:  #1a73e8; /* White text */
-border: none;
-padding: 0.75em 1.5em;
-font-size: 1em;
-border-radius: 0.25rem;
-cursor: pointer;
-transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.view-profile-button:hover {
-background-color: #0056b3; /* Darker primary color on hover */
-transform: translateY(-3px); /* Slight lift effect on hover */
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-}
-
-.view-profile-button:focus {
-outline: none;
-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); /* Blue outline when focused */
-color:  #e9e9ea;
-}
-
-.view-profile-button:active {
-background-color: #004085; /* Even darker primary color when clicked */
-transform: translateY(0); /* Remove lift effect when clicked */
-/* Slightly reduced shadow on click */
-}
-.featured-text {
-color: #069b2b; /* Green color */
-font-weight:lighter; /* Optional: Makes the text bold */
-font-size: smaller;
-background-color: transparent; /* Ensure no background color */
-padding: 0; /* Remove padding */
-border-radius: 0; /* Remove border radius */
-}
-
-
-
-/* Style the slider track */
-#radiusSlider {
--webkit-appearance: none; /* Remove default appearance (Webkit browsers) */
-appearance: none; /* Remove default appearance */
-width: 100%; /* Full-width */
-height: 8px; /* Slider height */
-background: linear-gradient(to right, #007bff 50%, #ddd 50%); /* Gradient background */
-outline: none; /* Remove outline */
-border-radius: 4px; /* Rounded corners for track */
-transition: background 0.15s ease-in-out; /* Smooth transition */
-}
-
-/* Style the slider thumb */
-#radiusSlider::-webkit-slider-thumb {
--webkit-appearance: none; /* Remove default appearance (Webkit browsers) */
-appearance: none; /* Remove default appearance */
-width: 20px; /* Thumb width */
-height: 20px; /* Thumb height */
-background: #007bff; /* Blue color for thumb */
-cursor: pointer; /* Pointer cursor */
-border-radius: 50%; /* Rounded thumb */
-}
-
-/* Slider thumb for non-Webkit browsers */
-#radiusSlider::-moz-range-thumb {
-width: 20px;
-height: 20px;
-background: #007bff;
-cursor: pointer;
-border-radius: 50%;
-}
-
-/* For Internet Explorer */
-#radiusSlider::-ms-thumb {
-width: 20px;
-height: 20px;
-background: #007bff;
-cursor: pointer;
-border-radius: 50%;
-border: none;
-}
-
-/* No special thumb for IE */
-#radiusSlider::-ms-track {
-background: transparent;
-border-color: transparent;
-color: transparent;
-width: 100%;
-height: 8px;
-}
 
 
 
