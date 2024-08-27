@@ -1,38 +1,3 @@
-<<<<<<< HEAD
-
-from django.shortcuts import render
-from django.views.generic import TemplateView
-
-# Create your views here.
-
-def index(request):
-    return render(request, 'index.html')
-
-class FAQView(TemplateView):
-    template_name = 'faq.html' 
-
-class PricingView(TemplateView):
-    template_name = 'pricing.html' 
-
-def candidate_view(request):
-    return render(request, 'candidate.html')
-
-def Joblist_view(request):
-    return render(request,'findjoblist.html')
-
-def Employerslist_view(request):
-    return render(request,'employerslist.html')
-
-from django.shortcuts import render
-from django.views.generic import TemplateView
-
-# Create your views here.
-
-
-def index(request):
-    return render(request, 'index.html')
-
-=======
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
@@ -45,71 +10,72 @@ from django.urls import reverse_lazy
 class AboutView(TemplateView):
     template_name = 'about.html'
 
+
 class IndexView(TemplateView):
     template_name = 'index.html'
 
 
 class ArticlesView(TemplateView):
     template_name = 'article_page.html'
->>>>>>> main
+
 
 class FAQView(TemplateView):
     template_name = 'faq.html'
 
-<<<<<<< HEAD
 
 class PricingView(TemplateView):
     template_name = 'pricing.html'
 
-
-def candidate_view(request):
-    return render(request, 'candidate.html')
-
-
-def about_view(request):
-    return render(request, 'about.html')
-
-=======
-class PricingView(TemplateView):
-    template_name = 'pricing.html'
 
 class JobDetailsView(TemplateView):
     template_name = 'job_details.html'
 
+
 class CandidateView(TemplateView):
     template_name = 'candidate.html'
+
 
 class EmployersListView(TemplateView):
     template_name = 'employerslist.html'
 
+
 class JobListView(TemplateView):
     template_name = 'findjoblist.html'
+
 
 class UserDashboardView(TemplateView):
     template_name = 'userdashboard.html'
 
+
 class ContactView(TemplateView):
     template_name = 'contact.html'
 
+
 class ProfileView(TemplateView):
     template_name = 'profile.html'
-    
+
+
 class TermView(TemplateView):
     template_name = 'terms.html'    
+
 
 class AppliedJobsView(TemplateView):
     template_name = 'applied_jobs.html'
 
+
 class ApplicantsJobsView(TemplateView):
     template_name = 'applicants_jobs.html'
     
+
 class ManageJobsView(TemplateView):
     template_name = 'manage_jobs.html'
     
+
 class EmployeeJobsView(TemplateView):
     template_name = 'employee.html'
 
-class CandidateProfile(TemplateView):
+
+class CandidateProfileView(TemplateView):
     def get(self, request):
         candidate_form = CandidateForm()
         socialnetwork_form = SocialNetworkForm()
@@ -137,6 +103,7 @@ class CandidateProfile(TemplateView):
             'contact_form': contact_form,
         })
 
+
 class JobPostingCreateView(FormView):
     form_class = JobPostingForm
     template_name = 'jobposting_form.html'  # Make sure this template exists
@@ -146,4 +113,3 @@ class JobPostingCreateView(FormView):
         # Here you can perform additional actions if needed before saving
         form.save()  # Save the form data
         return super().form_valid(form)
->>>>>>> main

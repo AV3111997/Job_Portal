@@ -1,6 +1,7 @@
 from django import forms
 from .models import Candidate, SocialNetwork, Contact, JobPosting, Category, Qualification, Location
 
+
 class CandidateForm(forms.ModelForm):
     class Meta:
         model = Candidate
@@ -21,9 +22,9 @@ class CandidateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CandidateForm, self).__init__(*args, **kwargs)
-        # Make all fields optional
         for field in self.fields.values():
             field.required = False
+
 
 class SocialNetworkForm(forms.ModelForm):
     class Meta:
@@ -35,9 +36,9 @@ class SocialNetworkForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(SocialNetworkForm, self).__init__(*args, **kwargs)
-        # Make all fields optional
         for field in self.fields.values():
             field.required = False
+
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -50,9 +51,9 @@ class ContactForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ContactForm, self).__init__(*args, **kwargs)
-        # Make all fields optional
         for field in self.fields.values():
             field.required = False
+
 
 class JobPostingForm(forms.ModelForm):
     class Meta:
