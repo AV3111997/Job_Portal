@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop</title>
+  {% load static %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/shop.css' %}" />
+</head>
+
+<body>
+  <div class="w-100">
+    <header>
+      <div class="sub-header">
+        <div class="sub-sub-header">
+          <h1>Shop</h1>
+          <nav class="d-flex justify-content-center">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item" aria-current="page">Shop</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="w-50 sub-sub-header">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <p>Showing 1–8 of 13 results</p>
+
+        <div class="dropdown">
+          <div class="select">
+            <span class="selected">Sort by latest</span>
+            <div class="caret"></div>
+          </div>
+          <ul class="menu">
+            <li>Sort by popularity</li>
+            <li>Sort by average rating</li>
+            <li>Sort by latest</li>
+            <li>Sort by price: low to high</li>
+            <li>Sort by price: high to low</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row" id="product-list">
+        <!-- Product items will be added here dynamically -->
+      </div>
+
+      <nav aria-label="Page navigation" id="page-navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" id="left-arrow">
+            <a onclick="goToPage1()" class="page-link bi bi-arrow-left"></a>
+          </li>
+          <li class="page-item">
+            <a onclick="goToPage1()" class="page-link">1</a>
+          </li>
+          <li class="page-item">
+            <a onclick="goToPage2()" class="page-link">2</a>
+          </li>
+          <li class="page-item" id="right-arrow">
+            <a onclick="goToPage2()" class="page-link bi bi-arrow-right"></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="{% static 'scripts/shop.js' %}"></script>
+</body>
+
+</html>
