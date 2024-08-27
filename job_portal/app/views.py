@@ -11,6 +11,9 @@ class AboutView(TemplateView):
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+class ManageJobsView(TemplateView):
+    template_name = 'manage_jobs.html'    
+
 
 class ArticlesView(TemplateView):
     template_name = 'article_page.html'

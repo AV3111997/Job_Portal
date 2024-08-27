@@ -13,6 +13,7 @@ urlpatterns = [
     path('userdashboard', views.UserDashboardView.as_view(), name='userdashboard'),
     path('applied_jobs', views.AppliedJobsView.as_view(), name='applied_jobs'),
     path('contact/', views.ContactView.as_view(), name='contact'),
+    path('managejobs/', views.ManageJobsView.as_view(), name='managejobs'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('about/', views.AboutView.as_view(), name='about'),
 ]

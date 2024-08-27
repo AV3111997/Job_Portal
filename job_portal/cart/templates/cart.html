@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Cart</h1>
+    {% if items %}
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>
+                            {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-thumbnail" style="max-width: 50px;">
+                            {% else %}
+                            <img src="{% static 'placeholder.png' %}" alt="Placeholder" class="img-thumbnail" style="max-width: 50px;">
+                            {% endif %}
+                        </td>
+                        <td>{{ item.product.name }}</td>
+                        <td>${{ item.product.price }}</td>
+                        <td>
+                            <input type="number" class="form-control quantity-input" value="{{ item.quantity }}" min="1" data-item-id="{{ item.id }}" aria-label="Quantity for {{ item.product.name }}">
+                        </td>
+                        <td>${{ item.product.price|multiply:item.quantity }}</td>
+                        <td>
+                            <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-sm btn-danger" aria-label="Remove {{ item.product.name }}">×</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cart totals</h5>
+                    <p class="card-text">Subtotal: ${{ subtotal }}</p>
+                    <p class="card-text">Shipping: ${{ shipping }} (Flat rate)</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Total: ${{ total }}</h6>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary btn-block mt-3">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        $('.quantity-input').change(function() {
+            var itemId = $(this).data('item-id');
+            var quantity = $(this).val();
+            $.ajax({
+                url: '{% url "update_quantity" %}',
+                method: 'POST',
+                data: {
+                    'item_id': itemId,
+                    'quantity': quantity,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        // Update the relevant parts of the page without reloading
+                        var total = quantity * parseFloat(response.product_price);
+                        $(this).closest('tr').find('td:nth-child(5)').text('$' + total.toFixed(2));
+
+                        // Update subtotal and total on the side panel
+                        $('.card-text:contains("Subtotal")').text('Subtotal: $' + response.subtotal.toFixed(2));
+                        $('.card-subtitle:contains("Total")').text('Total: $' + response.total.toFixed(2));
+                    } else {
+                        alert('Failed to update the quantity. Please try again.');
+                    }
+                }.bind(this),
+                error: function() {
+                    alert('An error occurred. Please try again later.');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
