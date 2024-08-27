@@ -9,15 +9,18 @@ class Qualification(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Language(models.Model):
     name = models.CharField(max_length=100)
-    
+
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+
 
 class Qualification(models.Model):
     name = models.CharField(max_length=50)
@@ -25,13 +28,17 @@ class Qualification(models.Model):
     def __str__(self):
         return self.name
 
+
 class JobCategories(models.Model):
     name = models.CharField(max_length=100)
+
+
 class Location(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+
 
 class Candidate(models.Model):
     GENDER_CHOICES = [
@@ -83,6 +90,7 @@ class Candidate(models.Model):
     job_title = models.CharField(max_length=100, verbose_name='Job Title')
     description = models.TextField()
 
+
 class SocialNetwork(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='social_networks')
     name = models.CharField(max_length=100)
@@ -90,7 +98,8 @@ class SocialNetwork(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Contact(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='contacts')
     address = models.CharField(max_length=200, verbose_name='Address')
@@ -120,6 +129,7 @@ class Employer(models.Model):
 class ProfilePhoto(models.Model):
 	employer=models.ForeignKey(Employer,related_name='profile_photos',on_delete=models.CASCADE)
 	image=models.ImageField(upload_to='employer_profilephoto/')
+
 
 class Member(models.Model):
 	employer=models.ForeignKey(Employer,related_name='members',on_delete=models.CASCADE)
