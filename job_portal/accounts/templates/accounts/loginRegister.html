@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  {% comment %} csrf for login and register  {% endcomment %}
+  {% comment %}csrf for login and register{% endcomment %}
 
   <!-- Modal -->
   <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -11,6 +11,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form class="p-3" id="loginForm">
+            <div id='login_error' class="errors card p-3 mb-3 bg-warning-subtle text-warning-emphasis border-0"></div>
             {% csrf_token %}
             <div class="form-group mb-3">
               <label for="loginEmail" class="form-label">Email</label>
@@ -26,13 +27,13 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" />
                 <label class="form-check-label" for="exampleCheck1">Keep me signed In</label>
               </div>
-              <a class="loginRegister_forgot_pass"  data-bs-toggle="modal" data-bs-target="#passResetModal" class="switch-modal">forgotten password ?</a>
+              <a class="loginRegister_forgot_pass" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#passResetModal" class="switch-modal">forgotten password ?</a>
             </div>
             <div class="d-grid gap-2 mb-3">
               <button type="submit" class="btn btn-primary">Login</button>
             </div>
             <p class="text-center">
-              Do you have an Account ?<a  data-bs-toggle="modal" data-bs-target="#registerModal" class="switch-modal">Register</a>
+              Do you have an Account ?<a style="cursor: pointer;" class="text-decoration-none fw-semibold text-primary p-2" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
             </p>
           </form>
         </div>
@@ -50,19 +51,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form class="p-3" id="registerForm">
-            <div class="user-type-selection d-flex justify-content-around">
-              <input type="radio" name="userType" id="candidate" value="candidate" checked>
-              <label for="candidate" class="user-type-label">
-                <i class="bi bi-person"></i> Candidate
-              </label>
-              
-              <input type="radio" name="userType" id="employer" value="employer">
-              <label for="employer" class="user-type-label">
-                <i class="bi bi-briefcase"></i> Employer
-              </label>
+            <div id='register_error' class="errors card p-3 mb-3 bg-warning-subtle text-warning-emphasis border-0"></div>
+            <div class="user-type-selection d-flex justify-content-around mb-3">
+              <input type="radio" name="userType" id="candidate" value="candidate" checked />
+              <label for="candidate" class="user-type-label"><i class="bi bi-person"></i> Candidate</label>
+
+              <input type="radio" name="userType" id="employer" value="employer" />
+              <label for="employer" class="user-type-label"><i class="bi bi-briefcase"></i> Employer</label>
             </div>
-            
-            
+
             <div class="form-group mb-3">
               <label for="loginEmail" class="form-label">Email</label>
               <input name="email" type="email" class="loginRegister_input form-control" id="loginEmail" placeholder="Email" />
@@ -77,13 +74,13 @@
             </div>
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-              <label  class="form-check-label" for="exampleCheck1">You accept our <a href="">Terms and Conditions and Privacy Policy</a></label>
+              <label class="form-check-label" for="exampleCheck1">You accept our <a href="">Terms and Conditions and Privacy Policy</a></label>
             </div>
             <div class="d-grid gap-2 mb-3">
               <button type="submit" class="btn btn-primary">Register Now</button>
             </div>
             <p class="text-center">
-              Already have an account ?<a data-bs-toggle="modal" data-bs-target="#loginModal" class="switch-modal">Login</a>
+              Already have an account ?<a style="cursor: pointer;" class="text-decoration-none fw-semibold text-primary p-2" data-bs-toggle="modal" data-bs-target="#loginModal" class="switch-modal">Login</a>
             </p>
           </form>
         </div>
@@ -91,7 +88,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="passResetModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal fade" id="passResetModal" tabindex="-1" aria-labelledby="passResetModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
@@ -100,16 +97,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <form class="p-3" id="registerForm">
+            <div class="errors card p-3 mb-3 bg-warning-subtle text-warning-emphasis border-1"></div>
             <div class="form-group mb-3">
               <h5>Reset Password</h5>
               <label for="loginEmail" class="form-label">Please Enter Username or Email</label>
-              <input name="email" type="email" class="form-control" id="loginEmail" placeholder="Username or Email" />
+              <input name="email" type="email" class="loginRegister_input form-control" id="loginEmail" placeholder="Username or Email" />
             </div>
             <div class="d-grid gap-2 mb-3">
               <button type="submit" class="btn btn-primary">Get new Password</button>
             </div>
             <p>
-              <a data-bs-toggle="modal" data-bs-target="#loginModal" class="switch-modal">Login</a>
+              <a class="text-decoration-none text-dark"  style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#loginModal" class="switch-modal">Back to Login</a>
             </p>
           </form>
         </div>
@@ -119,36 +117,6 @@
 </div>
 
 <script>
-
-  document.addEventListener('DOMContentLoaded', function () {
-    var modals = document.querySelectorAll('.switch-modal');
-    modals.forEach(function (modalLink) {
-        modalLink.addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent default anchor behavior
-            var targetModal = event.target.getAttribute('data-bs-target');
-            var currentModal = event.target.closest('.modal');
-            
-            if (currentModal) {
-                var bootstrapModal = bootstrap.Modal.getInstance(currentModal);
-                bootstrapModal.hide();
-            }
-
-            // Remove any existing backdrops
-            var backdrop = document.querySelector('.modal-backdrop');
-            if (backdrop) {
-                backdrop.remove();
-            }
-
-            // Small delay to ensure the current modal is fully hidden before showing the new one
-            setTimeout(function () {
-                var newModal = new bootstrap.Modal(document.querySelector(targetModal));
-                newModal.show();
-            }, 50);
-        });
-    });
-});
-
-
   
   function getCookie(name) {
     let cookieValue = null
@@ -165,11 +133,11 @@
     return cookieValue
   }
   
-  function submitForm(formId, url) {
+
+  function submitForm(formId, url, error_id) {
     const form = document.getElementById(formId)
     form.addEventListener('submit', function (event) {
       event.preventDefault()
-      console.log('i')
       const formData = new FormData(form) // Collect form data
       const csrfToken = getCookie('csrftoken') // Get CSRF token from the cookie
   
@@ -183,12 +151,18 @@
       })
         .then((response) => response.json())
         .then((data) => {
+          const div = document.getElementById(error_id)
           if (data.success) {
             // Handle success (e.g., redirect, show a success message, etc.)
-            alert('Form submitted successfully!')
+            // in case of login
+            if(data.redirect_url){
+              window.location.href = data.redirect_url
+            }
+
           } else {
             // Handle errors (e.g., show error messages)
-            console.error(data.errors)
+            div.style.display = 'block' // or 'flex', 'inline', etc., depending on what you need
+            div.textContent = data.error
           }
         })
         .catch((error) => {
@@ -198,6 +172,6 @@
   }
   
   // Example usage
-  submitForm('loginForm', "{% url 'accounts:login' %}")
-  submitForm('registerForm', "{% url 'accounts:register' %}")
+  submitForm('loginForm', "{% url 'accounts:login' %}", 'login_error')
+  submitForm('registerForm', "{% url 'accounts:register' %}", 'register_error')
 </script>
