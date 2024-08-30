@@ -4,8 +4,16 @@ from django.views.generic.edit import FormView
 from .models import Candidate, SocialNetwork, Contact, JobPosting
 from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
+
+class UserDashboardView(LoginRequiredMixin, TemplateView):
+    template_name = 'userdashboard.html'
+
+    login_url = '/'  # or use the name of your login URL pattern
+    redirect_field_name = 'next'  # Default is 'next'
+
 
 class AboutView(TemplateView):
     template_name = 'about.html'
@@ -43,8 +51,7 @@ class JobListView(TemplateView):
     template_name = 'findjoblist.html'
 
 
-class UserDashboardView(TemplateView):
-    template_name = 'userdashboard.html'
+
 
 
 class ContactView(TemplateView):

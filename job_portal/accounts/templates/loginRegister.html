@@ -96,8 +96,8 @@
             <h5 class="modal-title fw-semibold">Login to Superio</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form class="p-3" id="registerForm">
-            <div class="errors card p-3 mb-3 bg-warning-subtle text-warning-emphasis border-1"></div>
+          <form class="p-3" id="resetpassForm">
+            <div id="reset-pass_error" class="errors card p-3 mb-3 bg-warning-subtle text-warning-emphasis border-1"></div>
             <div class="form-group mb-3">
               <h5>Reset Password</h5>
               <label for="loginEmail" class="form-label">Please Enter Username or Email</label>
@@ -158,6 +158,8 @@
             if(data.redirect_url){
               window.location.href = data.redirect_url
             }
+            div.style.display = 'block' // or 'flex', 'inline', etc., depending on what you need
+            div.textContent = data.message
 
           } else {
             // Handle errors (e.g., show error messages)
@@ -174,4 +176,5 @@
   // Example usage
   submitForm('loginForm', "{% url 'accounts:login' %}", 'login_error')
   submitForm('registerForm', "{% url 'accounts:register' %}", 'register_error')
+  submitForm('resetpassForm', "{% url 'accounts:reset-pass' %}", 'reset-pass_error')
 </script>
