@@ -13,6 +13,9 @@ class Qualification(models.Model):
 
 class Language(models.Model):
     name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
 
 
 class Category(models.Model):
@@ -22,15 +25,11 @@ class Category(models.Model):
         return self.name
 
 
-class Qualification(models.Model):
-    name = models.CharField(max_length=50)
+class JobCategories(models.Model):
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
-
-
-class JobCategories(models.Model):
-    name = models.CharField(max_length=100)
 
 
 class Location(models.Model):
