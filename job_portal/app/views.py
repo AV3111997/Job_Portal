@@ -76,6 +76,11 @@ class ApplicantsJobsView(TemplateView):
 
 class ManageJobsView(TemplateView):
     template_name = 'manage_jobs.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['job_postings'] = JobPosting.objects.all()  # Fetch all job postings
+        return context
     
 
 class EmployeeJobsView(TemplateView):

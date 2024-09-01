@@ -22,9 +22,15 @@ class LoginView(View):
         user = authenticate( email=email, password=password)
         if user is not None:
             login(request, user)
+<<<<<<< HEAD
+            return redirect({'status': True, 'redirect_url': 'userdashboard'})
+        else:
+            return redirect ({'status': False, 'message': 'Invalid credentials'})
+=======
             return JsonResponse({'success': True, 'redirect_url': 'userdashboard'})
         else:
             return JsonResponse({'success': False, 'error': 'Wrong username or password. Please try again!!!'})
+>>>>>>> ab4cb3f64d4adb6dd6f46edef50825bf555024e0
 
 
 class RegisterView(View):
