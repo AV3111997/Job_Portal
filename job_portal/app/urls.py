@@ -20,7 +20,7 @@ urlpatterns = [
     path('applied_jobs', views.AppliedJobsView.as_view(), name='applied_jobs'),
     path('applicants_jobs', views.ApplicantsJobsView.as_view(), name='applicants_jobs'),
     path('manage_jobs/', views.ManageJobsView.as_view(), name='manage_jobs'),
-
+    path('candidate_profile/', views.CandidateProfileView.as_view(), name='candidate_profile'),
     # path('jobpost/',views.EmployeeJobsView.as_view(), name='jobpost'),
     path('jobform/', views.JobPostingCreateView.as_view(), name='jobform'),
 ]
