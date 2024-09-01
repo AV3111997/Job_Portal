@@ -50,20 +50,31 @@
                 </tr>
             </thead>
             <tbody>
+                {% for job in job_postings %}
                 <tr>
-                    <td>Junior Graphic Designer (Web)</td>
-                    <td><a href="#">557 Applicant(s)</a></td>
-                    <td>Created: June 20, 2021<br>Expiry date: May 6, 2026</td>
-                    <td><span class="badge bg-success">Published</span></td>
+                    <td>{{ job.job_title }}</td>
+                    <td><a href="#">{{ job.applicants.count }} Applicant(s)</a></td>
+                    <td>Created: {{ job.created_date|date:"F j, Y" }}<br>Expiry date: {{ job.application_deadline|date:"F j, Y" }}</td>
                     <td>
-                        <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
-                        <a href="#" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-text"></i></a>
-                        <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                        {% if job.status == 'published' %}
+                        <span class="badge bg-success">Published</span>
+                        {% else %}
+                        <span class="badge bg-warning">Draft</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'edit_job' job.id %}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                        <a href="{% url 'view_job' job.id %}" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-text"></i></a>
+                        <a href="{% url 'delete_job' job.id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No job postings found.</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
-    </div>
     </div>
 </div>
 
