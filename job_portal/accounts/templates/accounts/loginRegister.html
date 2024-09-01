@@ -10,8 +10,9 @@
             <h5 class="modal-title fw-semibold">Login to Jobportal</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+          {% csrf_token %}
           <form class="p-3" id="loginForm">
-            {% csrf_token %}
+            
             <div class="form-group mb-3">
               <label for="loginEmail" class="form-label">Email</label>
               <input name="email" type="email" class="loginRegister_input form-control" id="loginEmail" placeholder="Email" />
