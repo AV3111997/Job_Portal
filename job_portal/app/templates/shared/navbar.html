@@ -1,47 +1,92 @@
+{% load static %}
+{% block css_styles %}
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+{% endblock %}
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom-bg">
-    <div class="container-fluid">
-      <a class="navbar-brand ms-5 me-5" href="#">Superio</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active me-5" aria-current="page" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item me-5">
-            <a class="nav-link" href="{% url 'job_list' %}">Find Jobs</a>
-          </li>
-          <li class="nav-item me-5">
-            <a class="nav-link" href="{% url 'employers_list' %}">Employers</a>
-          </li>
-          <li class="nav-item me-5">
-            <a class="nav-link" href="{% url 'candidate' %}">Candidates</a>
-          </li>
-          <li class="nav-item me-5">
-            <a class="nav-link" href="#">Blogs</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Pages
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Shop</a></li>
-              <li><a class="dropdown-item" href="{% url 'pricing' %}">Pricing</a></li>
-              <li><a class="dropdown-item" href="{% url 'about' %}">About</a></li>
-              <li><a class="dropdown-item" href="#">Contact</a></li>
-              <li><a class="dropdown-item" href="{% url 'faq' %}">FAQ</a></li>
-              <li><a class="dropdown-item" href="{% url 'terms' %}">Terms</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div class="d-flex ms-auto">
-            <form class="container-fluid justify-content-start">
-              <button type="button" class="custom-btn login-reg-btn me-2"  data-bs-toggle="modal" data-bs-target="#loginModal">Login / Register</button>
-              <button class="custom-btn btn-blue me-2" type="button">Job Post</button>
-              <a href="" class="notification-btn me-5"><i class="fa-regular fa-bell"></i></a>
-            </form>
-        </div>
-      </div>
+  <div class="container-fluid">
+    <a class="navbar-brand ms-5 me-5" href="#"><img width="154" height="50" src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/logo.svg" alt="" /></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav gap-4">
+        <li class="nav-item dropdown">
+          <a class="nav-link d-flex gap-1" href="/" >
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link d-flex gap-1" href="#" >
+            <span>Find Jobs</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link d-flex gap-1" href="#" >
+            <span>Employers</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link d-flex gap-1" href="#" >
+            <span>Candidates</span>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link d-flex gap-1" href="#" >
+            <span>Blogs</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link d-flex gap-1" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span>Pages</span>
+            <i class="bi bi-chevron-down my-auto"></i>
+          </a>
+          <div class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Shop</a>
+            <a class="dropdown-item" href="#">Pricing</a>
+            <a class="dropdown-item" href="#">About</a>
+            <a class="dropdown-item" href="#">Contact</a>
+            <a class="dropdown-item" href="#">FAQ</a>
+            <a class="dropdown-item" href="#">Terms</a>
+          </div>
+        </li>
+      </ul>
     </div>
-  </nav>
+    <div class="ms-auto d-flex">
+      {% if user.is_authenticated %}
+      <li class="nav-item d-flex dropdown">
+        <a class="nav-link d-flex" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <img class="rounded-circle" width="50" height="50" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg" alt="">
+          <div class="d-flex p-3 gap-1">
+            <span class="my-auto">Employer</span>
+            <i class="bi bi-chevron-down my-auto"></i>
+          </div>
+        </a>
+        <div class="dropdown-menu mt-5 border-0" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-journal-text"></i><span class="px-2">User Dashboard</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-suitcase-lg"></i><span class="px-2">My Jobs</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-pencil"></i><span class="px-2">Submit Job</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-megaphone"></i><span class="px-2">Applicants Job</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-bookmark"></i><span class="px-2">Shortlist Candidates</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-exclamation-triangle"></i> <span class="px-2">Candidate Alert</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-chat-dots"></i><span class="px-2">Messages</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-person-lines-fill"></i> <span class="px-2">Meetings</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-lock"></i><span class="px-2">Change Password</span></a>
+          <a class="dropdown-item p-3" href="#"><i class="bi bi-trash3"></i><span class="px-2">Delete Profile</span></a>
+          <a href="#" class="dropdown-item p-3" onclick="document.getElementById('logout-form').submit();">
+            <i class="bi bi-box-arrow-left"></i> Logout
+          </a>
+
+          {% comment %} form for logging out an user {% endcomment %}
+          <form class="display-none" id="logout-form" method="post" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+          </form>
+        </div>
+      </li>
+      {% else %}
+        <button class="custom-btn login-reg-btn me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login / Register</button>
+      {% endif %}
+      <button class="custom-btn btn-blue me-2" type="button">Job Post</button>
+      <a href="" class="notification-btn me-5 my-auto"><i class="bi bi-bell"></i></a>
+    </div>
+  </div>
+</nav>
