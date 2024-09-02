@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from django.views.generic.edit import FormView
-from .models import Candidate, SocialNetwork, Contact, JobPosting
+from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory
 from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -22,6 +22,22 @@ class AboutView(TemplateView):
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = JobCategory.objects.all()
+        context['jobs'] = JobPosting.objects.all()[:6]
+        return context
+
+class CategoryDetailView(TemplateView):
+    template_name = 'jobs_by_category.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category_id = self.kwargs.get('pk')
+        category = JobCategory.objects.get(pk=category_id)
+        context['category'] = category
+        context['jobs'] = category.jobposting_set.all()
+        return context
 
 class ArticlesView(TemplateView):
     template_name = 'article_page.html'
@@ -49,9 +65,6 @@ class EmployersListView(TemplateView):
 
 class JobListView(TemplateView):
     template_name = 'findjoblist.html'
-
-
-
 
 
 class ContactView(TemplateView):

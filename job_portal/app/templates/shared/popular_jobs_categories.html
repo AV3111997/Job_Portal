@@ -4,95 +4,19 @@
         <p class="text-center">2020 jobs live - 293 added today.</p>
     </div>
     <div class="row justify-content-center  mx-5 my-4 px-5">
+        {% for category in categories %}
         <div class="col-md-4 mb-4">
             <div class="card job-box">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="custom-icon custom-icon-bg me-2"><i class="fa-solid fa-coins"></i></div>
-                        <h5>Accounting / Financing</h5>
+                <a href="{% url 'category_detail' category.pk %}" style="text-decoration: none; color: inherit;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="custom-icon custom-icon-bg me-2"><i class="{{category.icon}}"></i></div>
+                            <h5>{{category.name}}</h5>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
-        <div class="col-md-4 mb-4">
-            <div class="card job-box">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="custom-icon custom-icon-bg me-2"><i class="fa-solid fa-bullhorn"></i></div>
-                        <h5>Marketing</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card job-box">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="custom-icon custom-icon-bg me-2"><i class="fa-solid fa-bezier-curve"></i></div>
-                        <h5>Designs</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card job-box">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="custom-icon custom-icon-bg me-2"><i class="fa-solid fa-laptop-code"></i></div>
-                        <h5>Development</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card job-box">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="custom-icon custom-icon-bg me-2"><i class="fa-solid fa-people-group"></i></div>
-                        <h5>Human Resource</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card job-box">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="custom-icon custom-icon-bg me-2"><i class="fa-solid fa-diagram-project"></i></div>
-                        <h5>Project Management</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card job-box">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="custom-icon custom-icon-bg me-2"><i class="fa-solid fa-phone-volume"></i></div>
-                        <h5>Customer Service</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card job-box">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="custom-icon custom-icon-bg me-2"><i class="fa-solid fa-hand-holding-medical"></i></div>
-                        <h5>Health Care</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card job-box">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="custom-icon custom-icon-bg me-2"><i class="fa-solid fa-car"></i></div>
-                        <h5>Automotive</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>

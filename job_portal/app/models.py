@@ -20,6 +20,7 @@ class Language(models.Model):
 
 class JobCategory(models.Model):
     name = models.CharField(max_length=100)
+    icon = models.CharField(max_length=50, default='default-icon')
 
     def __str__(self):
         return self.name
@@ -147,23 +148,43 @@ class JobPosting(models.Model):
     JOB_TYPE_CHOICES = [
         ('freelance', 'Freelance'),
         ('contract', 'Contract'),
+        ('full-time', 'Full Time'),
+        ('part-time', 'Part Time'),
         ('internship', 'Internship'),
     ]
     GENDER_CHOICES = [
-        ('male', 'Male'),
-        ('female', 'Female'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
+    ]
+    URGENCY_LEVEL_CHOICES = [
+        ('Urgent', 'Urgent'),
+        ('Normal', 'Normal'),
+        ('Immidiate', 'Immidiate'),
     ]
     APPLY_TYPE_CHOICES = [
         ('online', 'Online'),
         ('inperson', 'Inperson'),
     ]
+    STATUS_CHOICES = [
+        ('open', 'Open'),
+        ('filled', 'Filled'),
+    ]
     SALARY_TYPE_CHOICES = [
-        ('cheque', 'Cheque'),
-        ('cash', 'Cash'),
+        ('Monthly', 'Monthly'),
+        ('Weekly', 'Weekly'),
+        ('Daily', 'Daily'),
+        ('Hourly', 'Hourly'),
+        ('Yearly', 'Yearly'),
     ]
     EXPERIENCE_CHOICES = [
-        ('year1', '0-1 year'),
-        ('year2', '2-3 years'),
+        ('0', 'Fresher'),
+        ('1', '1 Year'),
+        ('2', '2 Years'),
+        ('3', '3 Years'),
+        ('4', '4 Years'),
+        ('5', '5 Years'),
+        ('6', '6 Years'),
     ]
     CAREER_LEVEL_CHOICES = [
         ('entry', 'Entry-Level'),
@@ -174,6 +195,7 @@ class JobPosting(models.Model):
     tag = models.CharField(max_length=255)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     apply_type = models.CharField(max_length=50, choices=APPLY_TYPE_CHOICES)
+    urgency_level = models.CharField(max_length=10, choices=URGENCY_LEVEL_CHOICES)
     external_url = models.URLField(blank=True, null=True)
     apply_email = models.EmailField(blank=True, null=True)
     salary_type = models.CharField(max_length=50, choices=SALARY_TYPE_CHOICES)
@@ -182,6 +204,7 @@ class JobPosting(models.Model):
     experience = models.CharField(max_length=50, choices=EXPERIENCE_CHOICES)
     career_level = models.CharField(max_length=50, choices=CAREER_LEVEL_CHOICES)
     intro_video_url = models.URLField(blank=True, null=True)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     
     # Additional information
     application_deadline = models.DateField()

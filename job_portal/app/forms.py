@@ -1,5 +1,5 @@
 from django import forms
-from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, Qualification, Location
+from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, Qualification, Location, Employer
 
 
 class CandidateForm(forms.ModelForm):
@@ -71,7 +71,8 @@ class JobPostingForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Dynamically set queryset for category, qualification, and location
+        # Dynamically set queryset for employer, category, qualification, and location
+        self.fields['employer'].queryset = Employer.objects.all()
         self.fields['category'].queryset = JobCategory.objects.all()
         self.fields['qualification'].queryset = Qualification.objects.all()
         self.fields['location'].queryset = Location.objects.all()
