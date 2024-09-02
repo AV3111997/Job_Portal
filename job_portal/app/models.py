@@ -212,3 +212,8 @@ class JobPosting(models.Model):
 
     def __str__(self):
         return self.job_title
+
+class SavedJob(models.Model):
+    candidate = models.ForeignKey(Candidate, related_name = 'candidate', on_delete=models.CASCADE)
+    job = models.ForeignKey(JobPosting, related_name = 'job', on_delete=models.CASCADE)
+
