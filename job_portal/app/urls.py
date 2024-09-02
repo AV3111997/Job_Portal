@@ -9,7 +9,7 @@ urlpatterns = [
     path('pricing', views.PricingView.as_view(), name='pricing'),
     path('employers_list', views.EmployersListView.as_view(), name='employers_list'),
     path('job_list', views.JobListView.as_view(), name='job_list'),
-    path('job_details', views.JobDetailsView.as_view(), name='job_details'),
+    path('job_details/<int:pk>', views.JobDetailsView.as_view(), name='job_details'),
     path('candidate', views.CandidateView.as_view(), name='candidate'),
     path('userdashboard', views.UserDashboardView.as_view(), name='userdashboard'),
     path('contact/', views.ContactView.as_view(), name='contact'),
@@ -25,4 +25,6 @@ urlpatterns = [
     path('jobform/', views.JobPostingCreateView.as_view(), name='jobform'),
     path('candidates/', views.candidate_list, name='candidate_list'),
     
+    path('category/<int:pk>/', views.CategoryDetailView.as_view(), name='category_detail'),
+
 ]

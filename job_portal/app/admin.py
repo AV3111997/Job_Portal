@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Candidate, JobCategories, Language, Qualification, Employer, JobPosting, Category, Location
+from .models import Candidate, JobCategory, Language, Qualification, Employer, JobPosting, Location
 
 # Register your models here.
 
 admin.site.register(Candidate)
-admin.site.register(JobCategories)
 admin.site.register(Language)
 admin.site.register(Qualification)
 admin.site.register(Employer)
@@ -15,5 +14,5 @@ class JobPostingAdmin(admin.ModelAdmin):
     search_fields = ('job_title', 'job_description')
 
 admin.site.register(JobPosting, JobPostingAdmin)
-admin.site.register(Category)
+admin.site.register(JobCategory)
 admin.site.register(Location)

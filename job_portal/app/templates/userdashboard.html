@@ -32,9 +32,19 @@
             <a href="#"><i class="bi bi-megaphone"></i>  Alerts Jobs</a>
             <a href="#"><i class="bi bi-chat-dots"></i>  Messages</a>
             <a href="#"><i class="bi bi-person-lines-fill"></i>  Meetings</a>
+
+            {% comment %} form for logging out an user {% endcomment %}
+            <form id="logout-form" method="post" action="{% url 'accounts:logout' %}">
+                {% csrf_token %}
+                <a href="#" onclick="document.getElementById('logout-form').submit();">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                </a>
+            </form>
+            
+            {% comment %} <a href="#"><i class="bi bi-box-arrow-left"></i>  Logout</a> {% endcomment %}
+
             <a href="#"><i class="bi bi-key"></i>  Change Password</a>
             <a href="#"><i class="bi bi-trash3-fill"></i>  Delete Profile</a>
-            <a href="#"><i class="bi bi-box-arrow-left"></i>  Logout</a>
         </nav>
         <div class="skills-percentage">
             <p>Skills Percentage: <span>100%</span></p>

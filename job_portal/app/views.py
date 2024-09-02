@@ -1,13 +1,19 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView,ListView
+from django.views.generic import TemplateView, DetailView,ListView
 from django.views.generic.edit import FormView
-from .models import *
+from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory,Qualification
 from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-
-
 # Create your views here.
+
+class UserDashboardView(LoginRequiredMixin, TemplateView):
+    template_name = 'userdashboard.html'
+
+    login_url = '/'  # or use the name of your login URL pattern
+    redirect_field_name = 'next'  # Default is 'next'
+
 
 class AboutView(TemplateView):
     template_name = 'about.html'
@@ -16,6 +22,22 @@ class AboutView(TemplateView):
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = JobCategory.objects.all()
+        context['jobs'] = JobPosting.objects.all()[:6]
+        return context
+
+class CategoryDetailView(TemplateView):
+    template_name = 'jobs_by_category.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category_id = self.kwargs.get('pk')
+        category = JobCategory.objects.get(pk=category_id)
+        context['category'] = category
+        context['jobs'] = category.jobposting_set.all()
+        return context
 
 class ArticlesView(TemplateView):
     template_name = 'article_page.html'
@@ -49,10 +71,6 @@ class JobListView(TemplateView):
     template_name = 'findjoblist.html'
 
 
-class UserDashboardView(TemplateView):
-    template_name = 'userdashboard.html'
-
-
 class ContactView(TemplateView):
     template_name = 'contact.html'
 
@@ -75,6 +93,11 @@ class ApplicantsJobsView(TemplateView):
 
 class ManageJobsView(TemplateView):
     template_name = 'manage_jobs.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['job_postings'] = JobPosting.objects.all()  # Fetch all job postings
+        return context
     
 
 class EmployeeJobsView(TemplateView):
@@ -167,7 +190,7 @@ def candidate_list(request):
         'keyword': keyword,
         'location': location,
         'gender': gender,
-        'categories': JobCategories.objects.all(),
+        'categories': JobCategory.objects.all(),
         'selected_categories': category_ids,
         'radius': radius,
         'selected_experience': experience,
