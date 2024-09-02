@@ -22,10 +22,9 @@ class LoginView(View):
         user = authenticate( email=email, password=password)
         if user is not None:
             login(request, user)
-            return JsonResponse({'success': True, 'redirect_url': 'userdashboard'})
+            return JsonResponse({'success': True, 'redirect_url': 'userdashboard' , "message":"SignIn Successfull, redirecting...."})
         else:
             return JsonResponse({'success': False, 'error': 'Wrong username or password. Please try again!!!'})
-
 
 class RegisterView(View):
     def post(self, request, *args, **kwargs):
@@ -73,11 +72,9 @@ class ResetPassView(View):
         try:
             token = generate_token()
             PasswordReset.objects.create(user=user,token=token)
-            print(token)
-            # reset_url = reverse('accounts:forgot_pass_confirm', kwargs={'token': token})
-            # print(reset_url)
-            # reset_link = request.build_absolute_uri(reset_url)
-            # print(reset_link)
+            reset_url = reverse('accounts:forgot_pass_confirm', kwargs={'token': token})
+            reset_link = request.build_absolute_uri(reset_url)
+            print(reset_link)
             # send_password_reset_email(user.email, reset_link)
             return JsonResponse({'success': True, 'message': 'Password reset Link sent to Email'})
         except:
@@ -94,7 +91,8 @@ class ResetPassConfirmView(View):
                 return render(request, self.template_name, {'form': form})
             else:
                 return render(request, 'password_reset_invalid.html')
-        except:
+        except Exception as e:
+            print(e)
             return render(request, 'password_reset_invalid.html')
         
 
@@ -116,7 +114,6 @@ class ResetPassConfirmView(View):
             print(e)
             return render(request, 'password_reset_invalid.html')
 
-
-
 class ResetPassCompleteView(TemplateView):
     template_name = 'password_reset_complete.html'
+
