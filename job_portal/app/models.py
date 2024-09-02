@@ -22,15 +22,13 @@ class Category(models.Model):
         return self.name
 
 
-class Qualification(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
 
 
 class JobCategories(models.Model):
     name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
 
 
 class Location(models.Model):
@@ -89,6 +87,7 @@ class Candidate(models.Model):
     job_categories = models.ManyToManyField(JobCategories, verbose_name='Categories')
     job_title = models.CharField(max_length=100, verbose_name='Job Title')
     description = models.TextField()
+    location = models.CharField(max_length=100, null=True, blank=True, verbose_name='Location') 
 
 
 class SocialNetwork(models.Model):

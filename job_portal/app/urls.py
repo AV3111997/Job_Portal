@@ -23,4 +23,6 @@ urlpatterns = [
     path('candidate_profile/', views.CandidateProfileView.as_view(), name='candidate_profile'),
     # path('jobpost/',views.EmployeeJobsView.as_view(), name='jobpost'),
     path('jobform/', views.JobPostingCreateView.as_view(), name='jobform'),
+    path('candidates/', views.candidate_list, name='candidate_list'),
+    
 ]
