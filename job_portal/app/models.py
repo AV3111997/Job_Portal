@@ -18,14 +18,7 @@ class Language(models.Model):
         return self.name
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-
-class JobCategories(models.Model):
+class JobCategory(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -85,7 +78,7 @@ class Candidate(models.Model):
     experience = models.CharField(max_length=50, choices=EXPERIENCE_CHOICES, default='Fresher', verbose_name='Experience')
     salary_type = models.CharField(max_length=50, choices=SALARY_TYPE_CHOICES, default='Monthly', verbose_name='Salary Type')
     salary = models.CharField(max_length=50, verbose_name='Salary')
-    job_categories = models.ManyToManyField(JobCategories, verbose_name='Categories')
+    job_category = models.ManyToManyField(JobCategory, verbose_name='Categories')
     job_title = models.CharField(max_length=100, verbose_name='Job Title')
     description = models.TextField()
 
@@ -109,7 +102,7 @@ class Employer(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='employers')
     employer_name= models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    email= models.CharField(max_length=255)
+    email= models.EmailField(max_length=255)
     phone_no=models.CharField(max_length=20)
     website = models.URLField(max_length=200)
     founded_date = models.DateField()
@@ -137,7 +130,8 @@ class Member(models.Model):
 
 class JobPosting(models.Model):
     # Foreign key fields
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    employer = models.ForeignKey(Employer,related_name='employers',on_delete=models.CASCADE)
+    category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 

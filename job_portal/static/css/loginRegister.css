@@ -50,3 +50,7 @@
   background-color: #d0e4fb;
   border-color: #d0e4fb;
 }
+
+.errors{
+  display: none;
+}
