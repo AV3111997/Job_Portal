@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 from django.urls import path
 from . import views
@@ -23,7 +23,7 @@ urlpatterns = [
     path('about', views.about_view, name='about'),
 ]
 
-=======
+
 from django.urls import path
 from . import views
 
@@ -49,4 +49,4 @@ urlpatterns = [
     # path('jobpost/',views.EmployeeJobsView.as_view(), name='jobpost'),
     path('jobform/', views.JobPostingCreateView.as_view(), name='jobform'),
 ]
->>>>>>> main
+

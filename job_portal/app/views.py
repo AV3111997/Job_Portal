@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -32,7 +32,7 @@ from django.views.generic import TemplateView
 def index(request):
     return render(request, 'index.html')
 
-=======
+
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
@@ -50,12 +50,12 @@ class IndexView(TemplateView):
 
 class ArticlesView(TemplateView):
     template_name = 'article_page.html'
->>>>>>> main
+
 
 class FAQView(TemplateView):
     template_name = 'faq.html'
 
-<<<<<<< HEAD
+
 
 class PricingView(TemplateView):
     template_name = 'pricing.html'
@@ -68,7 +68,7 @@ def candidate_view(request):
 def about_view(request):
     return render(request, 'about.html')
 
-=======
+
 class PricingView(TemplateView):
     template_name = 'pricing.html'
 
@@ -145,4 +145,4 @@ class JobPostingCreateView(FormView):
         # Here you can perform additional actions if needed before saving
         form.save()  # Save the form data
         return super().form_valid(form)
->>>>>>> main
+
