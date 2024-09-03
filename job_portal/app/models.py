@@ -9,29 +9,29 @@ class Qualification(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Language(models.Model):
     name = models.CharField(max_length=100)
     
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-
     def __str__(self):
         return self.name
 
-class Qualification(models.Model):
-    name = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.name
-
-class JobCategories(models.Model):
+class JobCategory(models.Model):
     name = models.CharField(max_length=100)
+    icon = models.CharField(max_length=50, default='default-icon')
+
+    def __str__(self):
+        return self.name
+
+
 class Location(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+
 
 class Candidate(models.Model):
     GENDER_CHOICES = [
@@ -79,9 +79,10 @@ class Candidate(models.Model):
     experience = models.CharField(max_length=50, choices=EXPERIENCE_CHOICES, default='Fresher', verbose_name='Experience')
     salary_type = models.CharField(max_length=50, choices=SALARY_TYPE_CHOICES, default='Monthly', verbose_name='Salary Type')
     salary = models.CharField(max_length=50, verbose_name='Salary')
-    job_categories = models.ManyToManyField(JobCategories, verbose_name='Categories')
+    job_category = models.ManyToManyField(JobCategory, verbose_name='Categories')
     job_title = models.CharField(max_length=100, verbose_name='Job Title')
     description = models.TextField()
+
 
 class SocialNetwork(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='social_networks')
@@ -90,7 +91,8 @@ class SocialNetwork(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Contact(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='contacts')
     address = models.CharField(max_length=200, verbose_name='Address')
@@ -101,7 +103,7 @@ class Employer(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='employers')
     employer_name= models.CharField(max_length=255)
     location = models.CharField(max_length=255)
-    email= models.CharField(max_length=255)
+    email= models.EmailField(max_length=255)
     phone_no=models.CharField(max_length=20)
     website = models.URLField(max_length=200)
     founded_date = models.DateField()
@@ -121,6 +123,7 @@ class ProfilePhoto(models.Model):
 	employer=models.ForeignKey(Employer,related_name='profile_photos',on_delete=models.CASCADE)
 	image=models.ImageField(upload_to='employer_profilephoto/')
 
+
 class Member(models.Model):
 	employer=models.ForeignKey(Employer,related_name='members',on_delete=models.CASCADE)
 	name=models.CharField(max_length=255)
@@ -128,7 +131,8 @@ class Member(models.Model):
 
 class JobPosting(models.Model):
     # Foreign key fields
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    employer = models.ForeignKey(Employer,related_name='employers',on_delete=models.CASCADE)
+    category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
@@ -144,23 +148,43 @@ class JobPosting(models.Model):
     JOB_TYPE_CHOICES = [
         ('freelance', 'Freelance'),
         ('contract', 'Contract'),
+        ('full-time', 'Full Time'),
+        ('part-time', 'Part Time'),
         ('internship', 'Internship'),
     ]
     GENDER_CHOICES = [
-        ('male', 'Male'),
-        ('female', 'Female'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
+    ]
+    URGENCY_LEVEL_CHOICES = [
+        ('Urgent', 'Urgent'),
+        ('Normal', 'Normal'),
+        ('Immidiate', 'Immidiate'),
     ]
     APPLY_TYPE_CHOICES = [
         ('online', 'Online'),
         ('inperson', 'Inperson'),
     ]
+    STATUS_CHOICES = [
+        ('open', 'Open'),
+        ('filled', 'Filled'),
+    ]
     SALARY_TYPE_CHOICES = [
-        ('cheque', 'Cheque'),
-        ('cash', 'Cash'),
+        ('Monthly', 'Monthly'),
+        ('Weekly', 'Weekly'),
+        ('Daily', 'Daily'),
+        ('Hourly', 'Hourly'),
+        ('Yearly', 'Yearly'),
     ]
     EXPERIENCE_CHOICES = [
-        ('year1', '0-1 year'),
-        ('year2', '2-3 years'),
+        ('0', 'Fresher'),
+        ('1', '1 Year'),
+        ('2', '2 Years'),
+        ('3', '3 Years'),
+        ('4', '4 Years'),
+        ('5', '5 Years'),
+        ('6', '6 Years'),
     ]
     CAREER_LEVEL_CHOICES = [
         ('entry', 'Entry-Level'),
@@ -171,6 +195,7 @@ class JobPosting(models.Model):
     tag = models.CharField(max_length=255)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     apply_type = models.CharField(max_length=50, choices=APPLY_TYPE_CHOICES)
+    urgency_level = models.CharField(max_length=10, choices=URGENCY_LEVEL_CHOICES)
     external_url = models.URLField(blank=True, null=True)
     apply_email = models.EmailField(blank=True, null=True)
     salary_type = models.CharField(max_length=50, choices=SALARY_TYPE_CHOICES)
@@ -179,6 +204,7 @@ class JobPosting(models.Model):
     experience = models.CharField(max_length=50, choices=EXPERIENCE_CHOICES)
     career_level = models.CharField(max_length=50, choices=CAREER_LEVEL_CHOICES)
     intro_video_url = models.URLField(blank=True, null=True)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     
     # Additional information
     application_deadline = models.DateField()
@@ -186,3 +212,8 @@ class JobPosting(models.Model):
 
     def __str__(self):
         return self.job_title
+
+class SavedJob(models.Model):
+    candidate = models.ForeignKey(Candidate, related_name = 'candidate', on_delete=models.CASCADE)
+    job = models.ForeignKey(JobPosting, related_name = 'job', on_delete=models.CASCADE)
+

@@ -28,7 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
-LOGIN_REDIRECT_URL = '/userdashboard'  # Redirect to the dashboard after login
+LOGIN_REDIRECT_URL = 'userdashboard/'  # Redirect to the dashboard after login
+LOGOUT_REDIRECT_URL = '/'
+
 
 
 # Application definition
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'accounts',
+    'ecommerce'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +140,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = 'uploads/'
 MEDIA_ROOT = BASE_DIR / 'uploads'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sender@gmail.com'  # Your Gmail email address
+EMAIL_HOST_PASSWORD = 'password'  # Your Gmail password or app-specific password

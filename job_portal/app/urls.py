@@ -9,17 +9,20 @@ urlpatterns = [
     path('pricing', views.PricingView.as_view(), name='pricing'),
     path('employers_list', views.EmployersListView.as_view(), name='employers_list'),
     path('job_list', views.JobListView.as_view(), name='job_list'),
-    path('job_details', views.JobDetailsView.as_view(), name='job_details'),
+    path('job_details/<int:pk>', views.JobDetailsView.as_view(), name='job_details'),
     path('candidate', views.CandidateView.as_view(), name='candidate'),
     path('userdashboard', views.UserDashboardView.as_view(), name='userdashboard'),
     path('contact/', views.ContactView.as_view(), name='contact'),
+    path('managejobs/', views.ManageJobsView.as_view(), name='managejobs'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('about/', views.AboutView.as_view(), name='about'),
     path('terms/', views.TermView.as_view(), name='terms'),
     path('applied_jobs', views.AppliedJobsView.as_view(), name='applied_jobs'),
     path('applicants_jobs', views.ApplicantsJobsView.as_view(), name='applicants_jobs'),
     path('manage_jobs/', views.ManageJobsView.as_view(), name='manage_jobs'),
-
+    path('candidate_profile/', views.CandidateProfileView.as_view(), name='candidate_profile'),
     # path('jobpost/',views.EmployeeJobsView.as_view(), name='jobpost'),
     path('jobform/', views.JobPostingCreateView.as_view(), name='jobform'),
+    path('category/<int:pk>/', views.CategoryDetailView.as_view(), name='category_detail'),
+
 ]

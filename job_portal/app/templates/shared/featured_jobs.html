@@ -4,188 +4,51 @@
         <p class="text-center">Know your worth and find the job that qualifies your life</p>
     </div>
     <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="card job-card">
-                <div class="card-body p-4 mt-2 mb-2">
-                    <div class="row">
-                        <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                        </div>
-                        <div class="col-md-9 d-flex flex-column justify-content-between">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="job-card-title">Junior Graphic Designer (Web)</h5>
-                                <div class="ms-2">
-                                    <span class="text-success">Featured</span>
-                                    <span class="text-danger">Filled</span>
+            {% for job in jobs %}
+            <div class="col-md-6 mb-4">
+                <div class="card job-card">
+                    <div class="card-body p-4 mt-2 mb-2">
+                        <div class="row">
+                            <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
+                            </div>
+                            <div class="col-md-9 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="job-row-one">
+                                        <div class="d-flex">
+                                            <a class="feat-jobs" href="{% url 'job_details' job.pk %}" style="text-decoration: none; color: inherit;">
+                                                <h5 class="job-card-title">{{job.job_title}}</h5>
+                                            </a>
+                                            <div class="ms-2">
+                                                <span class="text-danger">{{job.status}}</span>
+                                            </div>
+                                            <button class="save-button" onclick="changeIcon(this)" data-job-id="{{ job.id }}">
+                                                <i class="fa-regular fa-star"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div class="mb-3">
+                                    <p class="card-text text-nowrap">
+                                        <span class="text-muted me-2"><i class="fa-solid fa-briefcase"></i>&nbsp;{{job.category}}</span>
+                                        <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;{{job.location}}</span>
+                                        <span><i class="fa-solid fa-money-bill"></i>&nbsp;${{job.min_salary}} - ${{job.max_salary}} / {{job.salary_type}}</span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <span class="job-type-badge">{{job.job_type}}</span>
+                                    <span class="urgent-badge">{{job.urgency_level}}</span>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <p class="card-text text-nowrap">
-                                    <span class="text-muted me-2"><i class="fa-solid fa-briefcase"></i>&nbsp;Design, Development</span>
-                                    <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;New York</span>
-                                    <span><i class="fa-solid fa-money-bill"></i>&nbsp;$150 - $180 / week</span>
-                                </p>
-                            </div>
-                            <div>
-                                <span class="job-type-badge">Full Time</span>
-                                <span class="urgent-badge">Urgent</span>
-                            </div>
-                        </div>
-                    </div> 
+                        </div> 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="card job-card">
-                <div class="card-body p-4 mt-2 mb-2">
-                    <div class="row">
-                        <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                        </div>
-                        <div class="col-md-9 d-flex flex-column justify-content-between">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="job-card-title">Finance Manager & Health</h5>
-                                <div class="ms-2">
-                                    <span class="text-success">Featured</span>
-                                    <span class="text-danger">Filled</span>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <p class="card-text text-nowrap">
-                                    <span class="text-muted me-2"><i class="fa-solid fa-briefcase"></i>&nbsp;Design, Development</span>
-                                    <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;New York</span>
-                                    <span><i class="fa-solid fa-money-bill"></i>&nbsp;$150 - $180 / week</span>
-                                </p>
-                            </div>
-                            <div>
-                                <span class="job-type-badge">Full Time</span>
-                                <span class="urgent-badge">Urgent</span>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="card job-card">
-                <div class="card-body p-4 mt-2 mb-2">
-                    <div class="row">
-                        <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                        </div>
-                        <div class="col-md-9 d-flex flex-column justify-content-between">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="job-card-title">General Ledger Accountant</h5>
-                                <div class="ms-2">
-                                    <span class="text-success">Featured</span>
-                                    <span class="text-danger">Filled</span>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <p class="card-text text-nowrap">
-                                    <span class="text-muted me-2"><i class="fa-solid fa-briefcase"></i>&nbsp;Design, Development</span>
-                                    <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;New York</span>
-                                    <span><i class="fa-solid fa-money-bill"></i>&nbsp;$150 - $180 / week</span>
-                                </p>
-                            </div>
-                            <div>
-                                <span class="job-type-badge">Full Time</span>
-                                <span class="urgent-badge">Urgent</span>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="card job-card">
-                <div class="card-body p-4 mt-2 mb-2">
-                    <div class="row">
-                        <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                        </div>
-                        <div class="col-md-9 d-flex flex-column justify-content-between">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="job-card-title">Assistant / Store Keeper</h5>
-                                <div class="ms-2">
-                                    <span class="text-success">Featured</span>
-                                    <span class="text-danger">Filled</span>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <p class="card-text text-nowrap">
-                                    <span class="text-muted me-2"><i class="fa-solid fa-briefcase"></i>&nbsp;Design, Development</span>
-                                    <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;New York</span>
-                                    <span><i class="fa-solid fa-money-bill"></i>&nbsp;$150 - $180 / week</span>
-                                </p>
-                            </div>
-                            <div>
-                                <span class="job-type-badge">Full Time</span>
-                                <span class="urgent-badge">Urgent</span>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="card job-card">
-                <div class="card-body p-4 mt-2 mb-2">
-                    <div class="row">
-                        <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                        </div>
-                        <div class="col-md-9 d-flex flex-column justify-content-between">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="job-card-title">Group Marketing Manager</h5>
-                                <div class="ms-2">
-                                    <span class="text-success">Featured</span>
-                                    <span class="text-danger">Filled</span>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <p class="card-text text-nowrap">
-                                    <span class="text-muted me-2"><i class="fa-solid fa-briefcase"></i>&nbsp;Design, Development</span>
-                                    <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;New York</span>
-                                    <span><i class="fa-solid fa-money-bill"></i>&nbsp;$150 - $180 / week</span>
-                                </p>
-                            </div>
-                            <div>
-                                <span class="job-type-badge">Full Time</span>
-                                <span class="urgent-badge">Urgent</span>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 mb-4">
-            <div class="card job-card">
-                <div class="card-body p-4 mt-2 mb-2">
-                    <div class="row">
-                        <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                        </div>
-                        <div class="col-md-9 d-flex flex-column justify-content-between">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="job-card-title">Product Sales Specialist</h5>
-                                <div class="ms-2">
-                                    <span class="text-success">Featured</span>
-                                    <span class="text-danger">Filled</span>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <p class="card-text text-nowrap">
-                                    <span class="text-muted me-2"><i class="fa-solid fa-briefcase"></i>&nbsp;Design, Development</span>
-                                    <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;New York</span>
-                                    <span><i class="fa-solid fa-money-bill"></i>&nbsp;$150 - $180 / week</span>
-                                </p>
-                            </div>
-                            <div>
-                                <span class="job-type-badge">Full Time</span>
-                                <span class="urgent-badge">Urgent</span>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-            </div>
+            {% endfor%}
+            
         </div>
         <div class="d-flex justify-content-center align-items-center mt-5">
-            <button class="custom-btn btn-blue me-2" type="button">Load More Listing</button>
+            <a href="{% url 'job_list' %}" style="text-decoration: none; color: inherit;"><button class="custom-btn btn-blue me-2" type="button">Load More Listing</button></a>
+            
         </div>
     </div>
 </div>

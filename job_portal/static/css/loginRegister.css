@@ -1,13 +1,28 @@
+.loginRegister{
+  font-family: 'Jost', sans-serif !important;
+}
+
 .loginRegister_input {
   background: #f0f5f7;
-  padding: 10px 25px;
+  padding: 20px;
   border: none;
+  border-radius: 8px;
   color: #77838f;
+  font-size: 15px;
+}
+
+.loginRegister_check{
+  font-size: 14px;
 }
 
 .loginRegister_forgot_pass {
+  font-size: 14px;
   text-decoration: none;
   color: black;
+}
+
+.loginRegister_cta_btn{
+  padding: 15px;
 }
 
 .user-type-selection {
@@ -20,8 +35,8 @@
 }
 
 .user-type-label {
-  padding: 10px 50px;
-  border-radius: 5px;
+  padding: 8px 60px;
+  border-radius: 8px;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -50,3 +65,4 @@
   background-color: #d0e4fb;
   border-color: #d0e4fb;
 }
+

@@ -1,0 +1,64 @@
+.navbar {
+    padding: 2% 1% 2% 1%;
+  }
+  
+  .nav-item:hover,
+  .nav-link:hover {
+    color: #1967d2;
+  }
+  
+  .navbar-custom-bg {
+    background-color: #e6f2ff !important;
+  }
+  
+  .custom-btn {
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .login-reg-btn {
+    background-color: #cce5ff;
+    color: #1967d2;
+  }
+  
+  .login-reg-btn:hover {
+    background-color: #1967d2;
+    color: white;
+    transition-duration: 0.3s;
+  }
+  
+  .btn-blue {
+    background-color: #1967d2;
+  }
+  
+  .btn-blue:hover {
+    background-color: #0033cc;
+    transition-duration: 0.3s;
+  }
+  
+  .notification-btn {
+    margin-left: 10px;
+    font-size: x-large;
+    color: #262626;
+  }
+  
+  .notification-btn:hover {
+    color: #1967d2;
+    transition-duration: 0.5s;
+  }
+  
+  /* Custom CSS to show dropdown on hover */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown-menu {
+    margin-top: 0; /* Remove top margin to align with the navbar */
+  }
+  

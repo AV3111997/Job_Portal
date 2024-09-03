@@ -435,9 +435,6 @@ h2 {
     margin-bottom: 50px;
 }
 
-
-
-
 .custom-gap {
     gap: 8rem;
 }
@@ -507,6 +504,36 @@ h2 {
     border-radius: 50%; 
     display: inline-block; 
 }
+
+.feat-jobs:hover {
+    color: #1967D2;
+}
+
+.job-card-row-one {
+    position: relative;
+}
+
+.save-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.save-button i {
+    color: #333;
+    font-size: 16px;
+}
+
+.save-button i.fa-solid {
+    color: gold;
+}
+
 
 
 

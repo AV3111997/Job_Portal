@@ -1,5 +1,6 @@
 from django import forms
-from .models import Candidate, SocialNetwork, Contact, JobPosting, Category, Qualification, Location
+from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, Qualification, Location, Employer
+
 
 class CandidateForm(forms.ModelForm):
     class Meta:
@@ -7,7 +8,7 @@ class CandidateForm(forms.ModelForm):
         fields = [
             'profile_image', 'fullname', 'date_of_birth', 'gender', 'age', 'email',
             'phone_number', 'qualification', 'languages', 'experience', 'salary_type',
-            'salary', 'job_categories', 'job_title', 'description'
+            'salary', 'job_category', 'job_title', 'description'
         ]
         widgets = {
             'gender': forms.Select(attrs={'class': 'form-control'}),
@@ -21,9 +22,9 @@ class CandidateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CandidateForm, self).__init__(*args, **kwargs)
-        # Make all fields optional
         for field in self.fields.values():
             field.required = False
+
 
 class SocialNetworkForm(forms.ModelForm):
     class Meta:
@@ -35,9 +36,9 @@ class SocialNetworkForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(SocialNetworkForm, self).__init__(*args, **kwargs)
-        # Make all fields optional
         for field in self.fields.values():
             field.required = False
+
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -50,9 +51,9 @@ class ContactForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ContactForm, self).__init__(*args, **kwargs)
-        # Make all fields optional
         for field in self.fields.values():
             field.required = False
+
 
 class JobPostingForm(forms.ModelForm):
     class Meta:
@@ -70,8 +71,9 @@ class JobPostingForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Dynamically set queryset for category, qualification, and location
-        self.fields['category'].queryset = Category.objects.all()
+        # Dynamically set queryset for employer, category, qualification, and location
+        self.fields['employer'].queryset = Employer.objects.all()
+        self.fields['category'].queryset = JobCategory.objects.all()
         self.fields['qualification'].queryset = Qualification.objects.all()
         self.fields['location'].queryset = Location.objects.all()
 
