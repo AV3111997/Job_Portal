@@ -14,10 +14,10 @@ class CandidateForm(forms.ModelForm):
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'age': forms.Select(attrs={'class': 'form-control'}),
             'qualification': forms.Select(attrs={'class': 'form-control'}),
-            'languages': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'languages': forms.Select(attrs={'class': 'form-control'}),
             'experience': forms.Select(attrs={'class': 'form-control'}),
             'salary_type': forms.Select(attrs={'class': 'form-control'}),
-            'job_categories': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'job_category': forms.Select(attrs={'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -43,7 +43,7 @@ class SocialNetworkForm(forms.ModelForm):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = '__all__'
+        fields = ['address', 'location']
         widgets = {
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),

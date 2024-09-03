@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from .models import PasswordReset
 from django.urls import reverse
+from app.models import Candidate, Employer
 from django.views.generic import TemplateView
 from django.contrib.auth.forms import SetPasswordForm
 from django.shortcuts import render,redirect
@@ -50,6 +51,18 @@ class RegisterView(View):
                 # Create new user
         user = CustomUser.objects.create_user(username=email,email=email, password=password,user_type=user_type)
         user.save()
+
+        if user_type == 'candidate':
+            Candidate.objects.create(
+                user=user,
+                email=user.email,  
+            )
+            
+        elif user_type == 'employer':
+            Employer.objects.create(
+                user=user,
+                email=user.email,  
+            )
 
         return JsonResponse({'success': True, 'message': 'User registered successfully.'})
 
