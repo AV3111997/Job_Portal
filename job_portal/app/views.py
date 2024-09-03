@@ -88,7 +88,7 @@ class CandidateProfile(TemplateView):
 
 class JobPostingCreateView(FormView):
     form_class = JobPostingForm
-    template_name = 'jobposting_form.html'  # Make sure this template exists
+    template_name = 'employee.html'  # Make sure this template exists
     success_url = reverse_lazy('jobform')  # Redirect after successful form submission
 
     def form_valid(self, form):
