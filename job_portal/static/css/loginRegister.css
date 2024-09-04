@@ -48,6 +48,20 @@
   transition: all 0.3s ease;
 }
 
+@media (max-width: 600px) {
+  .user-type-selection {
+    display: flex;
+    gap: 5px;
+  }
+
+  
+  .user-type-label {
+    padding: 8px 50px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+}
+
 .user-type-label i {
   margin-right: 8px;
   font-size: 20px;
