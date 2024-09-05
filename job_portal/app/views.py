@@ -61,7 +61,7 @@ class CandidateView(ListView):
     template_name = 'candidate.html'
     context_object_name='candidates'
     
-
+     
 
 class EmployersListView(TemplateView):
     template_name = 'employerslist.html'
@@ -175,7 +175,7 @@ def candidate_list(request):
         candidates = candidates.filter(gender=gender)
 
     if category_ids:
-        candidates = candidates.filter(job_categories__id__in=category_ids).distinct()
+        candidates = candidates.filter(job_category__id__in=category_ids).distinct()
 
     if experience:
         candidates = candidates.filter(experience__in=experience)

@@ -6,6 +6,8 @@
 
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
 <link rel="stylesheet" href="{% static 'css/candidate.css' %}">
 {% endblock css_styles %}
 
@@ -47,6 +49,16 @@
                     <input type="text" name="location" class="form-control ps-4" placeholder="Location" value="{{ location }}">
                 </div>
 
+                 <!-- Category Filter -->
+                 <h5>Category</h5>
+                 <div class="mb-3 position-relative">
+                     <select name="categories" class="form-control" aria-label="Categories" multiple>
+                         {% for category in categories %}
+                             <option value="{{ category.id }}" {% if category.id|stringformat:'s' in selected_categories %}selected{% endif %}>{{ category.name }}</option>
+                         {% endfor %}
+                     </select>
+                 </div>
+
                 <!-- Gender Filter -->
                 <h5>Candidate Gender</h5>
                 <div class="mb-3">
@@ -58,80 +70,36 @@
                     </select>
                 </div>
 
-                <!-- Category Filter -->
-                <h5>Category</h5>
-                <div class="mb-3 position-relative">
-                    <select name="categories" class="form-control" aria-label="Categories" multiple>
-                        {% for category in categories %}
-                            <option value="{{ category.id }}" {% if category.id|stringformat:'s' in selected_categories %}selected{% endif %}>{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                <!-- Date Posted Section -->
 
-                <!-- Radius Filter -->
-                <h5>Radius: <span id="radiusValue">{{ radius }} miles</span></h5>
-                <div class="mb-3">
-                    <input type="range" name="radius" class="slider" id="radiusSlider" min="0" max="100" value="{{ radius }}" oninput="updateSlider(this.value)">
-                </div>
+<h5>Experience</h5>
+<div class="mb-3">
+    {% for year in experience_range %}
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" name="experience" value="{{ year }}" id="experience{{ year }}" {% if year|stringformat:'s' in selected_experience %}checked{% endif %}>
+            <label class="form-check-label" for="experience{{ year }}">
+                {% if year == 0 %}
+                    Fresher
+                {% else %}
+                    {{ year }} Year{% if year > 1 %}s{% endif %}
+                {% endif %}
+            </label>
+        </div>
+    {% endfor %}
+</div>
 
-                <!-- Experience Filter -->
-                <h5>Experience</h5>
-                <div class="mb-3">
-                    {% for year in experience_range %}
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="experience" value="{{ year }}" id="experience{{ year }}" {% if year|stringformat:'s' in selected_experience %}checked{% endif %}>
-                            <label class="form-check-label" for="experience{{ year }}">
-                                {% if year == 0 %}
-                                    Fresher
-                                {% else %}
-                                    {{ year }} Year{% if year > 1 %}s{% endif %}
-                                {% endif %}
-                            </label>
-                        </div>
-                    {% endfor %}
-                </div>
-
-              <!-- Qualification Filter -->
+                
 <h5>Qualification</h5>
 <div class="mb-3">
     {% for qualification in qualification_list %}
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="qualifications" value="{{ qualification }}" id="qualification{{ forloop.counter }}" {% if qualification in selected_qualifications %}checked{% endif %}>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" name="qualifications" value="{{ qualification }}" id="qualification{{ forloop.counter }}" {% if qualification in selected_qualifications %}checked{% endif %}>
             <label class="form-check-label" for="qualification{{ forloop.counter }}">{{ qualification }}</label>
         </div>
     {% endfor %}
 </div>
-<!-- Date Posted Section -->
-<h5>Date posted</h5>
-<div class="mb-3">
-    <div class="form-check">
-        <input class="form-check-input circle-checkbox" type="checkbox" id="lastHour">
-        <label class="form-check-label" for="lastHour">Last hour</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input circle-checkbox" type="checkbox" id="last24Hours">
-        <label class="form-check-label" for="last24Hours">Last 24 hours</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input circle-checkbox" type="checkbox" id="last7Days">
-        <label class="form-check-label" for="last7Days">Last 7 days</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input circle-checkbox" type="checkbox" id="last14Days">
-        <label class="form-check-label" for="last14Days">Last 14 days</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input circle-checkbox" type="checkbox" id="last30Days">
-        <label class="form-check-label" for="last30Days">Last 30 days</label>
-    </div>
-    <button class="btn btn-link text-primary p-0" id="showMoreBtn" type="button">
-        <i class="fas fa-plus"></i> <span>Show More</span>
-    </button>
-    <button class="btn btn-link text-primary p-0" id="showLessBtn" type="button" style="display: none;">
-        <i class="fas fa-minus"></i> <span>Show Less</span>
-    </button>
 
-</div>
+
 
 
 
@@ -156,35 +124,43 @@
                 </select>
             </div>
         </div>
+<!-- Candidate Card Example -->
+{% for candidate in candidates %}
+<div class="candidate-card d-flex align-items-center position-relative">
+    <img src="{{ candidate.profile_image.url }}" alt="Candidate" class="candidate-image me-3">
+    <div class="flex-grow-1">
+        <h5 class="mb-1">
+            {{ candidate.fullname }}
+            <span class="featured-text">Featured</span>
+        </h5>
+        <p class="mb-1">
+            <a href="#" class="text-decoration-none">{{ candidate.job_title }}</a>
+            | <i class="fas fa-map-marker-alt"></i> {{ candidate.location }} |
+            ${{ candidate.salary }} / year
+        </p>
+        <div>
+            {% for category in candidate.job_category.all %}
+                <button class="badge btn-badge">{{ category }}</button>
+            {% endfor %}
+        </div>  
+    </div>
 
-        <!-- Candidate Card Example -->
-        {% for candidate in candidates %}
-        <div class="candidate-card d-flex align-items-center">
-            <img src="{{ candidate.profile_image.url }}" alt="Candidate" class="candidate-image me-3">
-            <div class="flex-grow-1">
-                <h5 class="mb-1">
-                    {{ candidate.fullname }}
-                    <span class="featured-text">Featured</span>
-                </h5>
-                <p class="mb-1">
-                    <a href="#" class="text-decoration-none">{{ candidate.job_title }}</a>
-                    | <i class="fas fa-map-marker-alt"></i> {{ candidate.location }} |
-                    ${{ candidate.salary }} / year
-                </p>
-                <div>
-                    {% for category in candidate.job_categories.all %}
-                        <button class="badge btn-badge">{{ category }}</button>
-                    {% endfor %}
-                </div>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
-</svg>
-            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
-        </div>
-        {% empty %}
-        <p>No candidates found.</p>
-        {% endfor %}
+    <!-- Bookmark Icon -->
+   <!-- Bookmark Icon -->
+<div class="bookmark-icon position-absolute" style="top: 40px; right: 141px;" onclick="toggleBookmark(this)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmark"
+        viewBox="0 0 16 16">
+        <path
+            d="M2 2v13.5l5-2.5 5 2.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zm2-.5A.5.5 0 0 1 4 1h6a.5.5 0 0 1 .5.5v11.61l-3-1.5-3 1.5V1.5z" />
+    </svg>
+</div>
+
+
+    <button id="viewProfileButton" class="view-profile-button">View Profile</button>
+</div>
+{% empty %}
+<p>No candidates found.</p>
+{% endfor %}
 
         <!-- Pagination -->
         <nav aria-label="Page navigation">
