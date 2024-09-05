@@ -82,6 +82,7 @@ class Candidate(models.Model):
     job_category = models.ManyToManyField(JobCategory, verbose_name='Categories')
     job_title = models.CharField(max_length=100, verbose_name='Job Title')
     description = models.TextField()
+    location = models.CharField(max_length=100, null=True, blank=True, verbose_name='Location') 
 
 
 class SocialNetwork(models.Model):
