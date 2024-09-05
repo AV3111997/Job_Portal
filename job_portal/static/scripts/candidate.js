@@ -37,3 +37,16 @@ document.getElementById('radiusSlider').addEventListener('input', function () {
     document.getElementById('radiusValue').textContent = this.value + ' miles';
 });
 
+
+    function toggleBookmark(element) {
+        // Add the 'loading' class to show the spinner
+        element.classList.add('loading');
+
+        // Simulate an asynchronous operation (e.g., bookmarking via an API call)
+        setTimeout(() => {
+            // Remove the loading state after a delay (simulate a successful API response)
+            element.classList.remove('loading');
+            alert("Please login as Employer to add shortlist");
+        }, 2000); // Simulate 2 seconds delay
+    }
+
