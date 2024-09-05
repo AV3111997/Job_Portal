@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import TemplateView, DetailView, View, DeleteView, ListView
+from django.views.generic import TemplateView, DetailView, View, DeleteView
+from django.views.generic import ListView
 from django.views.generic.edit import FormView
-from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, SavedJob,Qualification
+from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, SavedJob
+from models import Qualification
 from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
