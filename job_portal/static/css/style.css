@@ -288,35 +288,6 @@ h2 {
     margin-left: 10px;
 }
 
-.sticky-badge {
-    background-color: grey;
-    width: 250px;
-    height: 150px;
-    position: absolute;
-    left: 40%;
-    top: 415%;
-    border-radius: 5px;
-}
-
-@media (max-width: 576px) {
-    .sticky-badge {
-        display: none; /* Hide the badge */
-    }
-}
-
-/* For medium screens (tablets) */
-@media (min-width: 577px) and (max-width: 768px) {
-    .sticky-badge {
-        display: none; /* Hide the badge if necessary */
-    }
-}
-
-/* For large screens (desktops) */
-@media (min-width: 769px) {
-    .sticky-badge {
-        display: block; /* Ensure the badge is visible on larger screens */
-    }
-}
 .report-bar {
     margin-top: 150px;
 }
@@ -508,6 +479,37 @@ h2 {
 .feat-jobs:hover {
     color: #1967D2;
 }
+
+.job-card-row-one {
+    position: relative;
+}
+
+.save-button, .delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button i {
+    color: red;
+}
+
+.save-button i {
+    color: #333;
+    font-size: 16px;
+}
+
+.save-button i.fa-solid {
+    color: gold;
+}
+
+
 
 
 
