@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from accounts.models import CustomUser
+from accounts.models import User
 
 # Create your models here.
 
@@ -66,7 +66,7 @@ class Candidate(models.Model):
         ('Yearly', 'Yearly'),
     ]
 
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='candidate_profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='candidate_profile')
     profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     fullname = models.CharField(max_length=100, verbose_name='Full Name')
     date_of_birth = models.DateField(null=True, blank=True, verbose_name='Date of Birth')
@@ -82,10 +82,11 @@ class Candidate(models.Model):
     job_category = models.ManyToManyField(JobCategory, verbose_name='Categories')
     job_title = models.CharField(max_length=100, verbose_name='Job Title')
     description = models.TextField()
+    location = models.CharField(max_length=100, null=True, blank=True, verbose_name='Location') 
 
 
 class SocialNetwork(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='social_networks')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='social_networks')
     name = models.CharField(max_length=100)
     url_pattern = models.CharField(max_length=255, blank=True)  
 
@@ -94,13 +95,13 @@ class SocialNetwork(models.Model):
 
 
 class Contact(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='contacts')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='contacts')
     address = models.CharField(max_length=200, verbose_name='Address')
     location = models.CharField(max_length=100, verbose_name='Location')
 
 
 class Employer(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='employers')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='employers')
     employer_name= models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     email= models.EmailField(max_length=255)
@@ -212,3 +213,8 @@ class JobPosting(models.Model):
 
     def __str__(self):
         return self.job_title
+
+class SavedJob(models.Model):
+    candidate = models.ForeignKey(Candidate, related_name = 'candidate', on_delete=models.CASCADE)
+    job = models.ForeignKey(JobPosting, related_name = 'job', on_delete=models.CASCADE)
+

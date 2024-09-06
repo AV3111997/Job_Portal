@@ -11,13 +11,21 @@ class CandidateForm(forms.ModelForm):
             'salary', 'job_category', 'job_title', 'description'
         ]
         widgets = {
+            'profile_image':forms.FileInput(attrs={'class': 'form-control candidate_profile_input'}),
+            'fullname':forms.TextInput(attrs={'class': ' form-control'}),
+            'date_of_birth':forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'salary': forms.TextInput(attrs={'class': 'form-control'}),
+            'job_title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'age': forms.Select(attrs={'class': 'form-control'}),
             'qualification': forms.Select(attrs={'class': 'form-control'}),
-            'languages': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'languages': forms.Select(attrs={'class': 'form-control'}),
             'experience': forms.Select(attrs={'class': 'form-control'}),
             'salary_type': forms.Select(attrs={'class': 'form-control'}),
-            'job_categories': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'job_category': forms.Select(attrs={'class': 'form-control'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -43,7 +51,7 @@ class SocialNetworkForm(forms.ModelForm):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = '__all__'
+        fields = ['address', 'location']
         widgets = {
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
@@ -86,3 +94,5 @@ class JobPostingForm(forms.ModelForm):
             self.add_error('max_salary', 'Max salary must be greater than or equal to min salary.')
 
         return cleaned_data
+
+

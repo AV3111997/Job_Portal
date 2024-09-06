@@ -1,4 +1,4 @@
-from .models import CustomUser
+from .models import User
 from django.core.mail import send_mail
 from django.conf import settings
 import secrets
@@ -29,10 +29,10 @@ def generate_token(length=20):
 
 def authenticate(email,password):
     try:
-        user = CustomUser.objects.get(email=email)
+        user = User.objects.get(email=email)
         if user.check_password(password):
             return user
         else:
             return None
-    except CustomUser.DoesNotExist:
+    except User.DoesNotExist:
         return None

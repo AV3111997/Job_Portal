@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = 'userdashboard/'  # Redirect to the dashboard after login
 LOGOUT_REDIRECT_URL = '/'
 
@@ -70,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'app.context_processors.user_types',
+                'app.context_processors.candidate_id_pass',
             ],
         },
     },
