@@ -132,7 +132,7 @@ class Member(models.Model):
 
 class JobPosting(models.Model):
     # Foreign key fields
-    employer = models.ForeignKey(Employer,related_name='employers',on_delete=models.CASCADE)
+    employer = models.ForeignKey(Employer, related_name='job_postings', on_delete=models.CASCADE)
     category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
     qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
@@ -161,7 +161,7 @@ class JobPosting(models.Model):
     URGENCY_LEVEL_CHOICES = [
         ('Urgent', 'Urgent'),
         ('Normal', 'Normal'),
-        ('Immidiate', 'Immidiate'),
+        ('Immediate', 'Immediate'),
     ]
     APPLY_TYPE_CHOICES = [
         ('online', 'Online'),
@@ -170,6 +170,7 @@ class JobPosting(models.Model):
     STATUS_CHOICES = [
         ('open', 'Open'),
         ('filled', 'Filled'),
+        ('draft', 'Draft'),
     ]
     SALARY_TYPE_CHOICES = [
         ('Monthly', 'Monthly'),
@@ -194,25 +195,26 @@ class JobPosting(models.Model):
 
     job_type = models.CharField(max_length=50, choices=JOB_TYPE_CHOICES)
     tag = models.CharField(max_length=255)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=True)
     apply_type = models.CharField(max_length=50, choices=APPLY_TYPE_CHOICES)
     urgency_level = models.CharField(max_length=10, choices=URGENCY_LEVEL_CHOICES)
     external_url = models.URLField(blank=True, null=True)
     apply_email = models.EmailField(blank=True, null=True)
-    salary_type = models.CharField(max_length=50, choices=SALARY_TYPE_CHOICES)
-    min_salary = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    max_salary = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    experience = models.CharField(max_length=50, choices=EXPERIENCE_CHOICES)
+    salary_type = models.CharField(max_length=50, choices=SALARY_TYPE_CHOICES, default='Monthly')
+    min_salary = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, blank=True, null=True)
+    max_salary = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, blank=True, null=True)
+    experience = models.CharField(max_length=50, choices=EXPERIENCE_CHOICES, default='Fresher')
     career_level = models.CharField(max_length=50, choices=CAREER_LEVEL_CHOICES)
     intro_video_url = models.URLField(blank=True, null=True)
-    status = models.CharField(max_length=50, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='open')
     
     # Additional information
     application_deadline = models.DateField()
     friendly_address = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.job_title
+        return f"{self.job_title} at {self.employer.employer_name}"
+
 
 class SavedJob(models.Model):
     candidate = models.ForeignKey(Candidate, related_name = 'candidate', on_delete=models.CASCADE)
