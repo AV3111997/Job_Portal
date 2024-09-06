@@ -7,7 +7,6 @@ from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
 from django.core.paginator import Paginator
 # Create your views here.
 
