@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, DetailView, View, DeleteView
 from django.views.generic.edit import FormView
-from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, SavedJob, Qualification
+from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, SavedJob, Employer, Qualification
 from django.views.generic import ListView 
 from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.db.models import Q
+from django.core.paginator import Paginator
 # Create your views here.
 
 class UserDashboardView(LoginRequiredMixin, TemplateView):
@@ -29,8 +30,6 @@ class IndexView(TemplateView):
         context['categories'] = JobCategory.objects.all()
         context['jobs'] = JobPosting.objects.all()[:6]
         return context
-    
-    
 
 class CategoryDetailView(TemplateView):
     template_name = 'jobs_by_category.html'
@@ -138,8 +137,57 @@ class ManageJobsView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['job_postings'] = JobPosting.objects.all()  # Fetch all job postings
+
+        # Get filter values from request parameters
+        employer_id = self.request.GET.get('employer')
+        category_id = self.request.GET.get('category')
+        min_salary = self.request.GET.get('min_salary')
+        max_salary = self.request.GET.get('max_salary')
+        job_type = self.request.GET.get('job_type')
+        experience = self.request.GET.get('experience')
+        status = self.request.GET.get('status')
+
+        # Start with all job postings
+        job_postings = JobPosting.objects.all()
+
+        # Apply filters if available
+        if employer_id:
+            job_postings = job_postings.filter(employer_id=employer_id)
+
+        if category_id:
+            job_postings = job_postings.filter(category_id=category_id)
+
+        if min_salary:
+            job_postings = job_postings.filter(min_salary__gte=min_salary)
+
+        if max_salary:
+            job_postings = job_postings.filter(max_salary__lte=max_salary)
+
+        if job_type:
+            job_postings = job_postings.filter(job_type=job_type)
+
+        if experience:
+            job_postings = job_postings.filter(experience=experience)
+
+        if status:
+            job_postings = job_postings.filter(status=status)
+
+        # Pagination
+        page_number = self.request.GET.get('page', 1)
+        paginator = Paginator(job_postings, 10)  # Show 10 job postings per page
+        page_obj = paginator.get_page(page_number)
+        
+        # Add job postings and filter options to context
+        context['job_postings'] = page_obj  # Pass paginated object to template
+        context['page_obj'] = page_obj
+        context['employers'] = Employer.objects.all()
+        context['categories'] = JobCategory.objects.all()
+        context['job_types'] = JobPosting.JOB_TYPE_CHOICES
+        context['experiences'] = JobPosting.EXPERIENCE_CHOICES
+        context['statuses'] = JobPosting.STATUS_CHOICES
+
         return context
+
     
 
 class EmployeeJobsView(TemplateView):
