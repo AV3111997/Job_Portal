@@ -103,7 +103,6 @@ class CandidateView(ListView):
     context_object_name='candidates'
     
      
-
 class EmployersListView(TemplateView):
     template_name = 'employerslist.html'
 
