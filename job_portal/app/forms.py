@@ -11,6 +11,14 @@ class CandidateForm(forms.ModelForm):
             'salary', 'job_category', 'job_title', 'description'
         ]
         widgets = {
+            'profile_image':forms.FileInput(attrs={'class': 'form-control candidate_profile_input'}),
+            'fullname':forms.TextInput(attrs={'class': ' form-control'}),
+            'date_of_birth':forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'salary': forms.TextInput(attrs={'class': 'form-control'}),
+            'job_title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'age': forms.Select(attrs={'class': 'form-control'}),
             'qualification': forms.Select(attrs={'class': 'form-control'}),
@@ -86,3 +94,5 @@ class JobPostingForm(forms.ModelForm):
             self.add_error('max_salary', 'Max salary must be greater than or equal to min salary.')
 
         return cleaned_data
+
+

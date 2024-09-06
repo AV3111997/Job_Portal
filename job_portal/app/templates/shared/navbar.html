@@ -49,46 +49,46 @@
           </div>
         </li>
       </ul>
-    </div>
-    <div class="ms-auto d-flex">
-      {% if user.is_authenticated %}
-      <li class="nav-item d-flex dropdown">
-        <a class="nav-link d-flex" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          <img class="rounded-circle" width="50" height="50" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg" alt="">
-          <div class="d-flex p-3 gap-1">
-            {% if is_candidate %}
-            <span class="my-auto">Candidate</span>
-            {% else %}
-            <span class="my-auto">Employer</span>
-            {% endif %}
-            <i class="bi bi-chevron-down my-auto"></i>
-          </div>
-        </a>
-        <div class="dropdown-menu mt-5 border-0" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item p-3" href="{% url 'candidate_profile' %}"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
-          <a class="dropdown-item p-3" href="{% url 'candidate_saved_jobs' %}"><i class="bi bi-suitcase-lg"></i><span class="px-2">My Jobs</span></a>
-          <a class="dropdown-item p-3" href="#"><i class="bi bi-pencil"></i><span class="px-2">Submit Job</span></a>
-          <a class="dropdown-item p-3" href="#"><i class="bi bi-megaphone"></i><span class="px-2">Applicants Job</span></a>
-          <a class="dropdown-item p-3" href="#"><i class="bi bi-exclamation-triangle"></i> <span class="px-2">Candidate Alert</span></a>
-          <a class="dropdown-item p-3" href="#"><i class="bi bi-chat-dots"></i><span class="px-2">Messages</span></a>
-          <a class="dropdown-item p-3" href="#"><i class="bi bi-person-lines-fill"></i> <span class="px-2">Meetings</span></a>
-          <a class="dropdown-item p-3" href="#"><i class="bi bi-lock"></i><span class="px-2">Change Password</span></a>
-          <a class="dropdown-item p-3" href="#"><i class="bi bi-trash3"></i><span class="px-2">Delete Profile</span></a>
-          <a href="#" class="dropdown-item p-3" onclick="document.getElementById('logout-form').submit();">
-            <i class="bi bi-box-arrow-left"></i> Logout
+      <div class="ms-auto d-flex">
+        {% if user.is_authenticated %}
+        <li class="nav-item d-flex dropdown">
+          <a class="nav-link d-flex" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <img class="rounded-circle" width="50" height="50" src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg" alt="">
+            <div class="d-flex p-3 gap-1">
+              {% if is_candidate %}
+              <span class="my-auto">Candidate</span>
+              {% else %}
+              <span class="my-auto">Employer</span>
+              {% endif %}
+              <i class="bi bi-chevron-down my-auto"></i>
+            </div>
           </a>
-
-          {% comment %} form for logging out an user {% endcomment %}
-          <form class="display-none" id="logout-form" method="post" action="{% url 'accounts:logout' %}">
-            {% csrf_token %}
-          </form>
-        </div>
-      </li>
-      {% else %}
-        <button class="custom-btn login-reg-btn me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login / Register</button>
-      {% endif %}
-      <button class="custom-btn btn-blue me-2" type="button">Job Post</button>
-      <a href="" class="notification-btn me-5 my-auto"><i class="bi bi-bell"></i></a>
+          <div class="dropdown-menu mt-5 border-0" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item p-3" href="{% url 'candidate_profile' %}"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
+            <a class="dropdown-item p-3" href="{% url 'candidate_saved_jobs' %}"><i class="bi bi-suitcase-lg"></i><span class="px-2">My Jobs</span></a>
+            <a class="dropdown-item p-3" href="#"><i class="bi bi-pencil"></i><span class="px-2">Submit Job</span></a>
+            <a class="dropdown-item p-3" href="#"><i class="bi bi-megaphone"></i><span class="px-2">Applicants Job</span></a>
+            <a class="dropdown-item p-3" href="#"><i class="bi bi-exclamation-triangle"></i> <span class="px-2">Candidate Alert</span></a>
+            <a class="dropdown-item p-3" href="#"><i class="bi bi-chat-dots"></i><span class="px-2">Messages</span></a>
+            <a class="dropdown-item p-3" href="#"><i class="bi bi-person-lines-fill"></i> <span class="px-2">Meetings</span></a>
+            <a class="dropdown-item p-3" href="#"><i class="bi bi-lock"></i><span class="px-2">Change Password</span></a>
+            <a class="dropdown-item p-3" href="#"><i class="bi bi-trash3"></i><span class="px-2">Delete Profile</span></a>
+            <a href="#" class="dropdown-item p-3" onclick="document.getElementById('logout-form').submit();">
+              <i class="bi bi-box-arrow-left"></i> Logout
+            </a>
+  
+            {% comment %} form for logging out an user {% endcomment %}
+            <form class="display-none" id="logout-form" method="post" action="{% url 'accounts:logout' %}">
+              {% csrf_token %}
+            </form>
+          </div>
+        </li>
+        {% else %}
+          <button class="custom-btn login-reg-btn me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login / Register</button>
+        {% endif %}
+        <button class="custom-btn btn-blue me-2" type="button">Job Post</button>
+        <a href="" class="notification-btn me-5 my-auto"><i class="bi bi-bell"></i></a>
+      </div>
     </div>
   </div>
 </nav>

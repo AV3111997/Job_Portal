@@ -13,7 +13,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.views import PasswordResetView
 
-CustomUser = get_user_model()
+User = get_user_model()
 
 class LoginView(View):
     def post(self, request, *args, **kwargs):
@@ -45,11 +45,11 @@ class RegisterView(View):
         except ValidationError:
             return JsonResponse({'success': False, 'error': 'Invalid email address.'})
 
-        if CustomUser.objects.filter(email=email).exists():
+        if User.objects.filter(email=email).exists():
             return JsonResponse({'success': False, 'error': 'Email is already in use.'})
         
                 # Create new user
-        user = CustomUser.objects.create_user(username=email,email=email, password=password,user_type=user_type)
+        user = User.objects.create_user(username=email,email=email, password=password,user_type=user_type)
         user.save()
 
         if user_type == 'candidate':
@@ -76,7 +76,7 @@ class ResetPassView(View):
         except ValidationError:
             return JsonResponse({'success': False, 'error': 'Invalid email address.'})
 
-        user = CustomUser.objects.filter(email=email).first()
+        user = User.objects.filter(email=email).first()
 
         if not user:
             return JsonResponse({'success': False, 'error': 'No user with Given Email.'})
@@ -100,7 +100,7 @@ class ResetPassConfirmView(View):
         try:
             reset_token = PasswordReset.objects.get(token=token)
             if reset_token:
-                form = SetPasswordForm(CustomUser)
+                form = SetPasswordForm(User)
                 return render(request, self.template_name, {'form': form})
             else:
                 return render(request, 'password_reset_invalid.html')
@@ -111,7 +111,7 @@ class ResetPassConfirmView(View):
 
     def post(self,request,token):
         try:
-            form = SetPasswordForm(CustomUser, request.POST)
+            form = SetPasswordForm(User, request.POST)
             if form.is_valid():
                 new_password = form.cleaned_data.get('new_password1')
                 reset_token = PasswordReset.objects.get(token=token)
