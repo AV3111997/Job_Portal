@@ -42,13 +42,13 @@ class CategoryDetailView(TemplateView):
 
 class SaveJobView(LoginRequiredMixin, View):
     def post(self, request, job_id, candidate_id):
-        if not request.user.is_authenticated:
-            return JsonResponse({'status': 'error', 'message': 'You need to be logged in'})
+        # if not request.user.is_authenticated:
+        #     return JsonResponse({'status': 'error', 'message': 'You need to be logged in'})
         
-        try:
-            candidate = Candidate.objects.get(user=request.user)
-        except Candidate.DoesNotExist:
-            return JsonResponse({'status': 'error', 'message': 'You need to be a candidate'})
+        # try:
+        #     candidate = Candidate.objects.get(user=request.user)
+        # except Candidate.DoesNotExist:
+        #     return JsonResponse({'status': 'error', 'message': 'You need to be a candidate'})
         
         job = get_object_or_404(JobPosting, pk=job_id)
         candidate = get_object_or_404(Candidate, pk=candidate_id)
