@@ -1,5 +1,5 @@
 
-document.getElementById('radiusSlider').addEventListener('input', function() {
+document.getElementById('radiusSlider').addEventListener('input', function () {
     document.getElementById('radiusValue').textContent = this.value + ' miles';
 });
 
@@ -25,19 +25,19 @@ function saveJob(element) {
             'X-Requested-With': 'XMLHttpRequest',
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Response Data:', data); // Log response data
-        if (data.status === 'success') {
-            alert(data.message);
-            changeIcon(element);
-        } else if (data.status === 'exists') {
-            alert(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error); // Log errors
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response Data:', data); // Log response data
+            if (data.status === 'success') {
+                alert(data.message);
+                changeIcon(element);
+            } else if (data.status === 'exists') {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error); // Log errors
+        });
 }
 
 function changeIcon(button) {
@@ -54,4 +54,11 @@ function changeIcon(button) {
 
 // Log the CSRF token on page load
 console.log('CSRF Token on Page Load:', getCsrfToken());
+
+$(document).ready(function () {
+    $('#id_job_category').select2({
+        placeholder: 'select categories',
+        allowClear: true
+    });
+});
 

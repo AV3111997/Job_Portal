@@ -25,7 +25,7 @@ class CandidateForm(forms.ModelForm):
             'languages': forms.Select(attrs={'class': 'form-control'}),
             'experience': forms.Select(attrs={'class': 'form-control'}),
             'salary_type': forms.Select(attrs={'class': 'form-control'}),
-            'job_category': forms.Select(attrs={'class': 'form-control'}),
+            'job_category': forms.SelectMultiple(attrs={'class': 'form-control'})
         }
 
     def __init__(self, *args, **kwargs):
