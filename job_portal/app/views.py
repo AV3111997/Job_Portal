@@ -1,14 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, DetailView, View, DeleteView
 from django.views.generic.edit import FormView
-from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, SavedJob
-from django.views.generic import ListView
-from models import Qualification
+from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, SavedJob, Qualification
+from django.views.generic import ListView 
 from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
+
 # Create your views here.
 
 class UserDashboardView(LoginRequiredMixin, TemplateView):
@@ -30,6 +29,8 @@ class IndexView(TemplateView):
         context['categories'] = JobCategory.objects.all()
         context['jobs'] = JobPosting.objects.all()[:6]
         return context
+    
+    
 
 class CategoryDetailView(TemplateView):
     template_name = 'jobs_by_category.html'
