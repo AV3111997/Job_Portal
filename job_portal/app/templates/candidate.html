@@ -33,78 +33,91 @@
                 <!-- Keyword Input -->
                 <div class="mb-3 position-relative">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-2" viewBox="0 0 16 16">
+                        class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-2"
+                        viewBox="0 0 16 16">
                         <path
                             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                     </svg>
-                    <input type="text" name="keyword" class="form-control ps-4" placeholder="Candidate title, keywords" value="{{ keyword }}">
+                    <input type="text" name="keyword" class="form-control ps-4" placeholder="Candidate title, keywords"
+                        value="{{ keyword }}">
                 </div>
-                
+
                 <!-- Location Input -->
                 <div class="mb-3 position-relative">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                         <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                     </svg>
-                    <input type="text" name="location" class="form-control ps-4" placeholder="Location" value="{{ location }}">
+                    <input type="text" name="location" class="form-control ps-4" placeholder="Location"
+                        value="{{ location }}">
                 </div>
 
-                 <!-- Category Filter -->
-                 <h5>Category</h5>
-                 <div class="mb-3 position-relative">
-                     <select name="categories" class="form-control" aria-label="Categories" multiple>
-                         {% for category in categories %}
-                             <option value="{{ category.id }}" {% if category.id|stringformat:'s' in selected_categories %}selected{% endif %}>{{ category.name }}</option>
-                         {% endfor %}
-                     </select>
-                 </div>
+                <!-- Category Filter -->
+                <h5>Category</h5>
+                <div class="mb-3 position-relative">
+                    <select name="categories" class="form-control" aria-label="Categories" multiple>
+                        {% for category in categories %}
+                        <option value="{{ category.id }}" {% if category.id|stringformat:'s' in selected_categories%}
+                        selected
+                        {% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
                 <!-- Gender Filter -->
                 <h5>Candidate Gender</h5>
                 <div class="mb-3">
                     <select name="gender" class="form-select">
                         <option value="">Any</option>
-                        <option value="Male" {% if gender == 'Male' %}selected{% endif %}>Male</option>
-                        <option value="Female" {% if gender == 'Female' %}selected{% endif %}>Female</option>
-                        <option value="Both" {% if gender == 'Both' %}selected{% endif %}>Both</option>
+                        <option value="Male" {% if gender == 'Male' %} selected {% endif %}>Male</option>
+                        <option value="Female" {% if gender == 'Female' %} selected {% endif %}>Female</option>
+                        <option value="Both" {% if gender == 'Both' %} selected {% endif %}>Both</option>
                     </select>
                 </div>
 
                 <!-- Date Posted Section -->
 
-<h5>Experience</h5>
-<div class="mb-3">
-    {% for year in experience_range %}
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" name="experience" value="{{ year }}" id="experience{{ year }}" {% if year|stringformat:'s' in selected_experience %}checked{% endif %}>
-            <label class="form-check-label" for="experience{{ year }}">
-                {% if year == 0 %}
-                    Fresher
-                {% else %}
-                    {{ year }} Year{% if year > 1 %}s{% endif %}
-                {% endif %}
-            </label>
-        </div>
-    {% endfor %}
-</div>
+                <h5>Experience</h5>
+                <div class="mb-3">
+                    {% for year in experience_range %}
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" name="experience"
+                            value="{{ year }}" id="experience{{ year }}" {% if year|stringformat:'s' in selected_experience %}
+                            checked
+                            {% endif %}>
+                        <label class="form-check-label" for="experience{{ year }}">
+                            {% if year == 0 %}
+                            Fresher
+                            {% else %}
+                            {{ year }} Year{% if year > 1 %}s{% endif %}
+                            {% endif %}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
 
-                
-<h5>Qualification</h5>
-<div class="mb-3">
-    {% for qualification in qualification_list %}
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" name="qualifications" value="{{ qualification }}" id="qualification{{ forloop.counter }}" {% if qualification in selected_qualifications %}checked{% endif %}>
-            <label class="form-check-label" for="qualification{{ forloop.counter }}">{{ qualification }}</label>
-        </div>
-    {% endfor %}
-</div>
+
+                <h5>Qualification</h5>
+                <div class="mb-3">
+                    {% for qualification in qualification_list %}
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" name="qualifications"
+                            value="{{ qualification }}" id="qualification{{ forloop.counter }}" {% if qualification in selected_qualifications %}
+                            checked
+                            {% endif %}>
+                        <label class="form-check-label" for="qualification{{ forloop.counter }}">{{ qualification
+                            }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
 
 
 
 
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary" style="padding: 8px 50px; font-size: 18px;">Find Candidates</button>
+                <button type="submit" class="btn btn-primary" style="padding: 8px 50px; font-size: 18px;">Find
+                    Candidates</button>
             </form>
         </div>
     </div>
@@ -124,43 +137,48 @@
                 </select>
             </div>
         </div>
-<!-- Candidate Card Example -->
-{% for candidate in candidates %}
-<div class="candidate-card d-flex align-items-center position-relative">
-    <img src="{{ candidate.profile_image.url }}" alt="Candidate" class="candidate-image me-3">
-    <div class="flex-grow-1">
-        <h5 class="mb-1">
-            {{ candidate.fullname }}
-            <span class="featured-text">Featured</span>
-        </h5>
-        <p class="mb-1">
-            <a href="#" class="text-decoration-none">{{ candidate.job_title }}</a>
-            | <i class="fas fa-map-marker-alt"></i> {{ candidate.location }} |
-            ${{ candidate.salary }} / year
-        </p>
-        <div>
-            {% for category in candidate.job_category.all %}
-                <button class="badge btn-badge">{{ category }}</button>
-            {% endfor %}
-        </div>  
-    </div>
+        <!-- Candidate Card Example -->
+        {% for candidate in candidates %}
+        <div class="candidate-card d-flex align-items-center position-relative">
+            {% if candidate.profile_image and candidate.profile_image.name %}
+            <img src="{{ candidate.profile_image.url }}" alt="Profile Image">
+            {% else %}
+            <p>No profile image available.</p>
+            {% endif %}
+            <div class="flex-grow-1">
+                <h5 class="mb-1">
+                    {{ candidate.fullname }}
+                    <span class="featured-text">Featured</span>
+                </h5>
+                <p class="mb-1">
+                    <a href="#" class="text-decoration-none">{{ candidate.job_title }}</a>
+                    | <i class="fas fa-map-marker-alt"></i> {{ candidate.location }} |
+                    ${{ candidate.salary }} / year
+                </p>
+                <div>
+                    {% for category in candidate.job_category.all %}
+                    <button class="badge btn-badge">{{ category }}</button>
+                    {% endfor %}
+                </div>
+            </div>
 
-    <!-- Bookmark Icon -->
-   <!-- Bookmark Icon -->
-<div class="bookmark-icon position-absolute" style="top: 40px; right: 141px;" onclick="toggleBookmark(this)">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmark"
-        viewBox="0 0 16 16">
-        <path
-            d="M2 2v13.5l5-2.5 5 2.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zm2-.5A.5.5 0 0 1 4 1h6a.5.5 0 0 1 .5.5v11.61l-3-1.5-3 1.5V1.5z" />
-    </svg>
-</div>
+            <!-- Bookmark Icon -->
+            <!-- Bookmark Icon -->
+            <div class="bookmark-icon position-absolute" style="top: 40px; right: 141px;"
+                onclick="toggleBookmark(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-bookmark" viewBox="0 0 16 16">
+                    <path
+                        d="M2 2v13.5l5-2.5 5 2.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zm2-.5A.5.5 0 0 1 4 1h6a.5.5 0 0 1 .5.5v11.61l-3-1.5-3 1.5V1.5z" />
+                </svg>
+            </div>
 
 
-    <button id="viewProfileButton" class="view-profile-button">View Profile</button>
-</div>
-{% empty %}
-<p>No candidates found.</p>
-{% endfor %}
+            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
+        </div>
+        {% empty %}
+        <p>No candidates found.</p>
+        {% endfor %}
 
         <!-- Pagination -->
         <nav aria-label="Page navigation">

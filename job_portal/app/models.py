@@ -79,7 +79,7 @@ class Candidate(models.Model):
     experience = models.CharField(max_length=50, choices=EXPERIENCE_CHOICES, default='Fresher', verbose_name='Experience')
     salary_type = models.CharField(max_length=50, choices=SALARY_TYPE_CHOICES, default='Monthly', verbose_name='Salary Type')
     salary = models.CharField(max_length=50, verbose_name='Salary')
-    job_category = models.ManyToManyField(JobCategory, verbose_name='Categories')
+    job_category = models.ManyToManyField(JobCategory, verbose_name='category', blank=True,)
     job_title = models.CharField(max_length=100, verbose_name='Job Title')
     description = models.TextField()
     location = models.CharField(max_length=100, null=True, blank=True, verbose_name='Location') 
@@ -133,7 +133,7 @@ class Member(models.Model):
 class JobPosting(models.Model):
     # Foreign key fields
     employer = models.ForeignKey(Employer, related_name='job_postings', on_delete=models.CASCADE)
-    category = models.ForeignKey(JobCategory, on_delete=models.CASCADE)
+    job_category = models.ManyToManyField(JobCategory, verbose_name='job_category', blank=True)
     qualification = models.ForeignKey(Qualification, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
