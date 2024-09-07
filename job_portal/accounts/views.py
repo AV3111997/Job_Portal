@@ -64,7 +64,7 @@ class RegisterView(View):
                 email=user.email,  
             )
 
-        return JsonResponse({'success': True, 'message': 'User registered successfully.'})
+        return JsonResponse({'success': True, 'redirect_url': '/candidate_profile/', 'message': 'User registered successfully.'})
 
 class ResetPassView(View):
     def post(self,request):

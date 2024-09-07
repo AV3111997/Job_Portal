@@ -105,8 +105,7 @@
                             value="{{ qualification }}" id="qualification{{ forloop.counter }}" {% if qualification in selected_qualifications %}
                             checked
                             {% endif %}>
-                        <label class="form-check-label" for="qualification{{ forloop.counter }}">{{ qualification
-                            }}</label>
+                        <label class="form-check-label" for="qualification{{ forloop.counter }}">{{ qualification.name }}</label>
                     </div>
                     {% endfor %}
                 </div>

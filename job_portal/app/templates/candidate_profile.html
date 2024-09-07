@@ -6,6 +6,7 @@
 <title>Applied Jobs</title>
 {% endblock title %}
 {% block css_styles %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}">
 <link rel="stylesheet" href="{% static 'css/candidate_profile.css' %}">
@@ -54,95 +55,101 @@
                     <div class="card p-5">
                         <h4 class="mb-3">Candidate Information</h4>
                         <div class="form-group mb-4">
-                            <label class="form-label fw-semibold">{{candidate_form.profile_image.label}}</label><br>
-                            {{ candidate_form.profile_image | add_class:"form-control d-none" }}
+                            <label class="form-label fw-semibold">{{ candidate_form.profile_image.label }}</label><br>
+                            {{ candidate_form.profile_image|add_class:"form-control d-none" }}
                             <div class="d-flex">
                                 <div class="image-container">
-                                    <img src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg" width="100" height="100" alt="">
+                                    <img src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                                        width="100" height="100" alt="">
                                     <div class="bi bi-x close-icon"></div>
                                 </div>
                                 <div class="my-auto">
-                                    <span class="candidate_profile_browse-btn d-block" onclick="document.getElementById('id_profile_image').click();" >Browse</span>
+                                    <span class="candidate_profile_browse-btn d-block"
+                                        onclick="document.getElementById('id_profile_image').click();">Browse</span>
                                 </div>
                             </div>
-                            {{ candidate_form.profile_image.errors}}
+                            {{ candidate_form.profile_image.errors }}
                         </div>
                         <div class="row">
                             <div class="col">
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Full Name</label><br>
+                                    <label class="form-label fw-semibold" for="id_fullname">Full Name</label><br>
                                     {{ candidate_form.fullname|add_class:"form-control candidate_profile_input" }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
+                                    <div class="text-danger">{{ candidate_form.fullname.errors }}</div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Date of Birth (DOB)</label><br>
+                                    <label class="form-label fw-semibold" for="id_date_of_birth">Date of Birth
+                                        (DOB)</label><br>
                                     {{ candidate_form.date_of_birth|add_class:"form-control candidate_profile_input" }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
+                                    <div class="text-danger">{{ candidate_form.date_of_birth.errors }}</div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Gender</label><br>
-                                    {{candidate_form.gender |add_class:"form-control candidate_profile_input" }}
+                                    <label class="form-label fw-semibold" for="id_gender">Gender</label><br>
+                                    {{ candidate_form.gender|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ candidate_form.gender.errors }}</div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Age</label><br>
-                                    {{candidate_form.age |add_class:"form-control candidate_profile_input" }}
+                                    <label class="form-label fw-semibold" for="id_age">Age</label><br>
+                                    {{ candidate_form.age|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ candidate_form.age.errors }}</div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Email</label><br>
+                                    <label class="form-label fw-semibold" for="id_email">Email</label><br>
                                     {{ candidate_form.email|add_class:"form-control candidate_profile_input" }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
+                                    <div class="text-danger">{{ candidate_form.email.errors }}</div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Phone</label><br>
+                                    <label class="form-label fw-semibold" for="id_phone_number">Phone</label><br>
                                     {{ candidate_form.phone_number|add_class:"form-control candidate_profile_input" }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
-                                </div> 
+                                    <div class="text-danger">{{ candidate_form.phone_number.errors }}</div>
+                                </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Qualification</label><br>
+                                    <label class="form-label fw-semibold"
+                                        for="id_qualification">Qualification</label><br>
                                     {{ candidate_form.qualification|add_class:"form-control candidate_profile_input" }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
-                                </div> 
+                                    <div class="text-danger">{{ candidate_form.qualification.errors }}</div>
+                                </div>
                             </div>
                             <div class="col">
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Languages</label><br>
+                                    <label class="form-label fw-semibold" for="id_languages">Languages</label><br>
                                     {{ candidate_form.languages|add_class:"form-control candidate_profile_input" }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
-                                </div> 
+                                    <div class="text-danger">{{ candidate_form.languages.errors }}</div>
+                                </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Experience</label><br>
+                                    <label class="form-label fw-semibold" for="id_experience">Experience</label><br>
                                     {{ candidate_form.experience|add_class:"form-control candidate_profile_input" }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
-                                </div> 
+                                    <div class="text-danger">{{ candidate_form.experience.errors }}</div>
+                                </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Salary Type</label><br>
-                                    {{ candidate_form.salary_type|add_class:"form-control candidate_profile_input"  }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
-                                </div> 
+                                    <label class="form-label fw-semibold" for="id_salary_type">Salary Type</label><br>
+                                    {{ candidate_form.salary_type|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ candidate_form.salary_type.errors }}</div>
+                                </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Salary</label><br>
-                                    {{ candidate_form.salary|add_class:"form-control candidate_profile_input"  }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
-                                </div> 
+                                    <label class="form-label fw-semibold" for="id_salary">Salary</label><br>
+                                    {{ candidate_form.salary|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ candidate_form.salary.errors }}</div>
+                                </div>
                                 <div class="form-group mb-3">
                                     <label class="form-label fw-semibold" for="id_job_category">Job Category</label><br>
                                     {{ candidate_form.job_category|add_class:"form-control candidate_profile_input" }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
-                                </div> 
+                                    <div class="text-danger">{{ candidate_form.job_category.errors }}</div>
+                                </div>
                                 <div class="form-group mb-3">
-                                    <label class="form-label fw-semibold" for="id_new_password1">Job Title</label><br>
+                                    <label class="form-label fw-semibold" for="id_job_title">Job Title</label><br>
                                     {{ candidate_form.job_title|add_class:"form-control candidate_profile_input" }}
-                                    <div class="text-danger">{{ form.new_password1.errors }}</div>
-                                </div> 
+                                    <div class="text-danger">{{ candidate_form.job_title.errors }}</div>
+                                </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label fw-semibold" for="id_new_password1">Description</label><br>
-                            {{ candidate_form.description|add_class:"form-control  candidate_profile_input" }}
-                            <div class="text-danger">{{ form.new_password1.errors }}</div>
-                        </div> 
+                            <label class="form-label fw-semibold" for="id_description">Description</label><br>
+                            {{ candidate_form.description|add_class:"form-control candidate_profile_input" }}
+                            <div class="text-danger">{{ candidate_form.description.errors }}</div>
+                        </div>
                     </div>
-                    
+
                     <!-- <div class="card p-5">
                         <h4 class="mb-3">Social Networks</h4>
                         <h5 class="mb-4">Social</h5>
@@ -210,5 +217,10 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 {% endblock content %}
