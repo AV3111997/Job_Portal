@@ -50,7 +50,7 @@ class RegisterView(View):
         
                 # Create new user
         user = User.objects.create_user(username=email,email=email, password=password,user_type=user_type)
-        user.save()
+        
 
         if user_type == 'candidate':
             Candidate.objects.create(
@@ -63,6 +63,9 @@ class RegisterView(View):
                 user=user,
                 email=user.email,  
             )
+
+        #save user after creating the candidate or employer
+        user.save()
 
         return JsonResponse({'success': True, 'message': 'User registered successfully.'})
 

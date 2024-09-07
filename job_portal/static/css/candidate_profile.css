@@ -76,9 +76,7 @@
     font-size: 1.2rem;
     margin-right: 10px;
   }
-  .custom-accordion .accordion-body {
-    /* padding: 1rem 1.25rem; */
-  }
+
   .custom-accordion .form-select, .custom-accordion .form-control {
     background-color: #f1f7fa; /* Match the container's background */
   }
