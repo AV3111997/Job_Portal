@@ -1,86 +1,97 @@
 .candidate_profile {
-    background-color: #F5F7FC;
+  background-color: #F5F7FC;
 }
 
-.candidate_profile_input {
-    background: #F0F5F7;
-    padding: 18px;
-    border: none;
-    border-radius: 8px;
-    color: #77838f;
-    font-size: 15px;
+.candidate_profile_input .select2-container--default {
+  background: #F0F5F7 !important;
+  padding: 18px;
+  border: none;
+  border-radius: 8px;
+  color: #77838f;
+  font-size: 15px;
 }
 
 .candidate_profile_browse-btn {
-    cursor: pointer;
-    margin-left: 10px;
-    padding: 15px 30px;
-    font-size: 15px;
-    font-weight: 400;
-    border: none;
-    border-radius: 8px;
-    color: #246ED4;
-    background-color: #EEF4FC;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 15px 30px;
+  font-size: 15px;
+  font-weight: 400;
+  border: none;
+  border-radius: 8px;
+  color: #246ED4;
+  background-color: #EEF4FC;
 }
 
 .candidate_profile_browse-btn:hover {
-    background-color: #dceafd;
+  background-color: #dceafd;
 }
 
 .image-container {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .image-container img {
-    display: block;
+  display: block;
 }
 
 .close-icon {
-    position: absolute;
-    margin: 0px;
-    padding: 0px;
-    top: 4px;
-    left: 4px;
-    font-size: 18px;
-    color: #1868d3;
-    cursor: pointer;
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  top: 4px;
+  left: 4px;
+  font-size: 18px;
+  color: #1868d3;
+  cursor: pointer;
 }
-.close-icon:hover{
-    color: white;
-    background-color: #68a1ed;
-    border-radius: 4px;
+
+.close-icon:hover {
+  color: white;
+  background-color: #68a1ed;
+  border-radius: 4px;
 }
 
 
 .accordion-button::after {
-    /* Remove default accordion icon */
-    display: none;
-  }
-  .custom-accordion .accordion-item {
-    /* border: none; */
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  .custom-accordion .accordion-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1.25rem;
-    font-size: 1rem;
-  }
-  .custom-accordion .close-icon {
-    cursor: pointer;
-    color: red;
-    margin: auto;
-    font-size: 1.2rem;
-    margin-right: 10px;
-  }
+  /* Remove default accordion icon */
+  display: none;
+}
 
-  .custom-accordion .form-select, .custom-accordion .form-control {
-    background-color: #f1f7fa; /* Match the container's background */
-  }
-  .custom-accordion .btn-link {
-    color: #007bff;
-    text-decoration: underline;
-  }
+.custom-accordion .accordion-item {
+  /* border: none; */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.custom-accordion .accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+}
+
+.custom-accordion .close-icon {
+  cursor: pointer;
+  color: red;
+  margin: auto;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.custom-accordion .accordion-body {
+  /* padding: 1rem 1.25rem; */
+}
+
+.custom-accordion .form-select,
+.custom-accordion .form-control {
+  background-color: #f1f7fa;
+  /* Match the container's background */
+}
+
+.custom-accordion .btn-link {
+  color: #007bff;
+  text-decoration: underline;
+}

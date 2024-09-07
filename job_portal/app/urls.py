@@ -24,9 +24,9 @@ urlpatterns = [
     # path('jobpost/',views.EmployeeJobsView.as_view(), name='jobpost'),
     path('jobform/', views.JobPostingCreateView.as_view(), name='jobform'),
     path('candidates/', views.candidate_list, name='candidate_list'),
-    
     path('category/<int:pk>/', views.CategoryDetailView.as_view(), name='category_detail'),
     path('save_job/<int:job_id>/<int:candidate_id>/', views.SaveJobView.as_view(), name='save_job'),
     path('saved_jobs/', views.SavedJobsView.as_view(), name='candidate_saved_jobs'),
     path('delete_saved_job/<int:pk>/', views.DeleteSavedJobView.as_view(), name='delete_saved_job'),
+    path('result/',views.search, name='search'),
 ]
