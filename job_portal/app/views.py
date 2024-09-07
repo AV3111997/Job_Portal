@@ -3,7 +3,6 @@ from django.views.generic import TemplateView, DetailView, View, DeleteView
 from django.views.generic.edit import FormView
 from .models import (
     Candidate,
-    SocialNetwork,
     Contact,
     JobPosting,
     JobCategory,
@@ -13,7 +12,7 @@ from .models import (
     Location,
 )
 from django.views.generic import ListView
-from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm
+from .forms import CandidateForm, ContactForm, JobPostingForm
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -219,12 +218,16 @@ class CandidateProfileView(LoginRequiredMixin, View):
 
         if hasattr(user, "candidate_profile"):
             candidate = user.candidate_profile
-
-        if Contact.objects.filter(user=user).exists():
-            contact_instance = Contact.objects.filter(user=user).first()
+            if candidate.contacts.exists():
+                contact_instance = candidate.contacts.first()
 
         candidate_form = CandidateForm(instance=candidate)
-        contact_form = ContactForm(instance=contact_instance)
+        contact_form = (
+            ContactForm(instance=contact_instance)
+            if contact_instance
+            else ContactForm()
+        )
+
         return render(
             request,
             "candidate_profile.html",
@@ -235,23 +238,29 @@ class CandidateProfileView(LoginRequiredMixin, View):
         )
 
     def post(self, request, *args, **kwargs):
-        try:
-            candidate = request.user.candidate_profile
-        except Candidate.DoesNotExist:
-            candidate = None
+        user = request.user
+        candidate = user.candidate_profile
+
         candidate_form = CandidateForm(request.POST, request.FILES, instance=candidate)
-        contact_form = ContactForm(
-            request.POST,
-            instance=(
-                candidate.contacts.first()
-                if candidate and candidate.contacts.exists()
-                else None
-            ),
-        )
+
+        contact_instance = None
+        if candidate.contacts.exists():
+            contact_instance = candidate.contacts.first()
+
+        contact_form = ContactForm(request.POST, instance=contact_instance)
 
         if candidate_form.is_valid() and contact_form.is_valid():
-            candidate_form.save()
-            contact_form.save()
+            candidate = candidate_form.save()
+
+            contact = contact_form.save(commit=False)
+            contact_data = contact_form.cleaned_data
+            contact = Contact(
+                address=contact_data["address"],
+                location=contact_data["location"],
+                candidate=candidate,
+            )
+            contact.save()
+
             return redirect("userdashboard")
 
         return render(
@@ -325,9 +334,7 @@ def candidate_list(request):
         "selected_experience": experience,
         "selected_qualifications": qualification_names,
         "experience_range": range(7),  # Example experience range
-        "qualification_list": Qualification.objects.values_list(
-            "name", flat=True
-        ),  # Get qualification names from the database
+        "qualification_list": Qualification.objects.all(),  # Get qualification names from the database
     }
 
     return render(request, "candidate.html", context)
@@ -346,7 +353,7 @@ def search(request):
                 location = Location.objects.get(id=location_id)
                 jobs = jobs.filter(location=location)
             except Location.DoesNotExist:
-                location = None   
+                location = None
         context = {
             "searched": searched,
             "searched_jobs": jobs,
@@ -354,5 +361,4 @@ def search(request):
         }
         return render(request, "Searched_jobs_result.html", context)
     else:
-        return redirect('/')
-
+        return redirect("/")

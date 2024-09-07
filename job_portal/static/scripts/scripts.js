@@ -1,6 +1,10 @@
-
-document.getElementById('radiusSlider').addEventListener('input', function () {
-    document.getElementById('radiusValue').textContent = this.value + ' miles';
+document.addEventListener('DOMContentLoaded', function () {
+    const radiusSlider = document.getElementById('radiusSlider');
+    if (radiusSlider) {
+        radiusSlider.addEventListener('input', function () {
+            document.getElementById('radiusValue').textContent = this.value + ' miles';
+        });
+    }
 });
 
 function getCsrfToken() {
@@ -57,7 +61,12 @@ console.log('CSRF Token on Page Load:', getCsrfToken());
 
 $(document).ready(function () {
     $('#id_job_category').select2({
-        placeholder: 'select categories',
+        placeholder: 'Select job categories',
+        allowClear: true
+    });
+
+    $('#id_languages').select2({
+        placeholder: 'Select languages',
         allowClear: true
     });
 });
