@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Candidate, JobCategory, Language, Qualification, Employer, JobPosting, Location
+from .models import Candidate, JobCategory, Language, Qualification, Employer, JobPosting, Location ,CV
 
 # Register your models here.
 
@@ -16,3 +16,17 @@ class JobPostingAdmin(admin.ModelAdmin):
 admin.site.register(JobPosting, JobPostingAdmin)
 admin.site.register(JobCategory)
 admin.site.register(Location)
+
+
+class CVAdmin(admin.ModelAdmin):
+    list_display = ('name', 'file')
+    search_fields = ('name',)
+    ordering = ('name',)
+    fields = ('name', 'file')
+
+
+admin.site.register(CV, CVAdmin)
+
+    
+   
+

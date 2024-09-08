@@ -207,7 +207,7 @@ class JobPosting(models.Model):
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
     
     # Additional information
-    application_deadline = models.DateField()
+    application_deadline = models.DateField(null=True)
     friendly_address = models.CharField(max_length=255)
 
     def __str__(self):
@@ -217,3 +217,10 @@ class SavedJob(models.Model):
     candidate = models.ForeignKey(Candidate, related_name = 'candidate', on_delete=models.CASCADE)
     job = models.ForeignKey(JobPosting, related_name = 'job', on_delete=models.CASCADE)
 
+
+class CV(models.Model):
+    name = models.CharField(max_length=100)
+    file = models.FileField(upload_to='cvs/')
+
+    def __str__(self):
+        return self.name

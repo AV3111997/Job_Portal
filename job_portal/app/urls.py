@@ -21,8 +21,8 @@ urlpatterns = [
     path('applicants_jobs', views.ApplicantsJobsView.as_view(), name='applicants_jobs'),
     path('manage_jobs/', views.ManageJobsView.as_view(), name='manage_jobs'),
     path('candidate_profile/', views.CandidateProfileView.as_view(), name='candidate_profile'),
-    # path('jobpost/',views.EmployeeJobsView.as_view(), name='jobpost'),
     path('jobform/', views.JobPostingCreateView.as_view(), name='jobform'),
     path('category/<int:pk>/', views.CategoryDetailView.as_view(), name='category_detail'),
+    path('upload_cv/', views.CVUploadView.as_view() , name='cv_upload'),
 
 ]

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, Qualification, Location, Employer
+from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, Qualification, Location, Employer , CV
 
 
 class CandidateForm(forms.ModelForm):
@@ -76,6 +76,11 @@ class JobPostingForm(forms.ModelForm):
         self.fields['category'].queryset = JobCategory.objects.all()
         self.fields['qualification'].queryset = Qualification.objects.all()
         self.fields['location'].queryset = Location.objects.all()
+    
+    def __init__(self, *args, **kwargs):
+        super(JobPostingForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False
 
     def clean(self):
         cleaned_data = super().clean()
@@ -86,3 +91,9 @@ class JobPostingForm(forms.ModelForm):
             self.add_error('max_salary', 'Max salary must be greater than or equal to min salary.')
 
         return cleaned_data
+
+
+class CVForm(forms.ModelForm):
+    class Meta:
+        model = CV
+        fields = ['name', 'file']

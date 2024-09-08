@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, DetailView
 from django.views.generic.edit import FormView
 from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory
-from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm
+from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm , CVForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from .forms import JobPostingForm
 
 # Create your views here.
 
@@ -94,10 +96,7 @@ class ManageJobsView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['job_postings'] = JobPosting.objects.all()  # Fetch all job postings
         return context
-    
 
-class EmployeeJobsView(TemplateView):
-    template_name = 'employee.html'
 
 
 class CandidateProfileView(TemplateView):
@@ -131,10 +130,20 @@ class CandidateProfileView(TemplateView):
 
 class JobPostingCreateView(FormView):
     form_class = JobPostingForm
-    template_name = 'employee.html'  # Make sure this template exists
-    success_url = reverse_lazy('jobform')  # Redirect after successful form submission
+    template_name = 'jobposting_form.html'  
+    success_url = reverse_lazy('home') 
 
     def form_valid(self, form):
-        # Here you can perform additional actions if needed before saving
-        form.save()  # Save the form data
+        form.save()  
+        return super().form_valid(form)
+
+
+class CVUploadView(FormView):
+    form_class = CVForm
+    template_name = 'cv_upload.html'
+    success_url = reverse_lazy('cv_upload')  
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'CV uploaded successfully!')
         return super().form_valid(form)
