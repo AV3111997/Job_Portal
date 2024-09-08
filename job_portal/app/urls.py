@@ -22,7 +22,11 @@ urlpatterns = [
     path('manage_jobs/', views.ManageJobsView.as_view(), name='manage_jobs'),
     path('candidate_profile/', views.CandidateProfileView.as_view(), name='candidate_profile'),
     path('jobform/', views.JobPostingCreateView.as_view(), name='jobform'),
+    path('candidates/', views.candidate_list, name='candidate_list'),
     path('category/<int:pk>/', views.CategoryDetailView.as_view(), name='category_detail'),
     path('upload_cv/', views.CVUploadView.as_view() , name='cv_upload'),
-
+    path('save_job/<int:job_id>/<int:candidate_id>/', views.SaveJobView.as_view(), name='save_job'),
+    path('saved_jobs/', views.SavedJobsView.as_view(), name='candidate_saved_jobs'),
+    path('delete_saved_job/<int:pk>/', views.DeleteSavedJobView.as_view(), name='delete_saved_job'),
+    path('result/',views.search, name='search'),
 ]

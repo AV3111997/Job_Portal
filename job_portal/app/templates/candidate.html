@@ -6,8 +6,11 @@
 
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
 <link rel="stylesheet" href="{% static 'css/candidate.css' %}">
 {% endblock css_styles %}
+
 {% block content %}
 <div class="col-md-9">
     <!-- Candidate Heading Section -->
@@ -22,268 +25,106 @@
     </div>
 </div>
 
-
 <div class="row">
-    <!-- Search Section -->
     <div class="col-md-3">
         <div class="search-section p-3">
-            <h5><i class="bi bi-amazon"></i> Search by Keywords</h5>
-            <div class="mb-3 position-relative">
-                <!-- Add the SVG icon inside the input field -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-2" viewBox="0 0 16 16">
-                    <path
-                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                </svg>
-                <input type="text" class="form-control ps-4" placeholder=" Candidate title,keywords">
-            </div>
+            <h5>Search by Keywords</h5>
+            <form method="GET" action="{% url 'candidate_list' %}">
+                <!-- Keyword Input -->
+                <div class="mb-3 position-relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-2"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                    <input type="text" name="keyword" class="form-control ps-4" placeholder="Candidate title, keywords"
+                        value="{{ keyword }}">
+                </div>
+
+                <!-- Location Input -->
+                <div class="mb-3 position-relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                    </svg>
+                    <input type="text" name="location" class="form-control ps-4" placeholder="Location"
+                        value="{{ location }}">
+                </div>
+
+                <!-- Category Filter -->
+                <h5>Category</h5>
+                <div class="mb-3 position-relative">
+                    <select name="categories" class="form-control" aria-label="Categories" multiple>
+                        {% for category in categories %}
+                        <option value="{{ category.id }}" {% if category.id|stringformat:'s' in selected_categories%}
+                        selected
+                        {% endif %}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Gender Filter -->
+                <h5>Candidate Gender</h5>
+                <div class="mb-3">
+                    <select name="gender" class="form-select">
+                        <option value="">Any</option>
+                        <option value="Male" {% if gender == 'Male' %} selected {% endif %}>Male</option>
+                        <option value="Female" {% if gender == 'Female' %} selected {% endif %}>Female</option>
+                        <option value="Both" {% if gender == 'Both' %} selected {% endif %}>Both</option>
+                    </select>
+                </div>
+
+                <!-- Date Posted Section -->
+
+                <h5>Experience</h5>
+                <div class="mb-3">
+                    {% for year in experience_range %}
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" name="experience"
+                            value="{{ year }}" id="experience{{ year }}" {% if year|stringformat:'s' in selected_experience %}
+                            checked
+                            {% endif %}>
+                        <label class="form-check-label" for="experience{{ year }}">
+                            {% if year == 0 %}
+                            Fresher
+                            {% else %}
+                            {{ year }} Year{% if year > 1 %}s{% endif %}
+                            {% endif %}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+                <h5>Qualification</h5>
+                <div class="mb-3">
+                    {% for qualification in qualification_list %}
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" name="qualifications"
+                            value="{{ qualification }}" id="qualification{{ forloop.counter }}" {% if qualification in selected_qualifications %}
+                            checked
+                            {% endif %}>
+                        <label class="form-check-label" for="qualification{{ forloop.counter }}">{{ qualification.name }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
 
 
 
-            <h5>Location</h5>
-            <div class="mb-3 position-relative">
-                <!-- Location SVG icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                </svg>
-                <!-- Dropdown arrow SVG icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M7.293 11.293a1 1 0 0 0 1.414 0L12 8.414 10.707 7.121 8 9.828 5.293 7.121 4 8.414l3.293 3.293z" />
-                </svg>
-                <!-- Dropdown menu -->
-                <select class="form-control ps-4" aria-label="Location">
-                    <option value="" disabled selected> Select a city or postcode</option>
-                    <option value="12345">City 1 - 12345</option>
-                    <option value="67890">City 2 - 67890</option>
-                    <option value="54321">City 3 - 54321</option>
-                    <!-- Add more options as needed -->
-                </select>
-            </div>
 
-            <h5>Radius: <span id="radiusValue">50 miles</span></h5>
-            <div class="mb-3">
-                <input type="range" class="slider" id="radiusSlider" min="0" max="100" value="50"
-                    oninput="updateSlider(this.value)">
-            </div>
-            <h5>Category</h5>
-            <div class="mb-3 position-relative">
-                <!-- Message SVG icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-envelope" viewBox="0 0 16 16">
-                    <path
-                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
-                </svg>
-                <!-- Dropdown arrow SVG icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                    <path
-                        d="M7.293 11.293a1 1 0 0 0 1.414 0L12 8.414 10.707 7.121 8 9.828 5.293 7.121 4 8.414l3.293 3.293z" />
-                </svg>
-                <!-- Dropdown menu -->
-                <select class="form-control" aria-label="Location">
-                    <option value="" disabled selected>choose a category</option>
-                    <option value="12345">Advertising</option>
-                    <option value="67890">Application</option>
-                    <option value="54321">Customer</option>
-                    <option value="54321">Design</option>
-                    <option value="54321">Developer</option>
-                    <!-- Add more options as needed -->
-                </select>
-            </div>
 
-            <h5>Candidate Gender</h5>
-            <div class="mb-3">
-                <select class="form-select">
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Both</option>
-                </select>
-            </div>
-
-            <!-- Date Posted Section -->
-            <h5>Date posted</h5>
-            <div class="mb-3">
-                <div class="form-check">
-                    <input class="form-check-input circle-checkbox" type="checkbox" id="lastHour">
-                    <label class="form-check-label" for="lastHour">Last hour</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input circle-checkbox" type="checkbox" id="last24Hours">
-                    <label class="form-check-label" for="last24Hours">Last 24 hours</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input circle-checkbox" type="checkbox" id="last7Days">
-                    <label class="form-check-label" for="last7Days">Last 7 days</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input circle-checkbox" type="checkbox" id="last14Days">
-                    <label class="form-check-label" for="last14Days">Last 14 days</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input circle-checkbox" type="checkbox" id="last30Days">
-                    <label class="form-check-label" for="last30Days">Last 30 days</label>
-                </div>
-                <button class="btn btn-link text-primary p-0" id="showMoreBtn" type="button">
-                    <i class="fas fa-plus"></i> <span>Show More</span>
-                </button>
-                <button class="btn btn-link text-primary p-0" id="showLessBtn" type="button" style="display: none;">
-                    <i class="fas fa-minus"></i> <span>Show Less</span>
-                </button>
-
-            </div>
-
-            <!-- Experience Section -->
-            <h5>Experience</h5>
-            <div class="mb-3">
-                <div class="form-check">
-                    <label class="form-check-label" for="fresh">
-                        <span class="toggle">
-                            <input class="form-check-input toggle-checkbox" type="checkbox" id="fresh">
-                            <span class="toggle-slider"></span>
-                        </span>
-                        Fresher
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label" for="oneYear">
-                        <span class="toggle">
-                            <input class="form-check-input toggle-checkbox" type="checkbox" id="oneYear">
-                            <span class="toggle-slider"></span>
-                        </span>
-                        1 Year
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label" for="twoYears">
-                        <span class="toggle">
-                            <input class="form-check-input toggle-checkbox" type="checkbox" id="twoYears">
-                            <span class="toggle-slider"></span>
-                        </span>
-                        2 Years
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label" for="threeYears">
-                        <span class="toggle">
-                            <input class="form-check-input toggle-checkbox" type="checkbox" id="threeYears">
-                            <span class="toggle-slider"></span>
-                        </span>
-                        3 Years
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label" for="fourYears">
-                        <span class="toggle">
-                            <input class="form-check-input toggle-checkbox" type="checkbox" id="fourYears">
-                            <span class="toggle-slider"></span>
-                        </span>
-                        4 Years
-                    </label>
-                </div>
-                <button class="btn btn-link text-primary p-0" id="showMoreBtn" type="button">
-                    <i class="fas fa-plus"></i> <span>Show More</span>
-                </button>
-                <button class="btn btn-link text-primary p-0" id="showLessBtn" type="button" style="display: none;">
-                    <i class="fas fa-minus"></i> <span>Show Less</span>
-                </button>
-
-            </div>
-
-            <!-- Qualification Section -->
-            <h5>Qualification</h5>
-            <div class="mb-3">
-                <div class="form-check">
-                    <label class="form-check-label" for="certificate">
-                        <span class="toggle">
-                            <input class="form-check-input toggle-checkbox" type="checkbox" id="certificate">
-                            <span class="toggle-slider"></span>
-                        </span>
-                        Certificate
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label" for="diploma">
-                        <span class="toggle">
-                            <input class="form-check-input toggle-checkbox" type="checkbox" id="diploma">
-                            <span class="toggle-slider"></span>
-                        </span>
-                        Diploma
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label" for="associate">
-                        <span class="toggle">
-                            <input class="form-check-input toggle-checkbox" type="checkbox" id="associate">
-                            <span class="toggle-slider"></span>
-                        </span>
-                        Associate
-                    </label>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label" for="degree">
-                        <span class="toggle">
-                            <input class="form-check-input toggle-checkbox" type="checkbox" id="degree">
-                            <span class="toggle-slider"></span>
-                        </span>
-                        Degree
-                    </label>
-
-                </div>
-                <button type="button" class="btn btn-primary" style="padding: 8px 50px; font-size: 18px;">Find
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary" style="padding: 8px 50px; font-size: 18px;">Find
                     Candidates</button>
-                <div class="container mt-5">
-                    <form action="your-action-url" method="post">
-                        <!-- Title Field -->
-                        <div class="mb-3">
-                            <label for="alertTitle" class="form-label"><b>
-                                    <h5>Candidate Alert</h5>
-                                </b></label>
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" required>
-                        </div>
-
-                        <!-- Email Frequency Field -->
-                        <div class="mb-3">
-                            <label for="emailFrequency" class="form-label">Email Frequency</label>
-                            <select class="form-select" id="emailFrequency" name="emailFrequency" required>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Weekly</option>
-                                <option value="monthly">Monthly</option>
-                            </select>
-                        </div>
-
-                        <!-- Save Button -->
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary"
-                                style="padding: 8px 30px; font-size: 18px;">Save Candidate Alert</button>
-                        </div>
-                    </form>
-                </div>
-
-
-
-
-
-            </div>
+            </form>
         </div>
     </div>
 
-
-
-
-
     <div class="col-md-9">
-
-
+        <!-- Results and Sorting -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>Showing 1 – 9 of 30 results</div>
+            <div>Showing {{ candidates.count }} results</div>
             <div class="d-flex">
                 <select class="form-select me-2">
                     <option selected>Sort by (Default)</option>
@@ -295,168 +136,50 @@
                 </select>
             </div>
         </div>
-
         <!-- Candidate Card Example -->
-        <div class="candidate-card d-flex align-items-center">
-            <img src="{% static 'img/img1.jpg' %}" alt="Candidate" class="candidate-image me-3">
+        {% for candidate in candidates %}
+        <div class="candidate-card d-flex align-items-center position-relative">
+            {% if candidate.profile_image and candidate.profile_image.name %}
+            <img src="{{ candidate.profile_image.url }}" alt="Profile Image">
+            {% else %}
+            <p>No profile image available.</p>
+            {% endif %}
             <div class="flex-grow-1">
-
-                <h5 class="mb-1">Ali Tufan <span class="featured-text">Featured</span></h5>
-
-                <p class="mb-1"><a href="#" class="text-decoration-none">Advertising</a> | <i
-                        class="fas fa-map-marker-alt"></i>New York |$2000 / year</p>
+                <h5 class="mb-1">
+                    {{ candidate.fullname }}
+                    <span class="featured-text">Featured</span>
+                </h5>
+                <p class="mb-1">
+                    <a href="#" class="text-decoration-none">{{ candidate.job_title }}</a>
+                    | <i class="fas fa-map-marker-alt"></i> {{ candidate.location }} |
+                    ${{ candidate.salary }} / year
+                </p>
                 <div>
-
-                    <button class="badge btn-badge">Administrative</button>
-                    <button class="badge btn-badge">App</button>
-                    <button class="badge btn-badge">Jobs</button>
-                    <button class="badge btn-badge">Php</button>
+                    {% for category in candidate.job_category.all %}
+                    <button class="badge btn-badge">{{ category }}</button>
+                    {% endfor %}
                 </div>
             </div>
-            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
 
-
-
-        </div>
-        <script>
-            document.getElementById("viewProfileButton").addEventListener("click", function () {
-                this.classList.toggle("clicked");
-            });</script>
-
-
-        <div class="candidate-card d-flex align-items-center">
-            <img src="{% static 'img/img2.jpg' %}" alt="Candidate" class="candidate-image me-3">
-            <div class="flex-grow-1">
-
-                <h5 class="mb-1">Candidate <span class="featured-text">Featured</span></h5>
-
-                <p class="mb-1"><a href="#" class="text-decoration-none">Application</a> | <i
-                        class="fas fa-map-marker-alt"></i>New York | $10 /hour</p>
-                <div>
-
-                    <button class="badge btn-badge">App</button>
-                    <button class="badge btn-badge">Design</button>
-                    <button class="badge btn-badge">Digital</button>
-
-                </div>
+            <!-- Bookmark Icon -->
+            <!-- Bookmark Icon -->
+            <div class="bookmark-icon position-absolute" style="top: 40px; right: 141px;"
+                onclick="toggleBookmark(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-bookmark" viewBox="0 0 16 16">
+                    <path
+                        d="M2 2v13.5l5-2.5 5 2.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zm2-.5A.5.5 0 0 1 4 1h6a.5.5 0 0 1 .5.5v11.61l-3-1.5-3 1.5V1.5z" />
+                </svg>
             </div>
+
+
             <button id="viewProfileButton" class="view-profile-button">View Profile</button>
-
-
         </div>
+        {% empty %}
+        <p>No candidates found.</p>
+        {% endfor %}
 
-        <div class="candidate-card d-flex align-items-center">
-            <img src="{% static 'img/img3.jpg' %}" alt="Candidate" class="candidate-image me-3">
-            <div class="flex-grow-1">
-
-                <h5 class="mb-1">Ralph Edwads<span class="featured-text">Featured</span></h5>
-
-                <p class="mb-1"><a href="#" class="text-decoration-none">Design</a> | <i
-                        class="fas fa-map-marker-alt"></i>New York | $2000 / year</p>
-                <div>
-
-                    <button class="badge btn-badge">App</button>
-                    <button class="badge btn-badge">Design</button>
-                    <button class="badge btn-badge">Jobs</button>
-
-
-                </div>
-            </div>
-            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
-
-
-        </div>
-
-        <div class="candidate-card d-flex align-items-center">
-            <img src="{% static 'img/img4.jpg' %}" alt="Candidate" class="candidate-image me-3">
-            <div class="flex-grow-1">
-
-                <h5 class="mb-1">Robert Fox <span class="featured-text">Featured</span></h5>
-
-                <p class="mb-1"><a href="#" class="text-decoration-none">Application</a> | <i
-                        class="fas fa-map-marker-alt"></i>New York | $2000 / year</p>
-                <div>
-
-
-                    <button class="badge btn-badge">Application</button>
-                    <button class="badge btn-badge">Designer</button>
-                    <button class="badge btn-badge">Jobs</button>
-                    <button class="badge btn-badge">Php</button>
-
-
-                </div>
-            </div>
-            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
-
-        </div>
-
-        <div class="candidate-card d-flex align-items-center">
-            <img src="{% static 'img/img5.jpg' %}" alt="Candidate" class="candidate-image me-3">
-            <div class="flex-grow-1">
-                <h5 class="mb-1">Esther Howard <span class="featured-text">Featured</span></h5>
-
-
-                <p class="mb-1"><a href="#" class="text-decoration-none">Developer</a> | <i
-                        class="fas fa-map-marker-alt"></i> New York | $2000 / year</p>
-                <div>
-                    <button class="badge btn-badge">App</button>
-                    <button class="badge btn-badge">Jobs</button>
-                    <button class="badge btn-badge">Php</button>
-
-                </div>
-            </div>
-            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
-
-        </div>
-        <div class="candidate-card d-flex align-items-center">
-            <img src="{% static 'img/img6.jpg' %}" alt="Candidate" class="candidate-image me-3">
-            <div class="flex-grow-1">
-                <h5 class="mb-1">Esther Howard <span class="featured-text">Featured</span></h5>
-
-                <p class="mb-1"><a href="#" class="text-decoration-none">Developer</a> | <i
-                        class="fas fa-map-marker-alt"></i> New York | $2000 / year</p>
-                <div>
-                    <button class="badge btn-badge">App</button>
-                    <button class="badge btn-badge">Jobs</button>
-                    <button class="badge btn-badge">Php</button>
-
-                </div>
-            </div>
-            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
-
-        </div>
-        <div class="candidate-card d-flex align-items-center">
-            <img src="{% static 'img/img6.jpg' %}" alt="Candidate" class="candidate-image me-3">
-            <div class="flex-grow-1">
-                <h5 class="mb-1">Esther Howard <span class="featured-text">Featured</span></h5>
-                <p class="mb-1"><a href="#" class="text-decoration-none">Developer</a> | <i
-                        class="fas fa-map-marker-alt"></i>New York | $2000 / year</p>
-                <div>
-                    <button class="badge btn-badge">App</button>
-                    <button class="badge btn-badge">Jobs</button>
-                    <button class="badge btn-badge">Php</button>
-
-                </div>
-            </div>
-            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
-
-        </div>
-        <div class="candidate-card d-flex align-items-center">
-            <img src="{% static 'img/img1.jpg' %}" alt="Candidate" class="candidate-image me-3">
-            <div class="flex-grow-1">
-                <h5 class="mb-1">Esther Howard <span class="featured-text">Featured</span></h5>
-                <p class="mb-1"><a href="#" class="text-decoration-none">Developer</a> | <i
-                        class="fas fa-map-marker-alt"></i> New York | $2000 / year</p>
-                <div>
-                    <button class="badge btn-badge">App</button>
-                    <button class="badge btn-badge">Jobs</button>
-                    <button class="badge btn-badge">Php</button>
-
-                </div>
-            </div>
-            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
-
-        </div>
+        <!-- Pagination -->
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
@@ -470,9 +193,6 @@
                 </li>
             </ul>
         </nav>
-
+    </div>
 </div>
-
-
 {% endblock content %}
-

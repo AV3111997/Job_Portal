@@ -1,0 +1,105 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}
+{% if searched %}
+<title>Search Result for: {{searched}}</title>
+{% endif %}
+{% endblock title %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}">
+{% endblock css_styles %}
+
+{% block content %}
+
+<div class="container-fluid d-flex">
+    <div class="sidebar">
+        <div class="profile-section">
+            <div class="profile-img-container">
+                <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h2>Candidate</h2>
+                <p>New York</p>
+                <button class="view-profile-btn">View Profile</button>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="#"><i class="bi bi-journal-check"></i> User Dashboard</a>
+            <a href="#"><i class="bi bi-person"></i> Profile</a>
+            <a href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
+            <a href="#"><i class="bi bi-megaphone"></i> My Applied</a>
+            <a href="#"><i class="bi bi-bookmark-check"></i> Shortlist Jobs</a>
+            <a href="#"><i class="bi bi-person-fill-add"></i> Following Employers</a>
+            <a href="#"><i class="bi bi-megaphone"></i> Alerts Jobs</a>
+            <a href="#"><i class="bi bi-chat-dots"></i> Messages</a>
+            <a href="#"><i class="bi bi-person-lines-fill"></i> Meetings</a>
+            <a href="#"><i class="bi bi-key"></i> Change Password</a>
+            <a href="#"><i class="bi bi-trash3-fill"></i> Delete Profile</a>
+            <a href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
+        </nav>
+    </div>
+    <div class="main-content p-5">
+        {% if searched %}
+        <div class="header">
+            <h1>Search Result for: {{searched}}</h1>
+        </div>
+        {% endif %}
+        {% if location %}
+        <div class="header mb-4">
+            <h2>Location: {{location.name}}</h2>
+        </div>
+        {% endif %}
+        <div class="row d-flex flex-column">
+            {% if searched_jobs %}
+            {% for jobs in searched_jobs %}
+            <div class="col-md-12 mb-4">
+                <div class="card job-card">
+                    <div class="card-body p-4 mt-2 mb-2">
+                        <div class="row">
+                            <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
+                            </div>
+                            <div class="col-md-9 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="job-row-one">
+                                        <div class="d-flex">
+                                            <a class="feat-jobs" href="{% url 'job_details' jobs.pk %}"
+                                                style="text-decoration: none; color: inherit;">
+                                                <h5 class="job-card-title">{{jobs.job_title}}</h5>
+                                            </a>
+                                            <div class="ms-2">
+                                                <span class="text-danger">{{jobs.status}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <p class="card-text text-nowrap">
+                                        <span class="text-muted me-2"><i
+                                                class="fa-solid fa-briefcase"></i>&nbsp;{{jobs.category}}</span>
+                                        <span class="me-2"><i
+                                                class="fa-solid fa-location-dot"></i>&nbsp;{{jobs.location}}</span>
+                                        <span><i class="fa-solid fa-money-bill"></i>&nbsp;${{jobs.min_salary}}
+                                            - ${{jobs.max_salary}} / {{jobs.salary_type}}</span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <span class="job-type-badge">{{jobs.job_type}}</span>
+                                    <span class="urgent-badge">{{jobs.urgency_level}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="d-flex align-items-center justify-content-center">
+                <h3>No Result!</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,6 +1,6 @@
 .navbar {
     padding: 2% 1% 2% 1%;
-    
+
 }
 
 .navbar-custom-bg {
@@ -148,50 +148,48 @@
     color: #6c757d;
 }
 
-/* .form-control {
+.banner-form-group {
     border: none;
     border-radius: 0;
     box-shadow: none;
-} */
+}
 
-input::placeholder, select {
+input::placeholder,
+select {
     color: #6c757d;
 }
 
-/* .btn-primary {
+.search-btn {
+    border: 1px solid transparent;
     background-color: #1967D2;
     padding: 10px 20px;
     white-space: nowrap;
     font-size: 16px;
     line-height: 1;        
     display: inline-flex;  
-    align-items: center;   
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #1967D2;
+    color: white;
+    transition-duration: 0.3s;   
 }
 
-.btn-primary:hover {
+.search-btn:hover {
     color: #1967D2;
     background-color: white;
     border: 1px #1967D2 solid;
     transition-duration: 0.3s;
-} */
+}
 
-
-
-.banner-form button {
+/* .banner-form button {
     border: none;
     color: white;
     padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: #1967D2;
-    color: white;
-    transition-duration: 0.3s;
-}
+    
+} */
 
 .job-box {
     border: 1px solid #e6e6e6 !important;
@@ -288,35 +286,6 @@ h2 {
     margin-left: 10px;
 }
 
-.sticky-badge {
-    background-color: grey;
-    width: 250px;
-    height: 150px;
-    position: absolute;
-    left: 40%;
-    top: 415%;
-    border-radius: 5px;
-}
-
-@media (max-width: 576px) {
-    .sticky-badge {
-        display: none; /* Hide the badge */
-    }
-}
-
-/* For medium screens (tablets) */
-@media (min-width: 577px) and (max-width: 768px) {
-    .sticky-badge {
-        display: none; /* Hide the badge if necessary */
-    }
-}
-
-/* For large screens (desktops) */
-@media (min-width: 769px) {
-    .sticky-badge {
-        display: block; /* Ensure the badge is visible on larger screens */
-    }
-}
 .report-bar {
     margin-top: 150px;
 }
@@ -345,14 +314,14 @@ h2 {
 
 .download-app-btn a {
     color: white;
-    text-decoration: none; 
-    color: inherit; 
-    display: flex; 
-    align-items: center; 
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
 }
 
 .download-app-btn i {
-    font-size: 2rem; 
+    font-size: 2rem;
     margin-right: 0.5rem;
 }
 
@@ -368,14 +337,15 @@ h2 {
 .center-content {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: flex-start; 
-    text-align: left; 
-    padding: 0 15px; 
-    height: 100vh; 
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0 15px;
+    height: 100vh;
 }
 
-.banner-desc, .form-content {
+.banner-desc,
+.form-content {
     width: 100%;
 }
 
@@ -483,26 +453,26 @@ h2 {
     padding: 5px;
     transition-duration: 0.4s;
     cursor: pointer;
-  }
+}
 
-  .article-share-btn-f {
+.article-share-btn-f {
     background-color: #0073e6;
-  }
+}
 
-  .article-share-btn-t {
+.article-share-btn-t {
     background-color: #00ccff;
-  }
+}
 
-  .article-share-btn-p {
+.article-share-btn-p {
     background-color: #ff0000;
-  }
+}
 
-  .comment-image-placeholder {
+.comment-image-placeholder {
     width: 50px;
-    height: 50px;      
-    background-color: #ccc; 
-    border-radius: 50%; 
-    display: inline-block; 
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 .feat-jobs:hover {
@@ -513,7 +483,8 @@ h2 {
     position: relative;
 }
 
-.save-button {
+.save-button,
+.delete-button {
     position: absolute;
     top: 0;
     right: 0;
@@ -525,6 +496,10 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
+.delete-button i {
+    color: red;
+}
+
 .save-button i {
     color: #333;
     font-size: 16px;
@@ -533,10 +508,3 @@ h2 {
 .save-button i.fa-solid {
     color: gold;
 }
-
-
-
-
-
-
-
