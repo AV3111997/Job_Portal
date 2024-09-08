@@ -18,6 +18,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib import messages
 
 # Create your views here.
 
@@ -274,14 +275,77 @@ class CandidateProfileView(LoginRequiredMixin, View):
 
 
 class JobPostingCreateView(FormView):
+    template_name = "jobposting.html"
     form_class = JobPostingForm
-    template_name = "employee.html"  # Make sure this template exists
-    success_url = reverse_lazy("jobform")  # Redirect after successful form submission
+    success_url = reverse_lazy("manage_jobs")
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        employer = getattr(user, "employers", None)
+
+        if employer:
+            jobposting_form = self.form_class()
+            return render(
+                request,
+                self.template_name,
+                {
+                    "jobposting_form": jobposting_form,
+                },
+            )
+        else:
+            messages.error(request, "You must have an employer profile to post a job.")
+            return redirect("jobpost_form")
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        employer = getattr(user, "employers", None)
+
+        if employer:
+            jobposting_form = self.form_class(request.POST, request.FILES)
+
+            if jobposting_form.is_valid():
+                job_posting = jobposting_form.save(commit=False)
+                job_posting.employer = employer
+                job_posting.save()
+
+                messages.success(request, "Job posting created successfully!")
+                return redirect("jobpost_form")
+
+        else:
+            messages.error(request, "You must have an employer profile to post a job.")
+            return redirect("jobpost_form")
+
+        return render(
+            request,
+            self.template_name,
+            {
+                "jobposting_form": jobposting_form,
+            },
+        )
+
+
+class JobPostingUpdateView(FormView):
+    model = JobPosting
+    form_class = JobPostingForm
+    template_name = "jobposting.html"
+    success_url = reverse_lazy("manage_jobs")
+
+    def get_object(self, queryset=None):
+        user = self.request.user
+        employer = getattr(user, "employers", None)
+
+        job_posting = get_object_or_404(
+            JobPosting, pk=self.kwargs["pk"], employer=employer
+        )
+        return job_posting
 
     def form_valid(self, form):
-        # Here you can perform additional actions if needed before saving
-        form.save()  # Save the form data
+        messages.success(self.request, "Job posting updated successfully!")
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "There was an error updating the job posting.")
+        return super().form_invalid(form)
 
 
 def candidate_list(request):

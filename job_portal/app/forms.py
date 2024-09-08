@@ -98,7 +98,7 @@ class JobPostingForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Dynamically set queryset for employer, category, qualification, and location
         self.fields["employer"].queryset = Employer.objects.all()
-        self.fields["category"].queryset = JobCategory.objects.all()
+        self.fields["job_category"].queryset = JobCategory.objects.all()
         self.fields["qualification"].queryset = Qualification.objects.all()
         self.fields["location"].queryset = Location.objects.all()
 
@@ -113,3 +113,8 @@ class JobPostingForm(forms.ModelForm):
             )
 
         return cleaned_data
+
+    def __init__(self, *args, **kwargs):
+        super(JobPostingForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False

@@ -146,7 +146,10 @@ class Employer(models.Model):
     email = models.EmailField(max_length=255)
     phone_no = models.CharField(max_length=20)
     website = models.URLField(max_length=200)
-    founded_date = models.DateField()
+    founded_date = models.DateField(
+        null=True,
+        blank=True,
+    )
     logo = models.ImageField(upload_to="employer_logos/")
     cover_photo = models.ImageField(upload_to="employer_coverphoto/")
     company_size = models.CharField(max_length=20)
@@ -266,7 +269,7 @@ class JobPosting(models.Model):
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="open")
 
     # Additional information
-    application_deadline = models.DateField()
+    application_deadline = models.DateField(null=True, blank=True)
     friendly_address = models.CharField(max_length=255)
 
     def __str__(self):
