@@ -207,14 +207,11 @@ class ManageJobsView(TemplateView):
         context["statuses"] = JobPosting.STATUS_CHOICES
 
         return context
-<<<<<<< HEAD
 
-=======
 
 
 class EmployeeJobsView(TemplateView):
     template_name = "employee.html"
->>>>>>> origin/main
 
 
 class CandidateProfileView(LoginRequiredMixin, View):
