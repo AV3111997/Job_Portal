@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, DetailView, View, DeleteView, ListView
 from django.views.generic.edit import FormView
-from .forms import CandidateForm, ContactForm, JobPostingForm, CVForm
+from .forms import CandidateForm , ContactForm , CVForm
 from .models import (
     Candidate,
     Contact,
@@ -11,6 +11,7 @@ from .models import (
     Employer,
     Qualification,
     Location,
+    CV
 )
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
@@ -78,6 +79,8 @@ class SavedJobsView(LoginRequiredMixin, TemplateView):
         saved_jobs = SavedJob.objects.filter(candidate=candidate)
         context["saved_jobs"] = saved_jobs
         return context
+
+  
 
 
 class DeleteSavedJobView(DeleteView):

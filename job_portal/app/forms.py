@@ -1,5 +1,4 @@
 from django import forms
-from .models import Candidate,  Contact, JobPosting, JobCategory, Qualification, Location, Employer , CV
 from .models import (
     Candidate,
     Contact,
@@ -8,6 +7,7 @@ from .models import (
     Qualification,
     Location,
     Employer,
+    CV
 )
 
 
