@@ -80,7 +80,10 @@ class SavedJobsView(LoginRequiredMixin, TemplateView):
         context["saved_jobs"] = saved_jobs
         return context
 
-  
+class ArticlesView(ListView):
+    
+    template_name = 'article_page.html'
+    context_object_name = 'articles'  
 
 
 class DeleteSavedJobView(DeleteView):
