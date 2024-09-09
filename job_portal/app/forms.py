@@ -1,8 +1,7 @@
 from django import forms
-from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, Qualification, Location, Employer , CV
+from .models import Candidate,  Contact, JobPosting, JobCategory, Qualification, Location, Employer , CV
 from .models import (
     Candidate,
-    SocialNetwork,
     Contact,
     JobPosting,
     JobCategory,
@@ -120,18 +119,4 @@ class CVForm(forms.ModelForm):
     class Meta:
         model = CV
         fields = ['name', 'file']
-
-class SocialNetworkForm(forms.ModelForm):
-    class Meta:
-        model = SocialNetwork
-        fields = ['platform', 'url']  # Replace with actual fields from your model
-        widgets = {
-            'platform': forms.TextInput(attrs={'class': 'form-control'}),
-            'url': forms.URLInput(attrs={'class': 'form-control'}),
-        }
-
-    def __init__(self, *args, **kwargs):
-        super(SocialNetworkForm, self).__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.required = False
 
