@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import TemplateView, DetailView, View, DeleteView, ListView
+from django.views.generic import ListView, TemplateView, DetailView, View, DeleteView
 from django.views.generic.edit import FormView
 from .models import (
     Candidate,
@@ -11,15 +11,15 @@ from .models import (
     Employer,
     Qualification,
     Location,
-    CV
 )
-from django.views.generic import ListView
-from .forms import CandidateForm, ContactForm, JobPostingForm
+from .forms import CandidateForm, CandidateContactForm, JobPostingForm, CVForm, EmployerForm, EmployerContactForm
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -258,13 +258,20 @@ class JobPostingCreateView(FormView):
 
 class CVUploadView(FormView):
     form_class = CVForm
-    template_name = 'cv_upload.html'
-    success_url = reverse_lazy('cv_upload')  
+    template_name = "cv_upload.html"
+    success_url = reverse_lazy("candidate_profile")
 
     def form_valid(self, form):
-        form.save()
-        messages.success(self.request, 'CV uploaded successfully!')
+        candidate = self.request.user.candidate_profile
+
+        cv = form.save(commit=False)
+        cv.candidate = candidate
+        cv.save()
+        
+        messages.success(self.request, "CV uploaded successfully!")
         return super().form_valid(form)
+      
+      
 def candidate_list(request):
     keyword = request.GET.get("keyword", "")
     location = request.GET.get("location", "")

@@ -95,7 +95,7 @@ class JobPostingForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "job_description": forms.Textarea(attrs={"class": "form-control"}),
-            "application_deadline": forms.DateInput(attrs={"class": "form-control"}),
+            "application_deadline": forms.DateInput(attrs={"class": "form-control", "type": "date" }),
             "featured_image": forms.ClearableFileInput(
                 attrs={"class": "form-control", "multiple": False}
             ),
