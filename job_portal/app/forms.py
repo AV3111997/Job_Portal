@@ -1,7 +1,5 @@
 from django import forms
-<<<<<<< HEAD
 from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory, Qualification, Location, Employer , CV
-=======
 from .models import (
     Candidate,
     SocialNetwork,
@@ -12,7 +10,6 @@ from .models import (
     Location,
     Employer,
 )
->>>>>>> origin/main
 
 
 class CandidateForm(forms.ModelForm):
