@@ -434,10 +434,15 @@ class JobPostingUpdateView(FormView):
 class CVUploadView(FormView):
     form_class = CVForm
     template_name = "cv_upload.html"
-    success_url = reverse_lazy("cv_upload")
+    success_url = reverse_lazy("candidate_profile")
 
     def form_valid(self, form):
-        form.save()
+        candidate = self.request.user.candidate_profile
+
+        cv = form.save(commit=False)
+        cv.candidate = candidate
+        cv.save()
+        
         messages.success(self.request, "CV uploaded successfully!")
         return super().form_valid(form)
 

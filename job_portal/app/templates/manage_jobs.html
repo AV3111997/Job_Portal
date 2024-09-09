@@ -21,7 +21,7 @@
                 <tr>
                     <th>Title</th>
                     <th>Applicants</th>
-                    <th>Created & Expired</th>
+                    <th>Date Posted</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -31,13 +31,9 @@
                 <tr>
                     <td>{{ job.job_title }}</td>
                     <td><a href="#">{{ job.applicants.count }} Applicant(s)</a></td>
-                    <td>Created: {{ job.created_date|date:"F j, Y" }}<br>Expiry date: {{ job.application_deadline|date:"F j, Y" }}</td>
+                    <td>{{ job.date_posted|date:"F j, Y" }}</td>
                     <td>
-                        {% if job.status == 'published' %}
-                        <span class="badge bg-success">Published</span>
-                        {% else %}
-                        <span class="badge bg-warning">Draft</span>
-                        {% endif %}
+                        {% if job.status %}
                     </td>
                     <td>
                         <a href="{% url 'jobpost_update' job.id %}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>

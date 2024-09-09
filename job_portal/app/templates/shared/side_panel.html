@@ -25,7 +25,7 @@
     <nav class="nav-links">
         {% if is_candidate %}
         <a href="{% url 'candidate_profile' %}"><i class="bi bi-person"></i> Profile</a>
-        <a href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
+        <a href="{% url 'cv_upload' %}"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
         <a href="#"><i class="bi bi-megaphone"></i> My Applied</a>
         <a href="{% url 'candidate_saved_jobs' %}"><i class="bi bi-bookmark-check"></i>Saved Jobs</a>
         {% elif is_employer %}
