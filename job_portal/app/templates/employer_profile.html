@@ -1,0 +1,115 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% load form_tags %}
+
+{% block title %}
+<title>Employer Profile</title>
+{% endblock title %}
+{% block css_styles %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}">
+<link rel="stylesheet" href="{% static 'css/candidate_profile.css' %}">
+{% endblock css_styles %}
+
+
+{% block content %}
+
+<div class="container-fluid d-flex candidate_profile">
+    {% include 'shared/side_panel.html' %}
+    <div class="main-content p-5">
+        <div class="header">
+            <h2 class="mb-4">Update Your Profile</h2>
+        </div>
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row gap-4">
+                    <div class="card p-5">
+                        <h4 class="mb-3">Employer Information</h4>
+                        <div class="form-group mb-4">
+                            <label class="form-label fw-semibold">{{ employer_form.logo.label }}</label><br>
+                            {{ employer_form.logo|add_class:"form-control d-none" }}
+                            <div class="d-flex">
+                                <div class="image-container">
+                                    <img src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg" width="100"
+                                        height="100" alt="Employer Logo">
+                                    <div class="bi bi-x close-icon"></div>
+                                </div>
+                                <div class="my-auto">
+                                    <span class="candidate_profile_browse-btn d-block"
+                                        onclick="document.getElementById('id_logo').click();">Browse</span>
+                                </div>
+                            </div>
+                            {{ employer_form.logo.errors }}
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_employer_name">Employer Name</label><br>
+                                    {{ employer_form.employer_name|add_class:"form-control employer_profile_input" }}
+                                    <div class="text-danger">{{ employer_form.employer_name.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_location">Location</label><br>
+                                    {{ employer_form.location|add_class:"form-control employer_profile_input" }}
+                                    <div class="text-danger">{{ employer_form.location.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_email">Email</label><br>
+                                    {{ employer_form.email|add_class:"form-control employer_profile_input" }}
+                                    <div class="text-danger">{{ employer_form.email.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_phone_no">Phone</label><br>
+                                    {{ employer_form.phone_no|add_class:"form-control employer_profile_input" }}
+                                    <div class="text-danger">{{ employer_form.phone_no.errors }}</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_website">Website</label><br>
+                                    {{ employer_form.website|add_class:"form-control employer_profile_input" }}
+                                    <div class="text-danger">{{ employer_form.website.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_founded_date">Founded Date</label><br>
+                                    {{ employer_form.founded_date|add_class:"form-control employer_profile_input" }}
+                                    <div class="text-danger">{{ employer_form.founded_date.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_company_size">Company Size</label><br>
+                                    {{ employer_form.company_size|add_class:"form-control employer_profile_input" }}
+                                    <div class="text-danger">{{ employer_form.company_size.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_introduction_video_url">Introduction Video
+                                        URL</label><br>
+                                    {{ employer_form.introduction_video_url|add_class:"form-control employer_profile_input" }}
+                                    <div class="text-danger">{{ employer_form.introduction_video_url.errors }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="id_description">Description</label><br>
+                            {{ employer_form.description|add_class:"form-control employer_profile_input" }}
+                            <div class="text-danger">{{ employer_form.description.errors }}</div>
+                        </div>
+                    </div>
+                    <div class="card p-5">
+                        <h4 class="mb-3">Contact Information</h4>
+                        {{ employer_contact_form.as_p }}
+                    </div>
+                </div>
+                <button class="btn btn-primary d-block mt-4" type="submit">Save Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+{% endblock content %}

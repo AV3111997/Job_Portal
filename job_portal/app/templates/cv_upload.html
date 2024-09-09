@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>upload CV</title>
+<title>Upload CV</title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -47,7 +47,6 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Upload</button>
-    
         </form>
     </div>
 </div>

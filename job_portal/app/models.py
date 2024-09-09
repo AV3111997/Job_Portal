@@ -26,12 +26,12 @@ class JobCategory(models.Model):
     def __str__(self):
         return self.name
 
-
 class Location(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.name
+
 
 
 class Candidate(models.Model):
@@ -113,9 +113,6 @@ class Candidate(models.Model):
     )
     job_title = models.CharField(max_length=100, verbose_name="Job Title")
     description = models.TextField()
-    location = models.CharField(
-        max_length=100, null=True, blank=True, verbose_name="Location"
-    )
 
 
 class SocialNetwork(models.Model):
@@ -129,12 +126,12 @@ class SocialNetwork(models.Model):
         return self.name
 
 
-class Contact(models.Model):
+class CandidateContact(models.Model):
     candidate = models.ForeignKey(
-        Candidate, on_delete=models.CASCADE, related_name="contacts"
+        Candidate, on_delete=models.CASCADE, related_name="candidate_contacts"
     )
-    address = models.CharField(max_length=200, verbose_name="Address")
-    location = models.CharField(max_length=100, verbose_name="Location")
+    address = models.CharField(max_length=200, verbose_name="address")
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="candidate_contacts")
 
 
 class Employer(models.Model):
@@ -146,7 +143,10 @@ class Employer(models.Model):
     email = models.EmailField(max_length=255)
     phone_no = models.CharField(max_length=20)
     website = models.URLField(max_length=200)
-    founded_date = models.DateField(null=True,blank=True)
+    founded_date = models.DateField(
+        null=True,
+        blank=True,
+    )
     logo = models.ImageField(upload_to="employer_logos/")
     cover_photo = models.ImageField(upload_to="employer_coverphoto/")
     company_size = models.CharField(max_length=20)
@@ -158,6 +158,12 @@ class Employer(models.Model):
     def __str__(self):
         return self.employer_name
 
+class EmployerContact(models.Model):
+    employer = models.ForeignKey(
+        Employer, on_delete=models.CASCADE, related_name="employer_contacts"
+    )
+    address = models.CharField(max_length=200, verbose_name="Address")
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="employer_contacts")
 
 class ProfilePhoto(models.Model):
     employer = models.ForeignKey(
@@ -243,7 +249,6 @@ class JobPosting(models.Model):
     ]
 
     job_type = models.CharField(max_length=50, choices=JOB_TYPE_CHOICES)
-    tag = models.CharField(max_length=255)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=True)
     apply_type = models.CharField(max_length=50, choices=APPLY_TYPE_CHOICES)
     urgency_level = models.CharField(max_length=10, choices=URGENCY_LEVEL_CHOICES)
@@ -266,7 +271,7 @@ class JobPosting(models.Model):
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default="open")
 
     # Additional information
-    application_deadline = models.DateField(null=True)
+    application_deadline = models.DateField(null=True, blank=True)
     friendly_address = models.CharField(max_length=255)
 
     def __str__(self):
@@ -274,14 +279,12 @@ class JobPosting(models.Model):
 
 
 class SavedJob(models.Model):
-    candidate = models.ForeignKey(Candidate, related_name = 'candidate', on_delete=models.CASCADE)
-    job = models.ForeignKey(JobPosting, related_name = 'job', on_delete=models.CASCADE)
+    candidate = models.ForeignKey(
+        Candidate, related_name="candidate", on_delete=models.CASCADE
+    )
+    job = models.ForeignKey(JobPosting, related_name="job", on_delete=models.CASCADE)
 
 
 class CV(models.Model):
-    name = models.CharField(max_length=100)
-    file = models.FileField(upload_to='cvs/')
-
-    def __str__(self):
-        return self.name
-  
+    candidate = models.ForeignKey(Candidate, related_name="candidate_cv", on_delete=models.CASCADE)
+    file = models.FileField(upload_to="cvs/")

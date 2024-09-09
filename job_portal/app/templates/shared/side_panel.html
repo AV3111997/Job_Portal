@@ -1,0 +1,41 @@
+{% load static %}
+<div class="sidebar">
+    <div class="profile-section">
+        <div class="profile-img-container">
+            <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture">
+        </div>
+        <div class="profile-info">
+            {% if is_candidate %}
+            {% if candidate %}
+            <h2>{{candidate.fullname}}</h2>
+            {% if contact and contact.location %}
+            <p>{{ contact.location.name }}</p>
+            {% else %}
+            <p>Location not available</p>
+            {% endif %}
+            {% endif %}
+            {% elif is_employer %}
+            {% if employer %}
+            <h2>{{employer.name}}</h2>
+            <p>{{employer.location.name}}</p>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <nav class="nav-links">
+        {% if is_candidate %}
+        <a href="{% url 'candidate_profile' %}"><i class="bi bi-person"></i> Profile</a>
+        <a href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
+        <a href="#"><i class="bi bi-megaphone"></i> My Applied</a>
+        <a href="{% url 'candidate_saved_jobs' %}"><i class="bi bi-bookmark-check"></i>Saved Jobs</a>
+        {% elif is_employer %}
+        <a href="{% url 'employer_profile' %}"><i class="bi bi-person"></i> Profile</a>
+        <a href="{% url 'manage_jobs' %}"><i class="bi bi-briefcase"></i>Manage Jobs</a>
+        {% endif %}
+        <a href="#"><i class="bi bi-key"></i> Change Password</a>
+        <a href="#"><i class="bi bi-trash3-fill"></i> Delete Profile</a>
+        <a href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
+    </nav>
+    
+    
+</div>

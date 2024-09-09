@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, DetailView, View, DeleteView, ListView
 from django.views.generic.edit import FormView
-from .forms import CandidateForm , ContactForm , CVForm
+<<<<<<< HEAD
+from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory
+from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm , CVForm
+=======
 from .models import (
     Candidate,
-    Contact,
+    CandidateContact,
+    EmployerContact,
     JobPosting,
     JobCategory,
     SavedJob,
@@ -13,12 +17,21 @@ from .models import (
     Location,
     CV
 )
+from django.views.generic import ListView
+from .forms import CandidateForm, ContactForm, JobPostingForm
+>>>>>>> origin/main
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+<<<<<<< HEAD
 from django.contrib import messages
+from .forms import JobPostingForm
+=======
 from django.core.paginator import Paginator
 from django.db.models import Q
+>>>>>>> origin/main
+
+# Create your views here.
 
 
 # Dashboard Views
@@ -92,7 +105,57 @@ class DeleteSavedJobView(DeleteView):
     success_url = reverse_lazy("candidate_saved_jobs")
 
 
-# Job Management Views
+class ArticlesView(TemplateView):
+    template_name = "article_page.html"
+
+
+class FAQView(TemplateView):
+    template_name = "faq.html"
+
+
+class PricingView(TemplateView):
+    template_name = "pricing.html"
+
+
+class JobDetailsView(TemplateView):
+    template_name = "job_details.html"
+
+
+class CandidateView(ListView):
+    model = Candidate
+
+    template_name = "candidate.html"
+    context_object_name = "candidates"
+
+
+class EmployersListView(TemplateView):
+    template_name = "employerslist.html"
+
+
+class JobListView(TemplateView):
+    template_name = "findjoblist.html"
+
+
+class ContactView(TemplateView):
+    template_name = "contact.html"
+
+
+class ProfileView(TemplateView):
+    template_name = "profile.html"
+
+
+class TermView(TemplateView):
+    template_name = "terms.html"
+
+
+class AppliedJobsView(TemplateView):
+    template_name = "applied_jobs.html"
+
+
+class ApplicantsJobsView(TemplateView):
+    template_name = "applicants_jobs.html"
+
+
 class ManageJobsView(TemplateView):
     template_name = "manage_jobs.html"
 
@@ -124,9 +187,98 @@ class ManageJobsView(TemplateView):
             "statuses": JobPosting.STATUS_CHOICES,
         })
         return context
+<<<<<<< HEAD
+
+=======
 
 
-# Candidate Views
+class EmployeeJobsView(TemplateView):
+    template_name = "employee.html"
+>>>>>>> origin/main
+
+
+class CandidateProfileView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        candidate = None
+        contact_instance = None
+
+        if hasattr(user, "candidate_profile"):
+            candidate = user.candidate_profile
+            if candidate.contacts.exists():
+                contact_instance = candidate.contacts.first()
+
+        candidate_form = CandidateForm(instance=candidate)
+        contact_form = (
+            ContactForm(instance=contact_instance)
+            if contact_instance
+            else ContactForm()
+        )
+
+        return render(
+            request,
+            "candidate_profile.html",
+            {
+                "candidate_form": candidate_form,
+                "contact_form": contact_form,
+            },
+        )
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        candidate = user.candidate_profile
+
+        candidate_form = CandidateForm(request.POST, request.FILES, instance=candidate)
+
+        contact_instance = None
+        if candidate.contacts.exists():
+            contact_instance = candidate.contacts.first()
+
+        contact_form = ContactForm(request.POST, instance=contact_instance)
+
+        if candidate_form.is_valid() and contact_form.is_valid():
+            candidate = candidate_form.save()
+
+            contact = contact_form.save(commit=False)
+            contact_data = contact_form.cleaned_data
+            contact = Contact(
+                address=contact_data["address"],
+                location=contact_data["location"],
+                candidate=candidate,
+            )
+            contact.save()
+
+            return redirect("userdashboard")
+
+        return render(
+            request,
+            "candidate_profile.html",
+            {
+                "candidate_form": candidate_form,
+                "contact_form": contact_form,
+            },
+        )
+
+
+class JobPostingCreateView(FormView):
+    form_class = JobPostingForm
+    template_name = 'jobposting_form.html'  
+    success_url = reverse_lazy('home') 
+
+    def form_valid(self, form):
+        form.save()  
+        return super().form_valid(form)
+
+
+class CVUploadView(FormView):
+    form_class = CVForm
+    template_name = 'cv_upload.html'
+    success_url = reverse_lazy('cv_upload')  
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'CV uploaded successfully!')
+        return super().form_valid(form)
 def candidate_list(request):
     keyword = request.GET.get("keyword", "")
     location = request.GET.get("location", "")
