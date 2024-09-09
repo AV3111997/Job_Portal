@@ -1,0 +1,136 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% load form_tags %}
+
+{% block title %}
+<title>Job Posting</title>
+{% endblock title %}
+{% block css_styles %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}">
+<link rel="stylesheet" href="{% static 'css/candidate_profile.css' %}">
+{% endblock css_styles %}
+
+
+{% block content %}
+
+<div class="container-fluid d-flex candidate_profile">
+    {% include 'shared/side_panel.html' %}
+    <div class="main-content p-5">
+        <div class="header">
+            <h2 class="mb-4">Post a New Job</h2>
+        </div>
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row gap-4">
+                    <div class="card p-5">
+                        <h4 class="mb-3">Job Details</h4>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_job_title">Job Title</label><br>
+                                    {{ jobposting_form.job_title|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.job_title.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_job_category">Job Category</label><br>
+                                    {{ jobposting_form.job_category|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.job_category.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_tag">Job Type</label><br>
+                                    {{ jobposting_form.job_type|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.job_type.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_apply_email">Status
+                                        </label><br>
+                                    {{ jobposting_form.status|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.status.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_apply_email">Job Apply
+                                        Email</label><br>
+                                    {{ jobposting_form.apply_email|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.apply_email.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_external_url">External URL</label><br>
+                                    {{ jobposting_form.external_url|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.external_url.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_location">Location</label><br>
+                                    {{ jobposting_form.location|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.location.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_application_deadline">Application
+                                        Deadline</label><br>
+                                    {{ jobposting_form.application_deadline|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.application_deadline.errors }}</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold"
+                                        for="id_qualification">Qualification</label><br>
+                                    {{ jobposting_form.qualification|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.qualification.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_experience">Experience</label><br>
+                                    {{ jobposting_form.experience|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.experience.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_salary_type">Urgency</label><br>
+                                    {{ jobposting_form.urgency_level|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.urgency_level.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_salary_type">Salary Type</label><br>
+                                    {{ jobposting_form.salary_type|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.salary_type.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_min_salary">Minimum Salary</label><br>
+                                    {{ jobposting_form.min_salary|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.min_salary.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_max_salary">Maximum Salary</label><br>
+                                    {{ jobposting_form.max_salary|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.max_salary.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_career_level">Career Level</label><br>
+                                    {{ jobposting_form.career_level|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.career_level.errors }}</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-group mb-3"></div>
+                                    <label class="form-label fw-semibold" for="id_job_description">Job
+                                        Description</label><br>
+                                    {{ jobposting_form.job_description|add_class:"form-control candidate_profile_input"}}
+                                    <div class="text-danger">{{ jobposting_form.job_description.errors }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary d-block mt-4" type="submit">Post Job</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+{% endblock content %}

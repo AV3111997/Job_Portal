@@ -9,7 +9,7 @@ urlpatterns = [
     path("pricing", views.PricingView.as_view(), name="pricing"),
     path("employers_list", views.EmployersListView.as_view(), name="employers_list"),
     path("job_list", views.JobListView.as_view(), name="job_list"),
-    path("job_details/<int:pk>", views.JobDetailsView.as_view(), name="job_details"),
+    path("job_details/<int:pk>", views.JobDetailView.as_view(), name="job_details"),
     path("candidate", views.CandidateView.as_view(), name="candidate"),
     path("userdashboard", views.UserDashboardView.as_view(), name="userdashboard"),
     path("contact/", views.ContactView.as_view(), name="contact"),
@@ -25,7 +25,11 @@ urlpatterns = [
         views.CandidateProfileView.as_view(),
         name="candidate_profile",
     ),
-    # path("jobpost/", views.EmployeeJobsView.as_view(), name="jobpost"),
+    path(
+        "employer_profile/",
+        views.EmployerProfileView.as_view(),
+        name="employer_profile",
+    ),
     path("jobform/", views.JobPostingCreateView.as_view(), name="jobform"),
     path(
         "jobpost/update/<int:pk>/",
@@ -48,4 +52,5 @@ urlpatterns = [
         name="delete_saved_job",
     ),
     path("result/", views.search, name="search"),
+    path("upload_cv/", views.CVUploadView.as_view(), name="cv_upload"),
 ]

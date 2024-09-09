@@ -3,7 +3,8 @@ from django.views.generic import TemplateView, DetailView, View, DeleteView
 from django.views.generic.edit import FormView
 from .models import (
     Candidate,
-    Contact,
+    CandidateContact,
+    EmployerContact,
     JobPosting,
     JobCategory,
     SavedJob,
@@ -12,7 +13,7 @@ from .models import (
     Location,
 )
 from django.views.generic import ListView
-from .forms import CandidateForm, ContactForm, JobPostingForm
+from .forms import CandidateForm, CandidateContactForm, JobPostingForm, CVForm, EmployerForm, EmployerContactForm
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -20,12 +21,12 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib import messages
 
+
 # Create your views here.
 
 
 class UserDashboardView(LoginRequiredMixin, TemplateView):
     template_name = "userdashboard.html"
-
     login_url = "/"  # or use the name of your login URL pattern
     redirect_field_name = "next"  # Default is 'next'
 
@@ -111,8 +112,17 @@ class PricingView(TemplateView):
     template_name = "pricing.html"
 
 
-class JobDetailsView(TemplateView):
+class JobDetailView(DetailView):
+    model = JobPosting
     template_name = "job_details.html"
+    context_object_name = "job"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context["related_jobs"] = JobPosting.objects.exclude(pk=self.object.pk)[:4]
+        
+        return context
 
 
 class CandidateView(ListView):
@@ -215,18 +225,18 @@ class CandidateProfileView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         user = request.user
         candidate = None
-        contact_instance = None
+        candidate_contact_instance = None
 
         if hasattr(user, "candidate_profile"):
             candidate = user.candidate_profile
-            if candidate.contacts.exists():
-                contact_instance = candidate.contacts.first()
+            if candidate.candidate_contacts.exists():
+                candidate_contact_instance = candidate.candidate_contacts.first()
 
         candidate_form = CandidateForm(instance=candidate)
-        contact_form = (
-            ContactForm(instance=contact_instance)
-            if contact_instance
-            else ContactForm()
+        candidate_contact_form = (
+            CandidateContactForm(instance=candidate_contact_instance)
+            if candidate_contact_instance
+            else CandidateContactForm()
         )
 
         return render(
@@ -234,7 +244,7 @@ class CandidateProfileView(LoginRequiredMixin, View):
             "candidate_profile.html",
             {
                 "candidate_form": candidate_form,
-                "contact_form": contact_form,
+                "candidate_contact_form": candidate_contact_form,
             },
         )
 
@@ -244,23 +254,23 @@ class CandidateProfileView(LoginRequiredMixin, View):
 
         candidate_form = CandidateForm(request.POST, request.FILES, instance=candidate)
 
-        contact_instance = None
-        if candidate.contacts.exists():
-            contact_instance = candidate.contacts.first()
+        candidate_contact_instance = None
+        if candidate.candidate_contacts.exists():
+            candidate_contact_instance = candidate.candidate_contacts.first()
 
-        contact_form = ContactForm(request.POST, instance=contact_instance)
+        candidate_contact_form = CandidateContactForm(request.POST, instance=candidate_contact_instance)
 
-        if candidate_form.is_valid() and contact_form.is_valid():
+        if candidate_form.is_valid() and candidate_contact_form.is_valid():
             candidate = candidate_form.save()
 
-            contact = contact_form.save(commit=False)
-            contact_data = contact_form.cleaned_data
-            contact = Contact(
-                address=contact_data["address"],
-                location=contact_data["location"],
+            candidate_contact = candidate_contact_form.save(commit=False)
+            candidate_contact_data = candidate_contact_form.cleaned_data
+            candidate_contact = CandidateContact(
+                address=candidate_contact_data["address"],
+                location=candidate_contact_data["location"],
                 candidate=candidate,
             )
-            contact.save()
+            candidate_contact.save()
 
             return redirect("userdashboard")
 
@@ -269,13 +279,77 @@ class CandidateProfileView(LoginRequiredMixin, View):
             "candidate_profile.html",
             {
                 "candidate_form": candidate_form,
-                "contact_form": contact_form,
+                "candidate_contact_form": candidate_contact_form,
+            },
+        )
+    
+
+class EmployerProfileView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        employer = None
+        employer_contact_instance = None
+
+        if hasattr(user, "employers"):
+            employer = user.employers
+            if employer.employer_contacts.exists():
+                employer_contact_instance = employer.employer_contacts.first()
+
+        employer_form = EmployerForm(instance=employer)
+        employer_contact_form = (
+            EmployerContactForm(instance=employer_contact_instance)
+            if employer_contact_instance
+            else EmployerContactForm()
+        )
+
+        return render(
+            request,
+            "employer_profile.html",
+            {
+                "employer_form": employer_form,
+                "employer_contact_form": employer_contact_form,
+            },
+        )
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        employer = user.employers
+
+        employer_form = EmployerForm(request.POST, request.FILES, instance=employer)
+
+        employer_contact_instance = None
+        if employer.employer_contacts.exists():
+            employer_contact_instance = employer.employer_contacts.first()
+
+        employer_contact_form = EmployerContactForm(request.POST, instance=employer_contact_instance)
+
+        if employer_form.is_valid() and employer_contact_form.is_valid():
+            employer = employer_form.save()
+
+            employer_contact = employer_contact_form.save(commit=False)
+            employer_contact_data = employer_contact_form.cleaned_data
+            employer_contact = EmployerContact(
+                address=employer_contact_data["address"],
+                location=employer_contact_data["location"],
+                employer=employer,
+            )
+            employer_contact.save()
+
+            return redirect("home")
+
+        return render(
+            request,
+            "employer_profile.html",
+            {
+                "employer_form": employer_form,
+                "employer_contact_form": employer_contact_form,
             },
         )
 
 
+
 class JobPostingCreateView(FormView):
-    template_name = "jobposting.html"
+    template_name = "jobposting_form.html"
     form_class = JobPostingForm
     success_url = reverse_lazy("manage_jobs")
 
@@ -293,8 +367,8 @@ class JobPostingCreateView(FormView):
                 },
             )
         else:
-            messages.error(request, "You must have an employer profile to post a job.")
-            return redirect("jobpost_form")
+            messages.error(request, "You must be an employer to post a job.")
+            return redirect("home")
 
     def post(self, request, *args, **kwargs):
         user = request.user
@@ -302,18 +376,19 @@ class JobPostingCreateView(FormView):
 
         if employer:
             jobposting_form = self.form_class(request.POST, request.FILES)
-
+            print(request.POST)
             if jobposting_form.is_valid():
                 job_posting = jobposting_form.save(commit=False)
                 job_posting.employer = employer
                 job_posting.save()
+                jobposting_form.save_m2m() 
 
                 messages.success(request, "Job posting created successfully!")
-                return redirect("jobpost_form")
+                return redirect("manage_jobs")
 
         else:
             messages.error(request, "You must have an employer profile to post a job.")
-            return redirect("jobpost_form")
+            return redirect("manage_jobs")
 
         return render(
             request,
@@ -325,27 +400,46 @@ class JobPostingCreateView(FormView):
 
 
 class JobPostingUpdateView(FormView):
-    model = JobPosting
+    template_name = "jobposting_form.html"
     form_class = JobPostingForm
-    template_name = "jobposting.html"
     success_url = reverse_lazy("manage_jobs")
 
-    def get_object(self, queryset=None):
-        user = self.request.user
+    def get(self, request, *args, **kwargs):
+        user = request.user
         employer = getattr(user, "employers", None)
 
-        job_posting = get_object_or_404(
-            JobPosting, pk=self.kwargs["pk"], employer=employer
-        )
-        return job_posting
+        job_posting = get_object_or_404(JobPosting, pk=self.kwargs["pk"], employer=employer)
+
+        jobposting_form = self.form_class(instance=job_posting)
+        return render(request, self.template_name, {"jobposting_form": jobposting_form})
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        employer = getattr(user, "employers", None)
+
+        job_posting = get_object_or_404(JobPosting, pk=self.kwargs["pk"], employer=employer)
+
+        jobposting_form = self.form_class(request.POST, request.FILES, instance=job_posting)
+
+        if jobposting_form.is_valid():
+            job_posting = jobposting_form.save(commit=False)
+            job_posting.employer = employer
+            job_posting.save()
+            messages.success(request, "Job posting updated successfully!")
+            return redirect(self.success_url)
+        else:
+            return render(request, self.template_name, {"jobposting_form": jobposting_form})
+
+
+class CVUploadView(FormView):
+    form_class = CVForm
+    template_name = "cv_upload.html"
+    success_url = reverse_lazy("cv_upload")
 
     def form_valid(self, form):
-        messages.success(self.request, "Job posting updated successfully!")
+        form.save()
+        messages.success(self.request, "CV uploaded successfully!")
         return super().form_valid(form)
-
-    def form_invalid(self, form):
-        messages.error(self.request, "There was an error updating the job posting.")
-        return super().form_invalid(form)
 
 
 def candidate_list(request):

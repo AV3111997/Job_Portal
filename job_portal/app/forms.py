@@ -2,13 +2,47 @@ from django import forms
 from .models import (
     Candidate,
     SocialNetwork,
-    Contact,
+    CandidateContact,
+    EmployerContact,
     JobPosting,
     JobCategory,
     Qualification,
     Location,
     Employer,
+    CV,
 )
+
+class EmployerForm(forms.ModelForm):
+    class Meta:
+        model = Employer
+        fields = [
+            'employer_name',
+            'location',
+            'email',
+            'phone_no',
+            'website',
+            'founded_date',
+            'logo',
+            'cover_photo',
+            'company_size',
+            'introduction_video_url',
+            'description',
+            'profile_url',
+            'is_open_job',
+        ]
+        widgets = {
+            'founded_date': forms.DateInput(attrs={'type': 'date'}),
+            'logo': forms.ClearableFileInput(attrs={'multiple': False}),
+            'cover_photo': forms.ClearableFileInput(attrs={'multiple': False}),
+            'introduction_video_url': forms.URLInput(attrs={'placeholder': 'Enter YouTube or Vimeo URL'}),
+            'profile_url': forms.URLInput(attrs={'placeholder': 'Enter your company website URL'}),
+            'description': forms.Textarea(attrs={'rows': 4}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(EmployerForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False
 
 
 class CandidateForm(forms.ModelForm):
@@ -59,17 +93,31 @@ class CandidateForm(forms.ModelForm):
             field.required = False
 
 
-class ContactForm(forms.ModelForm):
+class CandidateContactForm(forms.ModelForm):
     class Meta:
-        model = Contact
+        model = CandidateContact
         fields = ["address", "location"]
         widgets = {
             "address": forms.TextInput(attrs={"class": "form-control"}),
-            "location": forms.TextInput(attrs={"class": "form-control"}),
+            "location": forms.Select(attrs={"class": "form-control"}),
         }
 
     def __init__(self, *args, **kwargs):
-        super(ContactForm, self).__init__(*args, **kwargs)
+        super(CandidateContactForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False
+
+class EmployerContactForm(forms.ModelForm):
+    class Meta:
+        model = EmployerContact
+        fields = ["address", "location"]
+        widgets = {
+            "address": forms.TextInput(attrs={"class": "form-control"}),
+            "location": forms.Select(attrs={"class": "form-control"}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(EmployerContactForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
             field.required = False
 
@@ -79,18 +127,25 @@ class JobPostingForm(forms.ModelForm):
         model = JobPosting
         fields = "__all__"
         widgets = {
-            "job_description": forms.Textarea(attrs={"rows": 4}),
-            "application_deadline": forms.DateInput(attrs={"type": "date"}),
-            "featured_image": forms.ClearableFileInput(attrs={"multiple": False}),
-            "photo": forms.ClearableFileInput(attrs={"multiple": False}),
+            "job_description": forms.Textarea(attrs={"class": "form-control"}),
+            "application_deadline": forms.DateInput(attrs={"class": "form-control"}),
+            "featured_image": forms.ClearableFileInput(
+                attrs={"class": "form-control", "multiple": False}
+            ),
+            "photo": forms.ClearableFileInput(
+                attrs={"class": "form-control", "multiple": False}
+            ),
             "external_url": forms.URLInput(
-                attrs={"placeholder": "https://example.com"}
+                attrs={"class": "form-control", "placeholder": "https://example.com"}
             ),
             "apply_email": forms.EmailInput(
-                attrs={"placeholder": "example@example.com"}
+                attrs={"class": "form-control", "placeholder": "example@example.com"}
             ),
             "intro_video_url": forms.URLInput(
-                attrs={"placeholder": "https://youtube.com/video"}
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "https://youtube.com/video",
+                }
             ),
         }
 
@@ -118,3 +173,9 @@ class JobPostingForm(forms.ModelForm):
         super(JobPostingForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
             field.required = False
+
+
+class CVForm(forms.ModelForm):
+    class Meta:
+        model = CV
+        fields = ["file"]

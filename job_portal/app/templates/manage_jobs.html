@@ -1,122 +1,21 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>User Dashboard</title>
+<title>Manage Jobs</title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}">
+<link rel="stylesheet" href="{% static 'css/candidate_profile.css' %}">
 <link rel="stylesheet" href="{% static 'css/manage_jobs.css' %}">
 {% endblock css_styles %}
 
 {% block content %}
 
 <div class="container-fluid d-flex">
-    <div class="sidebar">
-        <div class="profile-section">
-            <div class="profile-img-container">
-                <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture">
-            </div>
-            <div class="profile-info">
-                <h2>Candidate</h2>
-                <p>New York</p>
-                <button class="view-profile-btn">View Profile</button>
-            </div>
-        </div>
-        <nav class="nav-links">
-            <a href="#"><i class="bi bi-journal-check"></i> User Dashboard</a>
-            <a href="#"><i class="bi bi-person"></i> Profile</a>
-            <a href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
-            <a href="#"><i class="bi bi-megaphone"></i> My Applied</a>
-            <a href="#"><i class="bi bi-bookmark-check"></i> Shortlist Jobs</a>
-            <a href="#"><i class="bi bi-person-fill-add"></i> Following Employers</a>
-            <a href="#"><i class="bi bi-megaphone"></i> Alerts Jobs</a>
-            <a href="#"><i class="bi bi-chat-dots"></i> Messages</a>
-            <a href="#"><i class="bi bi-person-lines-fill"></i> Meetings</a>
-            <a href="#"><i class="bi bi-key"></i> Change Password</a>
-            <a href="#"><i class="bi bi-trash3-fill"></i> Delete Profile</a>
-            <a href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
-        </nav>
-    </div>
-
+    {% include 'shared/side_panel.html' %}
     <div class="manage-jobs p-5">
         <h2>Manage Jobs</h2>
-
-        <!-- Filter Form -->
-        <form method="GET" action="">
-            <div class="row mb-3">
-                <!-- Employer Filter -->
-                <div class="col-md-3">
-                    <label for="employer">Employer:</label>
-                    <select name="employer" id="employer" class="form-select">
-                        <option value="">All Employers</option>
-                        {% for employer in employers %}
-                            <option value="{{ employer.id }}" {% if request.GET.employer == employer.id|stringformat:"s" %}selected{% endif %}>{{ employer.employer_name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                
-                <!-- Category Filter -->
-                <div class="col-md-3">
-                    <label for="category">Category:</label>
-                    <select name="category" id="category" class="form-select">
-                        <option value="">All Categories</option>
-                        {% for category in categories %}
-                            <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <!-- Min Salary Filter -->
-                <div class="col-md-3">
-                    <label for="min_salary">Min Salary:</label>
-                    <input type="number" name="min_salary" value="{{ request.GET.min_salary }}" class="form-control">
-                </div>
-
-                <!-- Max Salary Filter -->
-                <div class="col-md-3">
-                    <label for="max_salary">Max Salary:</label>
-                    <input type="number" name="max_salary" value="{{ request.GET.max_salary }}" class="form-control">
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <!-- Job Type Filter -->
-                <div class="col-md-3">
-                    <label for="job_type">Job Type:</label>
-                    <select name="job_type" id="job_type" class="form-select">
-                        <option value="">All Types</option>
-                        {% for key, value in job_types %}
-                            <option value="{{ key }}" {% if request.GET.job_type == key %}selected{% endif %}>{{ value }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <!-- Experience Filter -->
-                <div class="col-md-3">
-                    <label for="experience">Experience:</label>
-                    <select name="experience" id="experience" class="form-select">
-                        <option value="">All Experience Levels</option>
-                        {% for key, value in experiences %}
-                            <option value="{{ key }}" {% if request.GET.experience == key %}selected{% endif %}>{{ value }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <!-- Status Filter -->
-                <div class="col-md-3">
-                    <label for="status">Status:</label>
-                    <select name="status" id="status" class="form-select">
-                        <option value="">All Statuses</option>
-                        {% for key, value in statuses %}
-                            <option value="{{ key }}" {% if request.GET.status == key %}selected{% endif %}>{{ value }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Apply Filters</button>
-        </form>
-
         <table class="table table-striped table-hover mt-4">
             <thead class="table">
                 <tr>
@@ -141,9 +40,8 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{% url 'edit_job' job.id %}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
-                        <a href="{% url 'view_job' job.id %}" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-text"></i></a>
-                        <a href="{% url 'delete_job' job.id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                        <a href="{% url 'jobpost_update' job.id %}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                        <a href="{% url 'job_details' job.id %}" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-text"></i></a>
                     </td>
                 </tr>
                 {% empty %}
