@@ -1,10 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, DetailView, View, DeleteView, ListView
 from django.views.generic.edit import FormView
-<<<<<<< HEAD
-from .models import Candidate, SocialNetwork, Contact, JobPosting, JobCategory
-from .forms import CandidateForm, SocialNetworkForm, ContactForm, JobPostingForm , CVForm
-=======
 from .models import (
     Candidate,
     CandidateContact,
@@ -19,17 +15,11 @@ from .models import (
 )
 from django.views.generic import ListView
 from .forms import CandidateForm, ContactForm, JobPostingForm
->>>>>>> origin/main
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-<<<<<<< HEAD
-from django.contrib import messages
-from .forms import JobPostingForm
-=======
 from django.core.paginator import Paginator
 from django.db.models import Q
->>>>>>> origin/main
 
 # Create your views here.
 
@@ -187,14 +177,10 @@ class ManageJobsView(TemplateView):
             "statuses": JobPosting.STATUS_CHOICES,
         })
         return context
-<<<<<<< HEAD
-
-=======
 
 
 class EmployeeJobsView(TemplateView):
     template_name = "employee.html"
->>>>>>> origin/main
 
 
 class CandidateProfileView(LoginRequiredMixin, View):
