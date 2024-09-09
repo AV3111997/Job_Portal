@@ -9,7 +9,7 @@ from .models import (
     Location,
     Employer,
 )
->>>>>>> origin/main
+
 
 
 class CandidateForm(forms.ModelForm):
