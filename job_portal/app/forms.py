@@ -2,47 +2,14 @@ from django import forms
 from .models import (
     Candidate,
     SocialNetwork,
-    CandidateContact,
-    EmployerContact,
+    Contact,
     JobPosting,
     JobCategory,
     Qualification,
     Location,
     Employer,
-    CV,
 )
-
-class EmployerForm(forms.ModelForm):
-    class Meta:
-        model = Employer
-        fields = [
-            'employer_name',
-            'location',
-            'email',
-            'phone_no',
-            'website',
-            'founded_date',
-            'logo',
-            'cover_photo',
-            'company_size',
-            'introduction_video_url',
-            'description',
-            'profile_url',
-            'is_open_job',
-        ]
-        widgets = {
-            'founded_date': forms.DateInput(attrs={'type': 'date'}),
-            'logo': forms.ClearableFileInput(attrs={'multiple': False}),
-            'cover_photo': forms.ClearableFileInput(attrs={'multiple': False}),
-            'introduction_video_url': forms.URLInput(attrs={'placeholder': 'Enter YouTube or Vimeo URL'}),
-            'profile_url': forms.URLInput(attrs={'placeholder': 'Enter your company website URL'}),
-            'description': forms.Textarea(attrs={'rows': 4}),
-        }
-
-    def __init__(self, *args, **kwargs):
-        super(EmployerForm, self).__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.required = False
+>>>>>>> origin/main
 
 
 class CandidateForm(forms.ModelForm):
@@ -178,4 +145,4 @@ class JobPostingForm(forms.ModelForm):
 class CVForm(forms.ModelForm):
     class Meta:
         model = CV
-        fields = ["file"]
+        fields = ['name', 'file']
