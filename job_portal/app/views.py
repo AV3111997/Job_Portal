@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, DetailView, View, DeleteView, ListView
 from django.views.generic.edit import FormView
-from .forms import CandidateForm, ContactForm, JobPostingForm, CVForm, SocialNetworkForm
+from .forms import CandidateForm, ContactForm, JobPostingForm, CVForm
 from .models import (
     Candidate,
     Contact,
