@@ -120,3 +120,5 @@ class CVForm(forms.ModelForm):
     class Meta:
         model = CV
         fields = ['name', 'file']
+
+
