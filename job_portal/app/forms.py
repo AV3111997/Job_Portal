@@ -17,7 +17,6 @@ class EmployerForm(forms.ModelForm):
         model = Employer
         fields = [
             'employer_name',
-            'location',
             'email',
             'phone_no',
             'website',
