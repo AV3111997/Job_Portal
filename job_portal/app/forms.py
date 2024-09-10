@@ -1,13 +1,14 @@
 from django import forms
 from .models import (
+    CandidateContact,
     Candidate,
-    SocialNetwork,
-    Contact,
+    EmployerContact,
     JobPosting,
     JobCategory,
     Qualification,
     Location,
     Employer,
+    CV
 )
 
 
