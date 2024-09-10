@@ -1,193 +1,136 @@
 {% extends 'shared/base.html' %}
 {% load static %}
+{% load form_tags %}
+
 {% block title %}
 <title>Job Posting</title>
 {% endblock title %}
 {% block css_styles %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/jobposting_form.css' %}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIOMhUAlw14XtqHHFpOLsAADeU8N6g9G8gME5n9Jsm2n5+NjHByFh69ZVP" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}">
+<link rel="stylesheet" href="{% static 'css/candidate_profile.css' %}">
 {% endblock css_styles %}
 
 
 {% block content %}
 
-<div class="container-fluid d-flex">
-    <div class="sidebar">
-        <div class="profile-section">
-            <div class="profile-img-container">
-                <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture">
-            </div>
-            <div class="profile-info">
-                <h2>Candidate</h2>
-                <p>New York</p>
-                <button class="view-profile-btn">View Profile</button>
-            </div>
+<div class="container-fluid d-flex candidate_profile">
+    {% include 'shared/side_panel.html' %}
+    <div class="main-content p-5">
+        <div class="header">
+            <h2 class="mb-4">Post a New Job</h2>
         </div>
-        <nav class="nav-links">
-            <a href="#"><i class="bi bi-journal-check"></i> User Dashboard</a>
-            <a href="#"><i class="bi bi-person"></i> Profile</a>
-            <a href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
-            <a href="#"><i class="bi bi-megaphone"></i> My Applied</a>
-            <a href="#"><i class="bi bi-bookmark-check"></i> Shortlist Jobs</a>
-            <a href="#"><i class="bi bi-person-fill-add"></i> Following Employers</a>
-            <a href="#"><i class="bi bi-megaphone"></i> Alerts Jobs</a>
-            <a href="#"><i class="bi bi-chat-dots"></i> Messages</a>
-            <a href="#"><i class="bi bi-person-lines-fill"></i> Meetings</a>
-            <a href="#"><i class="bi bi-key"></i> Change Password</a>
-            <a href="#"><i class="bi bi-trash3-fill"></i> Delete Profile</a>
-            <a href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
-        </nav>
-    </div>
-
-    <div class="container">
-        <h3>Post a New Job</h3>
-
-        <!-- Image preview -->
-
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="featuredImageUpload">Featured Image</label>
-                <input type="file" id="featuredImageUpload" name="featuredImage" accept="image/*">
-            </div>
-
-            <div class="form-group">
-                <label for="jobTitle">Job Title</label>
-                <input type="text" id="jobTitle" name="jobTitle" required>
-            </div>
-
-            <div class="form-group">
-                <label for="jobDescription">Job Description</label>
-                <textarea id="jobDescription" name="jobDescription" required></textarea>
-            </div>
-
-            <!-- Two-column layout starts here -->
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <select id="category" name="category" required>
-                        <option value=""></option>
-                        <option value="accounting">Accounting</option>
-                        <option value="finance">Finance</option>
-                    </select>
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row gap-4">
+                    <div class="card p-5">
+                        <h4 class="mb-3">Job Details</h4>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_job_title">Job Title</label><br>
+                                    {{ jobposting_form.job_title|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.job_title.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_job_category">Job Category</label><br>
+                                    {{ jobposting_form.job_category|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.job_category.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_tag">Job Type</label><br>
+                                    {{ jobposting_form.job_type|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.job_type.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_apply_email">Status
+                                        </label><br>
+                                    {{ jobposting_form.status|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.status.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_apply_email">Job Apply
+                                        Email</label><br>
+                                    {{ jobposting_form.apply_email|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.apply_email.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_external_url">External URL</label><br>
+                                    {{ jobposting_form.external_url|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.external_url.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_location">Location</label><br>
+                                    {{ jobposting_form.location|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.location.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_application_deadline">Application
+                                        Deadline</label><br>
+                                    {{ jobposting_form.application_deadline|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.application_deadline.errors }}</div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold"
+                                        for="id_qualification">Qualification</label><br>
+                                    {{ jobposting_form.qualification|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.qualification.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_experience">Experience</label><br>
+                                    {{ jobposting_form.experience|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.experience.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_salary_type">Urgency</label><br>
+                                    {{ jobposting_form.urgency_level|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.urgency_level.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_salary_type">Salary Type</label><br>
+                                    {{ jobposting_form.salary_type|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.salary_type.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_min_salary">Minimum Salary</label><br>
+                                    {{ jobposting_form.min_salary|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.min_salary.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_max_salary">Maximum Salary</label><br>
+                                    {{ jobposting_form.max_salary|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.max_salary.errors }}</div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="form-label fw-semibold" for="id_career_level">Career Level</label><br>
+                                    {{ jobposting_form.career_level|add_class:"form-control candidate_profile_input" }}
+                                    <div class="text-danger">{{ jobposting_form.career_level.errors }}</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-group mb-3"></div>
+                                    <label class="form-label fw-semibold" for="id_job_description">Job
+                                        Description</label><br>
+                                    {{ jobposting_form.job_description|add_class:"form-control candidate_profile_input"}}
+                                    <div class="text-danger">{{ jobposting_form.job_description.errors }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="type">Type</label>
-                    <select id="type" name="type" required>
-                        <option value=""></option>
-                        <option value="freelance">Freelance</option>
-                        <option value="contract">Contract</option>
-                        <option value="internship">Internship</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="tag">Tag</label>
-                    <input type="text" id="tag" name="tag" required>
-                </div>
-                <div class="form-group">
-                    <label for="Gender">Gender</label>
-                    <select id="gender" name="gender" required>
-                        <option value=""></option>
-                        <option value="Male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Apply">Job Apply Type</label>
-                    <select id="Apply" name="Apply" required>
-                        <option value="">Select a job type</option>
-                        <option value="online">online</option>
-                        <option value="inperson">Inperson</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="URL">External URL for Apply Job</label>
-                    <input type="text" id="URL" name="URL" required>
-                </div>
-                <div class="form-group">
-                    <label for="Email">Job Apply Email</label>
-                    <input type="text" id="Email" name="Email" required>
-                </div>
-                <div class="form-group">
-                    <label for="Salary">Salary Type</label>
-                    <select id="Salary" name="Salary" required>
-                        <option value=""></option>
-                        <option value="cheque">Cheque</option>
-                        <option value="cash">Cash</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="min">Min. Salary</label>
-                    <input type="text" id="min" name="min" required>
-                </div>
-                <div class="form-group">
-                    <label for="max">Max. Salary</label>
-                    <input type="text" id="max" name="max" required>
-                </div>
-                <div class="form-group">
-                    <label for="Experience">Experience</label>
-                    <select id="Experience" name="Experience" required>
-                        <option value=""></option>
-                        <option value="year1">0-1</option>
-                        <option value="year2">2-3</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Career">Career Level</label>
-                    <select id="Career" name="Career" required>
-                        <option value=""></option>
-                        <option value="entry">Entry-Level</option>
-                        <option value="sen">Senior-Level</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="Qualif">Qualification</label>
-                    <select id="Qualif" name="Qualif" required>
-                        <option value=""></option>
-                        <option value="pg">Post-Graduate</option>
-                        <option value="gd">Graduate</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="vidio">Introduction Video URL</label>
-                    <input type="text" id="Video" name="vidio" required>
-                </div>
-                <div class="form-group">
-                    <label for="photo">photos</label>
-                    <input type="file" id="photo" name="photo" required>
-                </div>
-            </div>
-            <!-- Two-column layout ends here -->
-
-            <div class="form-group">
-                <label for="Deadline">Application Deadline date</label>
-                <input type="text" id="Deadline" name="Deadline" required>
-            </div>
-
-            <div class="form-group">
-                <label for="address">Friendly Address</label>
-                <input type="text" id="address" name="address" required>
-            </div>
-
-            <div class="form-group">
-                <label for="location">Location</label>
-                <select id="location" name="location" required>
-                    <option value=""></option>
-                    <option value="florida">Florida</option>
-                    <option value="france">France</option>
-                </select>
-            </div>
-
-            <div class="container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125745.72086216102!2d76.22589090984948!3d9.971033573718168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d08f976f3a9%3A0xe9cdb444f06ed454!2sErnakulam%2C%20Kerala!5e0!3m2!1sen!2sin!4v1724118208990!5m2!1sen!2sin" width="880" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div class="form-group full-width">
-                <button type="submit">Save & preview</button>
-            </div>
-        </form>
+                <button class="btn btn-primary d-block mt-4" type="submit">Post Job</button>
+            </form>
+        </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 {% endblock content %}

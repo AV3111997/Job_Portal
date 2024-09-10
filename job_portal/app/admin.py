@@ -23,15 +23,6 @@ admin.site.register(JobCategory)
 admin.site.register(Location)
 
 
-class CVAdmin(admin.ModelAdmin):
-    list_display = ('name', 'file')
-    search_fields = ('name',)
-    ordering = ('name',)
-    fields = ('name', 'file')
-
-
-admin.site.register(CV, CVAdmin)
-
     
    
 

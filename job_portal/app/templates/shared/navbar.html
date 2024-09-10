@@ -64,10 +64,13 @@
             </div>
           </a>
           <div class="dropdown-menu mt-5 border-0" aria-labelledby="navbarDropdown">
+            {% if is_candidate %}
             <a class="dropdown-item p-3" href="{% url 'candidate_profile' %}"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
-            <a class="dropdown-item p-3" href="{% url 'candidate_saved_jobs' %}"><i class="bi bi-suitcase-lg"></i><span class="px-2">My Jobs</span></a>
-            {% if is_employer %}
-            <a class="dropdown-item p-3" href="#"><i class="bi bi-pencil"></i><span class="px-2">Submit Job</span></a>
+            <a class="dropdown-item p-3" href="{% url 'candidate_saved_jobs' %}"><i class="bi bi-suitcase-lg"></i><span class="px-2">Saved Jobs</span></a>
+            {% elif is_employer %}
+            <a class="dropdown-item p-3" href="{% url 'employer_profile' %}"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
+            <a class="dropdown-item p-3" href="{% url 'manage_jobs' %}"><i class="bi bi-briefcase"></i><span class="px-2">Manage Jobs</span></a>
+            <a class="dropdown-item p-3" href="{% url 'jobform' %}"><i class="bi bi-pencil"></i><span class="px-2">Submit Job</span></a>
             <a class="dropdown-item p-3" href="#"><i class="bi bi-megaphone"></i><span class="px-2">Applicants Job</span></a>
             {% endif %}
             <a class="dropdown-item p-3" href="#"><i class="bi bi-lock"></i><span class="px-2">Change Password</span></a>
@@ -85,7 +88,9 @@
         {% else %}
           <button class="custom-btn login-reg-btn me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login / Register</button>
         {% endif %}
-        <button class="custom-btn btn-blue me-2" type="button">Job Post</button>
+        {% if is_employer %}
+        <a href="{% url 'jobform' %}" style="text-decoration: none; color: white;"><button class="custom-btn btn-blue me-2" type="button">Job Post</button></a>
+        {% endif%}
         <a href="" class="notification-btn me-5 my-auto"><i class="bi bi-bell"></i></a>
       </div>
     </div>

@@ -71,6 +71,8 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "app.context_processors.user_types",
                 "app.context_processors.candidate_id_pass",
+                "app.context_processors.loggedin_candidate",
+                "app.context_processors.loggedin_employer",
             ],
         },
     },

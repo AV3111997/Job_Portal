@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>upload CV</title>
+<title>Upload CV</title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -14,40 +14,13 @@
 {% block content %}
 
 <div class="container-fluid d-flex">
-    <div class="sidebar">
-        <div class="profile-section">
-            <div class="profile-img-container">
-                <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture">
-            </div>
-            <div class="profile-info">
-                <h2>Candidate</h2>
-                <p>New York</p>
-                <button class="view-profile-btn">View Profile</button>
-            </div>
-        </div>
-        <nav class="nav-links">
-            <a href="#"><i class="bi bi-journal-check"></i> User Dashboard</a>
-            <a href="#"><i class="bi bi-person"></i> Profile</a>
-            <a href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
-            <a href="#"><i class="bi bi-megaphone"></i> My Applied</a>
-            <a href="#"><i class="bi bi-bookmark-check"></i> Shortlist Jobs</a>
-            <a href="#"><i class="bi bi-person-fill-add"></i> Following Employers</a>
-            <a href="#"><i class="bi bi-megaphone"></i> Alerts Jobs</a>
-            <a href="#"><i class="bi bi-chat-dots"></i> Messages</a>
-            <a href="#"><i class="bi bi-person-lines-fill"></i> Meetings</a>
-            <a href="#"><i class="bi bi-key"></i> Change Password</a>
-            <a href="#"><i class="bi bi-trash3-fill"></i> Delete Profile</a>
-            <a href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
-        </nav>
-    </div>
-
+    {% include 'shared/side_panel.html' %}
     <div class="container">
         <h1>Upload Your CV</h1>
         <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Upload</button>
-    
         </form>
     </div>
 </div>

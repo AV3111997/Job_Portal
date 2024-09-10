@@ -18,14 +18,14 @@
                         <span class="input-group-text">
                             <i class="fa-solid fa-location-dot"></i>
                         </span>
-                        {% if locations %}
                         <select name="location" class="form-control banner-form-group">
-                            <option value="" disabled selected>City or postcode</option>
+                            <option value="" disabled selected>Location</option>
+                            {% if locations %}
                             {% for location in locations %}
                             <option value="{{ forloop.counter }}">{{ location.name }}</option>
                             {% endfor %}
-                        </select>
-                        {% endif %}
+                            {% endif %}
+                        </select>   
                     </div>
                     <button type="submit" class="search-btn banner-form button">Find Jobs</button>
                 </form>
