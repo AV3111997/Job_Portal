@@ -1,16 +1,16 @@
 from django import forms
 from .models import (
-    Candidate,
-    SocialNetwork,
     CandidateContact,
+    Candidate,
     EmployerContact,
     JobPosting,
     JobCategory,
     Qualification,
     Location,
     Employer,
-    CV,
+    CV
 )
+
 
 class EmployerForm(forms.ModelForm):
     class Meta:
@@ -43,7 +43,7 @@ class EmployerForm(forms.ModelForm):
         super(EmployerForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
             field.required = False
-
+            
 
 class CandidateForm(forms.ModelForm):
     class Meta:
@@ -178,4 +178,4 @@ class JobPostingForm(forms.ModelForm):
 class CVForm(forms.ModelForm):
     class Meta:
         model = CV
-        fields = ["file"]
+        fields = ['file']

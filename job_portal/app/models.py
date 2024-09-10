@@ -26,12 +26,12 @@ class JobCategory(models.Model):
     def __str__(self):
         return self.name
 
-
 class Location(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.name
+
 
 
 class Candidate(models.Model):
@@ -253,6 +253,7 @@ class JobPosting(models.Model):
     apply_type = models.CharField(max_length=50, choices=APPLY_TYPE_CHOICES)
     urgency_level = models.CharField(max_length=10, choices=URGENCY_LEVEL_CHOICES)
     external_url = models.URLField(blank=True, null=True)
+    date_posted = models.DateTimeField(auto_now_add=True)
     apply_email = models.EmailField(blank=True, null=True)
     salary_type = models.CharField(
         max_length=50, choices=SALARY_TYPE_CHOICES, default="Monthly"
