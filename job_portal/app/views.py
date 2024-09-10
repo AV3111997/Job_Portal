@@ -525,3 +525,54 @@ def search(request):
         return render(request, "Searched_jobs_result.html", context)
     else:
         return redirect("/")
+
+def job_list(request):
+    sort_by = request.GET.get('sort', 'default')
+    per_page = int(request.GET.get('per_page', 9))
+    filter_by = request.GET.get('filter', None)
+    # Fetch job postings
+    job_postings = JobPosting.objects.all()
+
+    # Get filter options from request
+    keywords = request.GET.get('keywords', '')
+    if keywords:
+        job_postings = job_postings.filter(job_title__icontains=keywords)
+
+    location = request.GET.get('location')  # Get the location from the request
+    if location:
+         job_postings = job_postings.filter(location__name=location) 
+    category = request.GET.get('category')
+    if category:
+        job_postings = job_postings.filter(job_category__name=category)
+
+    job_type = request.GET.get('job_type')
+    if job_type:
+        job_postings = job_postings.filter(job_type=job_type)
+
+    # Filtering based on experience level
+    experience_level = request.GET.getlist("experience_level", [])
+    if experience_level:
+        job_postings = job_postings.filter(experience=experience_level)
+
+    # Filtering based on career level
+    career_level = request.GET.get('career_level')
+    if career_level:
+        job_postings = job_postings.filter(career_level=career_level)
+
+    # Filtering based on salary range
+    min_salary = request.GET.get('min_salary', 0)
+    max_salary = request.GET.get('max_salary', 850)
+    if min_salary and max_salary:
+        job_postings = job_postings.filter(min_salary__gte=min_salary, max_salary__lte=max_salary)
+
+    # Pass filters and choices to context
+    context = {
+        'job_postings': job_postings,
+        'categories': JobCategory.objects.all(),
+        'job_types': JobPosting.JOB_TYPE_CHOICES,
+        'experience_levels': range(7),
+        'career_levels': JobPosting.CAREER_LEVEL_CHOICES,
+        'request': request,  # to access GET parameters
+    }
+
+    return render(request, 'findjoblist.html', context)
