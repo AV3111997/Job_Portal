@@ -82,7 +82,7 @@ class RegisterView(View):
         return JsonResponse(
             {
                 "success": True,
-                "redirect_url": "/candidate_profile/",
+                "redirect_url": reverse("home"),
                 "message": "User registered successfully.",
             }
         )

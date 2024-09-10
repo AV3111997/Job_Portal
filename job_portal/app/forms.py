@@ -34,7 +34,7 @@ class EmployerForm(forms.ModelForm):
             'founded_date': forms.DateInput(attrs={'type': 'date'}),
             'logo': forms.ClearableFileInput(attrs={'multiple': False}),
             'cover_photo': forms.ClearableFileInput(attrs={'multiple': False}),
-            'introduction_video_url': forms.URLInput(attrs={'placeholder': 'Enter YouTube or Vimeo URL'}),
+            'introduction_video_url': forms.URLInput(attrs={'placeholder': 'Enter YouTube or Video URL'}),
             'profile_url': forms.URLInput(attrs={'placeholder': 'Enter your company website URL'}),
             'description': forms.Textarea(attrs={'rows': 4}),
         }
@@ -128,7 +128,7 @@ class JobPostingForm(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "job_description": forms.Textarea(attrs={"class": "form-control"}),
-            "application_deadline": forms.DateInput(attrs={"class": "form-control"}),
+            "application_deadline": forms.DateInput(attrs={"class": "form-control", "type": "date" }),
             "featured_image": forms.ClearableFileInput(
                 attrs={"class": "form-control", "multiple": False}
             ),
