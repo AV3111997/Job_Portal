@@ -18,48 +18,44 @@
     <div class="row">
         <!-- Search section -->
         <div class="col-md-4 gray-background">
+            <form method="GET" action="{% url 'job_list' %}">
             <div class="search-container">
                 <!-- Search fields -->
                 <h6><b>Search by Keywords</b></h6>
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="form-control" placeholder="    Job title, keywords..." />
+                    <input type="text" class="form-control" placeholder="    Job title, keywords..." value="{{ request.GET.keywords }}"/>
                 </div>
+
                 <h6><b>Location</b></h6>
-                <div class="location-input">
+                <div class="mb-3 position-relative">
                     <span class="location-icon"><i class="fa-solid fa-location-dot"></i></span>
-                    <input type="text" class="form-control" placeholder="   City or postcode" />
+                    <input type="text" name="location" class="form-control ps-4" placeholder="Location"
+                        value="{{ job.location.name }}">
                 </div>
 
-                <div class="radius-slider">
-                    <label class="text-primary"  for="radius">Radius: 50 miles</label>
-                    <input type="range" id="radius" name="radius" min="1" max="100" value="50">
-                </div>
-
+                <!-- category here -->
                 <h6><b>Category</b></h6>
-                <select class="form-control">
+                <select class="form-control" name="category">
                     <option value=""> &#x1F4C3; Choose a category &#x25BE;</option>
-                    <option value="1">Design</option>
-                    <option value="2">Marketing</option>
-                    <option value="3">Development</option>
-                    <!-- Add categories here -->
+                    {% for category in categories %}                    <option value="2">Marketing</option>
+                    <option value="{{ category }}" {% if request.GET.category == category %}selected{% endif %}>{{ category }}</option>
+                    {% endfor %}
+                </select>
+                
+<!--              job type here  -->
+                <h6><b>Job Type</b></h6>
+                <select class="form-control" name="job_type">
+                    <option value="">  Job type &#x25BE;</option>
+                    {% for job_type, job_type_display in job_types %}
+                        <option value="{{ job_type }}" {% if request.GET.job_type == job_type %}selected{% endif %}>{{ job_type_display }}</option>
+                    {% endfor %}
                 </select>
 
-                <h6><b>Job Type</b></h6>
-                <select class="form-control">
-                    <option value="">  Job type &#x25BE;</option>
-                    <option value="1">Freelance</option>
-                    <option value="2">Full Time</option>
-                    <option value="3">Internship</option>
-                    <option value="3">Part Time</option>
-                    <option value="3">Temporary</option>
-                    <!-- Add categories here -->
-                </select>
                 <h6><b>Date Posted</b></h6>
                 <form class="radio-form">
                     <label>
-                     <input type="radio" name="category" value="1">last hour
-                        
+                     <input type="radio" name="category" value="1">last hour 
                     </label>
                     <label>
                         <input type="radio" name="category" value="2">
@@ -82,51 +78,42 @@
             
                 <h6><b>Experience level</b></h6>
                 <div class="switch">
-                    <input type="checkbox" id="switch1">
+                    
+                    <input type="radio" id="switch1" name="experience">
                     <label for="switch1" class="switch-label">
                         <span class="switch-slider"></span>
                     </label>
                     <span class="switch-status">Fresh</span>
                 </div>
                 <div class="switch">
-                    <input type="checkbox" id="switch1">
-                    <label for="switch1" class="switch-label">
+                    <input type="radio" id="switch2" name="experience">
+                    <label for="switch2" class="switch-label">
                         <span class="switch-slider"></span>
                     </label>
                     <span class="switch-status">1 Year</span>
                 </div>
                 <div class="switch">
-                    <input type="checkbox" id="switch1">
-                    <label for="switch1" class="switch-label">
+                    <input type="radio" id="switch3" name="experience">
+                    <label for="switch3" class="switch-label">
                         <span class="switch-slider"></span>
                     </label>
                     <span class="switch-status">2 Year</span>
-                
                 </div>
                 <div class="switch">
-                    <input type="checkbox" id="switch1">
-                    <label for="switch1" class="switch-label">
+                    <input type="radio" id="switch4" name="experience">
+                    <label for="switch4" class="switch-label">
                         <span class="switch-slider"></span>
                     </label>
                     <span class="switch-status">3 Year</span>
-                
                 </div>
                 <div class="switch">
-                    <input type="checkbox" id="switch1">
-                    <label for="switch1" class="switch-label">
+                    <input type="radio" id="switch5" name="experience">
+                    <label for="switch5" class="switch-label">
                         <span class="switch-slider"></span>
                     </label>
                     <span class="switch-status">4 Year</span>
-                
                 </div>
-                <div class="switch">
-                    <input type="checkbox" id="switch1">
-                    <label for="switch1" class="switch-label">
-                        <span class="switch-slider"></span>
-                    </label>
-                    <span class="switch-status">5 Year</span>
-                
-                </div>
+
                 <h6><b>Career Level</b></h6>
                 <div class="switch">
                     <input type="checkbox" id="switch1">
@@ -163,10 +150,11 @@
                     </label>
                     <span class="switch-status">Others</span>
                 </div>
+
                 <h6><b>Salary</b></h6>
                 <div class="radius-slider">
-                    <label for="radius" class="slider-label">$0-$850</label>
-                    <input type="range" id="radius" name="radius" min="1" max="100" value="100">
+                    <label for="salary" class="slider-label">Salary range: ${{ request.GET.min_salary }} - ${{ request.GET.max_salary }}</label>
+                    <input type="range" id="salary" name="salary_range" min="0" max="850" value="{{ request.GET.salary_range|default:850 }}">
                 </div>
                 <div class="container text-center">
                     <button class="square-button">Find Jobs</button>
@@ -181,207 +169,68 @@
                <button class="square-button">Save Job Alert</button>
             </div>
         </section>
-            </div>            
+            </div>  
+        </form>          
         </div>
         <div class="col-md-8">
             <!-- Sort By and Results Count -->
             <div class="sort-by-section">
-                <h5 class="mb-0">Showing 1-9 of 32 results</h5>
+                <h5 class="mb-0">Showing {{ job_postings.start_index }}-{{ job_postings.end_index }} of {{ total_results }} results</h5>
                 <div class="d-flex align-items-center" style="background-color: #ebf2fa;">
-                    <select class="custom-select" style="border: none;">
-                        <option value="default"  selected>Sort by (Default)</option>
-                        <option value="relevance">Newest</option>
-                        <option value="date">Oldest</option>
-                        <option value="salary">Random</option>
-                    </select>
-                    <select class="custom-select ml-3" style="border: none; background-color: white; border-radius: 10px;">
-                        <option value="9" selected>All</option>
-                        <option value="15">9 per page</option>
-                        <option value="30">18 per page</option>
-                    </select>
+                    <form method="GET">
+                        <select class="custom-select" name="sort" style="border: none;" onchange="this.form.submit()">
+                            <option value="default" {% if sort_by == 'default' %}selected{% endif %}>Sort by (Default)</option>
+                            <option value="relevance" {% if sort_by == 'relevance' %}selected{% endif %}>Newest</option>
+                            <option value="date" {% if sort_by == 'date' %}selected{% endif %}>Oldest</option>
+                            <option value="salary" {% if sort_by == 'salary' %}selected{% endif %}>Random</option>
+                        </select>
+                        <select class="custom-select ml-3" name="per_page" style="border: none; background-color: white; border-radius: 10px;" onchange="this.form.submit()">
+                            <option value="9" {% if per_page == 9 %}selected{% endif %}>All</option>
+                            <option value="15" {% if per_page == 15 %}selected{% endif %}>9 per page</option>
+                            <option value="30" {% if per_page == 30 %}selected{% endif %}>18 per page</option>
+                        </select>
+                    </form>
                 </div>
             </div>
             <br>
         <!-- Job listings section -->
         <div class="col-md-8" style="width: auto;">
+            {% for job in job_postings %}
             <div class="job-listing">
                 <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://tse3.mm.bing.net/th?id=OIP.arMbVZyyUDI6KzQb3PnzlAHaHa&pid=Api&P=0&h=180" alt="job-listing"></div>
-                    <h2 class="job_head">Junior Graphic Designer (Web)</h2>
+                    <div class="job_image">
+                        <img src="{{ job.featured_image.url }}" alt="job-listing" style="max-width: 60px;"></div>
+                    <h2 class="job_head"><a href="">{{ job.job_title }}</a></h2>
                     <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
                 </div>
                 <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Design, Development 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
+                    <i class="fas fa-briefcase"></i> {{ job.job_type|capfirst }} 
+                    <i class="fas fa-map-marker-alt ml-3"></i> {{ job.location }}<br>
+                    <i class="fas fa-dollar-sign ml-3"></i> ${{ job.min_salary }} - ${{ job.max_salary }} / week
                 </p>
                 <div>
                     <span class="badge">Full Time</span>
                     <span class="badge">Urgent</span>
                 </div>
             </div>
-
-            <div class="job-listing">
-                <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://tse2.mm.bing.net/th?id=OIP.7DWXljTMZ9WRrQA-nIJd_gHaHa&pid=Api&P=0&h=180" alt="job-listing"></div>
-                    <h2 class="job_head">Finance Manager & Health</h2>
-                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
-                </div>
-                <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Design 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
-                </p>
-                <div>
-                    <span class="badge">Full Time</span>
-                    <span class="badge">Urgent</span>
-                </div>
-            </div>
-            <div class="job-listing">
-                <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://tse1.mm.bing.net/th?id=OIP.FmC7zwiirBMwHqwUsYIQIQHaH2&pid=Api&P=0&h=180" alt="job-listing"></div>
-                    <h2 class="job_head">Executive, HR Operations</h2>
-                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
-                </div>
-                <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Customer, Marketing 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
-                </p>
-                <div>
-                    <span class="badge bg-primary">Temporary</span>
-                    <span class="badge bg-warning">Urgent</span>
-                </div>
-            </div>
-            <div class="job-listing">
-                <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://tse3.mm.bing.net/th?id=OIP.eNXr_GNF5ACskaSjKvgAQAHaE7&pid=Api&P=0&h=180" alt="job-listing"></div>
-                    <h2 class="job_head">Senior Product Designer</h2>
-                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
-                </div>
-                <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Design, Development 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
-                </p>
-                <div>
-                    <span class="badge bg-light">Full Time</span>
-                    <span class="badge bg-warning">Urgent</span>
-                </div>
-            </div>
-            <div class="job-listing">
-                <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
-                    <h2 class="job_head">Product Designer</h2>
-                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
-                </div>
-                <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Design, Development 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
-                </p>
-                <div>
-                    <span class="badge bg-primary">Full Time</span>
-                    <span class="badge bg-warning">Urgent</span>
-                </div>
-            </div>
-            <div class="job-listing">
-                <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
-                    <h2 class="job_head">General Ledger Accountant</h2>
-                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
-                </div>
-                <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Design, Development 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
-                </p>
-                <div>
-                    <span class="badge bg-primary">Full Time</span>
-                    <span class="badge bg-warning">Urgent</span>
-                </div>
-            </div>
-            <div class="job-listing">
-                <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
-                    <h2 class="job_head">Assistant/Store Keeper</h2>
-                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
-                </div>
-                <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Design, Development 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
-                </p>
-                <div>
-                    <span class="badge bg-primary">Full Time</span>
-                    <span class="badge bg-warning">Urgent</span>
-                </div>
-            </div>
-            <div class="job-listing">
-                <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
-                    <h2 class="job_head">Product Sales Specialist</h2>
-                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
-                </div>
-                <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Design, Development 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
-                </p>
-                <div>
-                    <span class="badge bg-primary">Full Time</span>
-                    <span class="badge bg-warning">Urgent</span>
-                </div>
-            </div>
-            <div class="job-listing">
-                <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
-                    <h2 class="job_head">Restaurant Team Member</h2>
-                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
-                </div>
-                <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Design, Development 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
-                </p>
-                <div>
-                    <span class="badge bg-primary">Full Time</span>
-                    <span class="badge bg-warning">Urgent</span>
-                </div>
-            </div>
-            <div class="job-listing">
-                <div class="d-flex justify-content-between">
-                    <div class="job_image"><img src="https://via.placeholder.com/50" alt="job-listing"></div>
-                    <h2 class="job_head">Software Engineer</h2>
-                    <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
-                </div>
-                <p class="text-muted">
-                    <i class="fas fa-briefcase"></i> Design, Development 
-                    <i class="fas fa-map-marker-alt ml-3"></i> New York
-                    <i class="fas fa-dollar-sign ml-3"></i> $150 - $180 / week
-                </p>
-                <div>
-                    <span class="badge bg-primary">Full Time</span>
-                    <span class="badge bg-warning">Urgent</span>
-                </div>
-            </div>
-            </div>
+            {% empty %}
+            <p>No jobs found.</p>
+            {% endfor %}
+            </div> 
             <!-- pagination buttons -->
-            <nav aria-label="..."text-center >
-                <ul class="jobpagination">
-                  <li class="page-item disabled">
-                    <a class="page-link">Previous</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                  </li>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" id="prevPage">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#" id="page1">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#" id="page2">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#" id="page3">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" id="nextPage">Next</a>
+                    </li>
                 </ul>
-              </nav>
+            </nav>
         </div>
     </div>
 </div>
