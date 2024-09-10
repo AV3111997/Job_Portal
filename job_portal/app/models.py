@@ -139,7 +139,6 @@ class Employer(models.Model):
         User, on_delete=models.CASCADE, related_name="employers"
     )
     employer_name = models.CharField(max_length=255)
-    location = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
     phone_no = models.CharField(max_length=20)
     website = models.URLField(max_length=200)
@@ -252,6 +251,7 @@ class JobPosting(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, blank=True)
     apply_type = models.CharField(max_length=50, choices=APPLY_TYPE_CHOICES)
     urgency_level = models.CharField(max_length=10, choices=URGENCY_LEVEL_CHOICES)
+    date_posted = models.DateTimeField(auto_now_add=True)
     external_url = models.URLField(blank=True, null=True)
     apply_email = models.EmailField(blank=True, null=True)
     salary_type = models.CharField(
