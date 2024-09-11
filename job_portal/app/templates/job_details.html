@@ -52,7 +52,7 @@
                 <button class="btn btn-danger rounded-pill text-light">{{job.urgency_level}}</button>
             </div>
             <div>
-                <form action="{% url 'apply_jobs' job.pk %}" class="btn btn-primary me-2" method="post">
+                <form action="{% url 'apply_for_job' job.pk %} " class="btn btn-primary me-2" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary me-2">Apply now</button>
                 </form>

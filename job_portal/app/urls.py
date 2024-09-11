@@ -17,7 +17,7 @@ urlpatterns = [
     path("profile/", views.ProfileView.as_view(), name="profile"),
     path("about/", views.AboutView.as_view(), name="about"),
     path("terms/", views.TermView.as_view(), name="terms"),
-    path("applied_jobs", views.AppliedJobsView.as_view(), name="applied_jobs"),
+    # path("applied_jobs", views.AppliedJobsView.as_view(), name="applied_jobs"),
     path("applicants_jobs", views.ApplicantsJobsView.as_view(), name="applicants_jobs"),
     path("manage_jobs/", views.ManageJobsView.as_view(), name="manage_jobs"),
     path(
@@ -53,4 +53,11 @@ urlpatterns = [
     ),
     path("result/", views.search, name="search"),
     path("upload_cv/", views.CVUploadView.as_view(), name="cv_upload"),
+
+
+    path('apply/<int:job_id>/',views.ApplyForJobView.as_view(), name='apply_for_job'),
+    path('applied-jobs/', views.AppliedJobsListView.as_view(), name='applied_jobs'),
 ]
+
+
+        
