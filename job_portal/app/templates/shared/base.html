@@ -20,7 +20,7 @@
   {% block css_styles %} {% endblock css_styles %}
 
   <style>
-    z body {
+    body {
       font-family: 'Jost', sans-serif !important;
     }
   </style>
@@ -31,7 +31,13 @@
 </head>
 
 <body>
-  {% include 'shared/navbar.html' %} {% block content %} {% endblock content %}
+  {% include 'shared/navbar.html' %} 
+  {% include 'loginRegister.html' %}
+  {% block content %}
+  
+  {% endblock content %}
+  {% comment %} {% include 'shared/footer.html' %} {% endcomment %}
+
   <script src="{% static 'scripts/scripts.js' %}"></script>
   <script src="{% static 'scripts/candidate.js' %}"></script>
   <script src="{% static 'scripts/profile.js' %}"></script>
@@ -54,66 +60,6 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-  <div class="footer-container">
-    {% include 'loginRegister.html' %}
-    <footer class="footer bg-light py-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 mb-3 mb-md-0 footer-column">
-            <h3>Superio</h3>
-            <p class="font-weight-bold">
-              Call us<br /><span class="contact-number">123 456 7890</span>
-            </p>
-            <p>
-              328 Queensberry Street, North Melbourne VIC<br />3051,
-              Australia.
-            </p>
-            <p>support@superio.com</p>
-          </div>
-          <div class="col-md-2 mb-3 mb-md-0 footer-column">
-            <h3>For Candidates</h3>
-            <ul>
-              <li><a href="#">Browse Jobs</a></li>
-              <li><a href="#">Browse Candidates</a></li>
-              <li><a href="#">Candidate Dashboard</a></li>
-              <li><a href="#">Job Alerts</a></li>
-              <li><a href="#">My Bookmarks</a></li>
-            </ul>
-          </div>
-          <div class="col-md-2 mb-3 mb-md-0 footer-column">
-            <h3>For Employers</h3>
-            <ul>
-              <li><a href="#">All Employers</a></li>
-              <li><a href="#">Employer Dashboard</a></li>
-              <li><a href="#">Submit Job</a></li>
-              <li><a href="#">Job Packages</a></li>
-            </ul>
-          </div>
-          <div class="col-md-2 mb-3 mb-md-0 footer-column">
-            <h3>About Us</h3>
-            <ul>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Terms</a></li>
-              <li><a href="#">Packages</a></li>
-              <li><a href="#">FAQ</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 footer-column">
-            <h3>Helpful Resources</h3>
-            <ul>
-              <li><a href="#">Site Map</a></li>
-              <li><a href="#">Terms of Use</a></li>
-              <li><a href="#">Privacy Center</a></li>
-              <li><a href="#">Security Center</a></li>
-              <li><a href="#">Accessibility Center</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
 </body>
 
 </html>
