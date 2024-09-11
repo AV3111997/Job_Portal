@@ -34,7 +34,7 @@ class LoginView(View):
             return JsonResponse(
                 {
                     "success": True,
-                    "redirect_url": "userdashboard",
+                    "redirect_url": reverse("home"),
                     "message": "SignIn Successfull, redirecting....",
                 }
             )
