@@ -57,6 +57,11 @@ urlpatterns = [
 
     path('apply/<int:job_id>/',views.ApplyForJobView.as_view(), name='apply_for_job'),
     path('applied-jobs/', views.AppliedJobsListView.as_view(), name='applied_jobs'),
+    path(
+        "delete_applied_job/<int:pk>/",
+        views.DeleteAppliedJobView.as_view(),
+        name="delete_applied_job",
+    ),
 ]
 
 

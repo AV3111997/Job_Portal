@@ -11,37 +11,13 @@
 {% block content %}
 
 <div class="container-fluid d-flex">
-    <div class="sidebar">
-        <div class="profile-section">
-            <div class="profile-img-container">
-                <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture">
-            </div>
-            <div class="profile-info">
-                <h2>{{ request.user.candidate_profile.fullname }}</h2>
-                <p>{{ request.user.candidate_profile.location }}</p>
-                <button class="view-profile-btn">View Profile</button>
-            </div>
-        </div>
-        <nav class="nav-links">
-            <a href="#"><i class="bi bi-journal-check"></i> User Dashboard</a>
-            <a href="#"><i class="bi bi-person"></i> Profile</a>
-            <a href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
-            <a href="#"><i class="bi bi-megaphone"></i> My Applied</a>
-            <a href="#"><i class="bi bi-bookmark-check"></i> Shortlist Jobs</a>
-            <a href="#"><i class="bi bi-person-fill-add"></i> Following Employers</a>
-            <a href="#"><i class="bi bi-megaphone"></i> Alerts Jobs</a>
-            <a href="#"><i class="bi bi-chat-dots"></i> Messages</a>
-            <a href="#"><i class="bi bi-person-lines-fill"></i> Meetings</a>
-            <a href="#"><i class="bi bi-key"></i> Change Password</a>
-            <a href="#"><i class="bi bi-trash3-fill"></i> Delete Profile</a>
-            <a href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
-        </nav>
-    </div>
+    {% include 'shared/side_panel.html' %}
     <div class="main-content p-5">
         <div class="header">
             <h1>Applied Jobs</h1>
         </div>
         <div class="row">
+            {% if applied_jobs %}
             <div class="col-md-12 applied-jobs-container p-4">
                 <div class="container ">
                     <form method="GET" class="d-flex justify-content-between align-items-center mb-3">
@@ -53,7 +29,6 @@
                             </select>
                         </div>
                     </form>
-
                     <table class="table">
                         <thead class="custom-table-head">
                             <tr>
@@ -87,13 +62,24 @@
                                     {{ applied_job.status|title }}
                                 </td>
                                 <td class="actions">
-                                    <button><i class="fa-solid fa-x"></i></button>
-                                    <button><i class="fa-regular fa-eye"></i></button>
+                                    <a href="{% url 'delete_applied_job' applied_job.pk %}" style="text-decoration: none; color: black">
+                                        <i class="fa-solid fa-x"></i>
+                                    </a>
+                                    &nbsp;&nbsp;
+                                    <a href="{% url 'job_details' applied_job.job.id %}"
+                                        style="text-decoration: none; color: black">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </a>
                                 </td>
                             </tr>  
                             {% endfor %}       
                         </tbody>
                     </table>
+                    {% else %}
+                    <div class="d-flex align-items-center justify-content-center">
+                        <h3>You have not applied for any jobs!</h3>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

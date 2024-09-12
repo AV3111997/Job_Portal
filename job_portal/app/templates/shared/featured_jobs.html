@@ -22,8 +22,7 @@
                                                 <span class="text-danger">{{job.status}}</span>
                                             </div>
                                             {% if is_candidate %}
-                                            <a href="{% url 'save_job' job.id request.user.candidate_profile.id %}"class="save-button" onclick="saveJob(this); return false;" data-job-id="{{ job.id }}">
-                                                <span>Save Job</span>
+                                            <a href="{% url 'save_job' job.id candidate_id %}"class="save-button" onclick="saveJob(this); return false;" data-job-id="{{ job.id }}">
                                                 <i class="fa-regular fa-star"></i>
                                             </a>   
                                             {% endif %}                                         
