@@ -38,7 +38,7 @@
                 <h6><b>Category</b></h6>
                 <select class="form-control" name="category">
                     <option value=""> &#x1F4C3; Choose a category &#x25BE;</option>
-                    {% for category in categories %}                    <option value="2">Marketing</option>
+                    {% for category in job_category %}                  
                     <option value="{{ category }}" {% if request.GET.category == category %}selected{% endif %}>{{ category }}</option>
                     {% endfor %}
                 </select>
