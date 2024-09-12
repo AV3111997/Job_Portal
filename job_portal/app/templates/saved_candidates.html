@@ -1,0 +1,39 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}
+<title>Saved Candidates</title>
+{% endblock title %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock css_styles %}
+
+{% block content %}
+<h1>Saved Candidates</h1>
+
+<div class="table-wrapper" style="text-align: center;">
+    <table class="table" style="width: 70%; margin: 0 auto;">
+        <thead>
+            <tr>
+                <th>Profile Image</th>
+                <th>Full Name</th>
+                <th>Profile</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for saved_candidate in saved_candidates %}
+            <tr>
+                <td><img src="{{ saved_candidate.candidate.profile_image.url }}" alt="Profile Image" width="50" height="50"></td>
+                <td>{{ saved_candidate.candidate.fullname }}</td>
+                <td><a href="{% url 'candidate_profile' saved_candidate.candidate.id %}" class="btn btn-primary">View Profile</a></td>
+
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No candidates saved yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

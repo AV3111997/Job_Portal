@@ -172,8 +172,8 @@
                 </svg>
             </div>
 
-
-            <button id="viewProfileButton" class="view-profile-button">View Profile</button>
+            <a href="{% url 'candidate_profile' candidate_id=candidate.id %}">View Profile</a>
+            <button id="viewProfileButton"  class="view-profile-button" >View Profile</button>
         </div>
         {% empty %}
         <p>No candidates found.</p>

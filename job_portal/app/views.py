@@ -11,9 +11,13 @@ from .models import (
     Employer,
     Qualification,
     Location,
+    Review,
+    SavedCandidate
 )
+
 from django.views.generic import ListView
-from .forms import CandidateForm, CandidateContactForm, JobPostingForm, CVForm, EmployerForm, EmployerContactForm
+
+from .forms import CandidateForm, CandidateContactForm, JobPostingForm, CVForm, EmployerForm, EmployerContactForm, ReviewForm, CandidateMessageForm
 from django.urls import reverse_lazy
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -143,10 +147,55 @@ class JobListView(TemplateView):
 class ContactView(TemplateView):
     template_name = "contact.html"
 
+class ProfileView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        candidate_id = kwargs.get('candidate_id')
+        try:
+            candidate = Candidate.objects.get(id=candidate_id)
+        except Candidate.DoesNotExist:
+            candidate = None
 
-class ProfileView(TemplateView):
-    template_name = "profile.html"
+        review_form = ReviewForm() if candidate else None
+        
+        message_form = CandidateMessageForm() if candidate else None
+        reviews = Review.objects.filter(reviewer=request.user) if candidate else []
 
+        return render(request, 'profile.html', {
+            'candidate': candidate,
+            'review_form': review_form,
+            'message_form': message_form,
+            'reviews': reviews,
+        })
+
+    def post(self, request, *args, **kwargs):
+        if 'send_message' in request.POST:
+            message_form = CandidateMessageForm(request.POST)
+            if message_form.is_valid():
+                message = message_form.save(commit=False)
+                message.candidate = Candidate.objects.get(user=request.user)  
+                message.save()
+                messages.success(request, 'Your message has been sent successfully!')
+            else:
+                messages.error(request, 'Failed to send message. Please correct the errors below.')
+            
+            return redirect('profile')
+
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.reviewer = request.user  
+            review.save()
+            messages.success(request, 'Your review has been submitted!')
+            return redirect('profile')
+
+        candidate = Candidate.objects.get(user=request.user)
+        reviews = Review.objects.filter(reviewer=candidate.user)
+        return render(request, 'profile.html', {
+            'candidate': candidate,
+            'review_form': review_form,
+            'message_form': message_form,
+            'reviews': reviews,
+        })
 
 class TermView(TemplateView):
     template_name = "terms.html"
@@ -576,3 +625,44 @@ def job_list(request):
     }
 
     return render(request, 'findjoblist.html', context)
+
+class SaveCandidateView(LoginRequiredMixin, View):
+    def post(self, request, candidate_id):
+        if not request.user.is_authenticated:
+            return JsonResponse({'status': 'error', 'message': 'You need to be logged in'})
+
+        candidate = get_object_or_404(Candidate, pk=candidate_id)
+        
+        # Get the logged-in user as the employer
+        employer = request.user
+
+        # Create or get the SavedCandidate instance
+        saved_candidate, created = SavedCandidate.objects.get_or_create(
+            user=employer, candidate=candidate, defaults={'employer': employer}
+        )
+
+        if created:
+            return JsonResponse({"status": "success", "message": "Candidate saved successfully"})
+        return JsonResponse({"status": "exists", "message": "Candidate already saved"})
+
+class SavedCandidatesView(LoginRequiredMixin, TemplateView):
+    template_name = "saved_candidates.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        saved_candidates = SavedCandidate.objects.filter(user=user)
+        context["saved_candidates"] = saved_candidates
+        return context 
+
+def candidate_messages(request):
+    user = request.user
+    candidate = getattr(user, 'candidate', None)  
+
+    if candidate:
+        messages = candidate.candidatemessage_set.all() 
+    else:
+        messages = [] 
+
+    return render(request, 'candidate_messages.html', {'messages': messages})
+
