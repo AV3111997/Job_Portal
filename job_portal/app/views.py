@@ -625,5 +625,10 @@ class ApplyForJobView(View):
         applied_job.save()
 
         return redirect('applied_jobs')
+    
+class DeleteAppliedJobView(DeleteView):
+    model = AppliedJob
+    template_name = "applied_jobs_delete_confirm.html"
+    success_url = reverse_lazy("applied_jobs")
 
 

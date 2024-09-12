@@ -66,6 +66,8 @@
           <div class="dropdown-menu mt-5 border-0" aria-labelledby="navbarDropdown">
             {% if is_candidate %}
             <a class="dropdown-item p-3" href="{% url 'candidate_profile' %}"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
+            <a class="dropdown-item p-3" href="{% url 'applied_jobs' %}"><i class="bi bi-check"></i><span
+                class="px-2">Applied Jobs</span></a>
             <a class="dropdown-item p-3" href="{% url 'candidate_saved_jobs' %}"><i class="bi bi-suitcase-lg"></i><span class="px-2">Saved Jobs</span></a>
             {% elif is_employer %}
             <a class="dropdown-item p-3" href="{% url 'employer_profile' %}"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
