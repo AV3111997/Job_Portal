@@ -12,7 +12,8 @@ from .models import (
     Qualification,
     Location,
     Review,
-    SavedCandidate
+    SavedCandidate,
+    AppliedJob
 )
 
 from django.views.generic import ListView
@@ -575,6 +576,7 @@ def search(request):
     else:
         return redirect("/")
 
+
 def job_list(request):
     sort_by = request.GET.get('sort', 'default')
     per_page = int(request.GET.get('per_page', 9))
@@ -626,6 +628,7 @@ def job_list(request):
 
     return render(request, 'findjoblist.html', context)
 
+
 class SaveCandidateView(LoginRequiredMixin, View):
     def post(self, request, candidate_id):
         if not request.user.is_authenticated:
@@ -665,4 +668,57 @@ def candidate_messages(request):
         messages = [] 
 
     return render(request, 'candidate_messages.html', {'messages': messages})
+
+
+
+class AppliedJobsListView(ListView):
+    model = AppliedJob
+    template_name = 'applied_jobs.html'
+    context_object_name = 'applied_jobs'
+    ordering = ['-date_applied']  # Default ordering by date applied, newest first
+
+    def get_queryset(self):
+        # Fetch applied jobs for the logged-in candidate
+        candidate = self.request.user.candidate_profile  
+        queryset = AppliedJob.objects.filter(candidate=candidate).order_by('-date_applied')
+
+        # Search functionality
+        search_query = self.request.GET.get('q')
+        if search_query:
+            queryset = queryset.filter(
+                Q(job__job_title__icontains=search_query) |  # Search by job title
+                Q(job__location__name__icontains=search_query)  # Search by location name (assuming Location model has 'name' field)
+            )
+
+         # Sorting functionality
+        sort_by = self.request.GET.get('sort', 'newest')
+        if sort_by == 'oldest':
+            queryset = queryset.order_by('date_applied', 'id')  # Sort by date_applied, then by id (oldest first)
+        else:
+            queryset = queryset.order_by('-date_applied', '-id')  # Sort by date_applied, then by id (newest first)
+
+        return queryset
+
+
+class ApplyForJobView(View):
+    def post(self, request, job_id):
+        job = JobPosting.objects.get(id=job_id)
+        candidate = request.user.candidate_profile  # assuming user has a candidate profile
+
+        # Create or update the applied job record
+        applied_job, created = AppliedJob.objects.get_or_create(
+            candidate=candidate,
+            job=job
+        )
+
+        applied_job.status = 'pending'
+        applied_job.save()
+
+        return redirect('applied_jobs')
+    
+class DeleteAppliedJobView(DeleteView):
+    model = AppliedJob
+    template_name = "applied_jobs_delete_confirm.html"
+    success_url = reverse_lazy("applied_jobs")
+
 

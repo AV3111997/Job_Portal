@@ -1,0 +1,69 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% load form_tags %}
+
+{% block title %}
+  <title>Delete Profile</title>
+{% endblock %}
+
+{% block css_styles %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}" />
+  <style>
+    ul.errorlist {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    .delete_profile {
+      background-color: #f5f7fc;
+    }
+    .delete_profile_input {
+      background: #f0f5f7;
+      padding: 20px;
+      border: none;
+      border-radius: 8px;
+      color: #77838f;
+      font-size: 15px;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid d-flex delete_profile">
+    {% include 'shared/side_panel.html' %}
+    <div class="p-5">
+      <div class="header">
+        <h2 class="mb-4">Delete Profile</h2>
+      </div>
+      <div class="shadow-sm border-1 border border-light-subtle card p-5 flex-item" style="width: 70vw;">
+        <div class="mb-2">
+          <p class="fw-semibold fs-5 mb-2 pb-0">Are you sure! You want to delete your profile.</p>
+          <p class="fw-light fs-6 mt-0 pt-0">This can't be undone!</p>
+        </div>
+        <form method="post">
+          {% csrf_token %}
+          {% if form.errors %}
+          <div class="alert alert-danger form-group mb-4">
+            {{ form.non_field_errors }}
+            {% for field in form %}
+              {{ field.errors }}
+            {% endfor %}
+          </div>
+        {% endif %}
+          <div class="form-group mb-3">
+            <label for="id_password" class="form-label text-secondary">Please enter your login Password to confirm:</label>
+            {{ form.password|add_class:'delete_profile_input form-control vw-50' }}
+            {% if form.password.errors %}
+              <div class="text-danger form-text">{{ form.password.errors }}</div>
+            {% endif %}
+          </div>
+          <button type="submit" class="btn btn-danger">Delete Profile</button>
+        </form>
+      </div>
+      <div>
+        <p class="text-center my-5">© 2021 Superio. All Right Reserved.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

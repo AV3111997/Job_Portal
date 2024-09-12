@@ -366,3 +366,19 @@ class SavedCandidate(models.Model):
     def __str__(self):
         return f"{self.user.username} saved {self.candidate.user.username}"            
 
+class AppliedJob(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('reviewed', 'Reviewed'),
+        ('accepted', 'Accepted'),
+        ('rejected', 'Rejected'),
+    ]
+
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, default=1)
+    job = models.ForeignKey(JobPosting, on_delete=models.CASCADE)
+    date_applied = models.DateField(auto_now_add=True)  # Automatically set the date when the job is applied for
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='pending')
+
+    def __str__(self):
+        return f"{self.candidate} applied for {self.job.job_title}"
+

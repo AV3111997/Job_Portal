@@ -17,7 +17,7 @@ urlpatterns = [
     path("managejobs/", views.ManageJobsView.as_view(), name="managejobs"),
     path("about/", views.AboutView.as_view(), name="about"),
     path("terms/", views.TermView.as_view(), name="terms"),
-    path("applied_jobs", views.AppliedJobsView.as_view(), name="applied_jobs"),
+    # path("applied_jobs", views.AppliedJobsView.as_view(), name="applied_jobs"),
     path("applicants_jobs", views.ApplicantsJobsView.as_view(), name="applicants_jobs"),
     path("manage_jobs/", views.ManageJobsView.as_view(), name="manage_jobs"),
     path(
@@ -53,11 +53,23 @@ urlpatterns = [
     ),
     path("result/", views.search, name="search"),
     path("upload_cv/", views.CVUploadView.as_view(), name="cv_upload"),
+
     path('profile/<int:candidate_id>/', views.ProfileView.as_view(), name='candidate_profile'),
     path('candidate_messages/', views.candidate_messages, name='candidate_messages'),
     path('candidate_profile/', views.CandidateProfileView.as_view(), name='candidate_profile_view'),
     path("save-candidate/<int:candidate_id>/", SaveCandidateView.as_view(), name='save_candidate_profile'),
-    path('saved-candidates/', SavedCandidatesView.as_view(), name='saved_candidates')
+    path('saved-candidates/', SavedCandidatesView.as_view(), name='saved_candidates'),
     
 
+    path('apply/<int:job_id>/',views.ApplyForJobView.as_view(), name='apply_for_job'),
+    path('applied-jobs/', views.AppliedJobsListView.as_view(), name='applied_jobs'),
+    path(
+        "delete_applied_job/<int:pk>/",
+        views.DeleteAppliedJobView.as_view(),
+        name="delete_applied_job",
+    ),
+
 ]
+
+
+        

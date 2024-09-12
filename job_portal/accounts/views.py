@@ -11,7 +11,14 @@ from django.views.generic import TemplateView
 from django.contrib.auth.forms import SetPasswordForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
+from django.contrib.auth import logout
+from django.contrib import messages
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView
+from .forms import PasswordConfirmationForm
 
 User = get_user_model()
 
@@ -27,7 +34,7 @@ class LoginView(View):
             return JsonResponse(
                 {
                     "success": True,
-                    "redirect_url": "userdashboard",
+                    "redirect_url": reverse("home"),
                     "message": "SignIn Successfull, redirecting....",
                 }
             )
@@ -82,7 +89,6 @@ class RegisterView(View):
         return JsonResponse(
             {
                 "success": True,
-                "redirect_url": reverse("home"),
                 "message": "User registered successfully.",
             }
         )
@@ -162,3 +168,61 @@ class ResetPassConfirmView(View):
 
 class ResetPassCompleteView(TemplateView):
     template_name = "password_reset_complete.html"
+
+
+class ProfileDeleteView(LoginRequiredMixin, DeleteView):
+    model = User
+    template_name = 'profile_confirm_delete.html'
+    success_url = reverse_lazy('home')  # Redirect after successful deletion
+
+    def get_object(self, queryset=None):
+        # Override to get the current logged-in user
+        return self.request.user
+    
+    def get(self,request):
+        form = PasswordConfirmationForm()
+        context = {
+            'form':form,
+            'object':self.get_object(),
+        }
+        return render(request, self.template_name, context)
+    
+
+    
+    def post(self, request):
+        form = PasswordConfirmationForm(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data.get('password')
+            user = self.get_object()
+            if user.check_password(password):
+                return self.delete(request)
+            else:
+                form.add_error('password', 'Incorrect password.')
+
+        context = {
+            'form':form,
+            'object':self.get_object(),
+        }
+        return render(request, self.template_name,context)
+        
+
+    
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        logout(request)  # Log the user out after deletion
+        return response
+    
+
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'password_change_form.html'
+
+    def form_valid(self, form):
+        # Call the parent class's form_valid method to save the form
+        response = super().form_valid(form)
+        # Add a success message
+        messages.success(self.request, 'Your password has been changed successfully.')
+        return response
+
+    def get_success_url(self):
+        # Redirect to the same page to show the success message
+        return reverse_lazy('accounts:password_change')

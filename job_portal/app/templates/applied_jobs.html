@@ -11,53 +11,24 @@
 {% block content %}
 
 <div class="container-fluid d-flex">
-    <div class="sidebar">
-        <div class="profile-section">
-            <div class="profile-img-container">
-                <img src="{% static 'img/candidateprof.png' %}" alt="Profile Picture">
-            </div>
-            <div class="profile-info">
-                <h2>Candidate</h2>
-                <p>New York</p>
-                <button class="view-profile-btn">View Profile</button>
-            </div>
-        </div>
-        <nav class="nav-links">
-            <a href="#"><i class="bi bi-journal-check"></i> User Dashboard</a>
-            <a href="#"><i class="bi bi-person"></i> Profile</a>
-            <a href="#"><i class="bi bi-file-earmark-person-fill"></i> My Resume</a>
-            <a href="#"><i class="bi bi-megaphone"></i> My Applied</a>
-            <a href="#"><i class="bi bi-bookmark-check"></i> Shortlist Jobs</a>
-            <a href="#"><i class="bi bi-person-fill-add"></i> Following Employers</a>
-            <a href="#"><i class="bi bi-megaphone"></i> Alerts Jobs</a>
-            <a href="#"><i class="bi bi-chat-dots"></i> Messages</a>
-            <a href="#"><i class="bi bi-person-lines-fill"></i> Meetings</a>
-            <a href="#"><i class="bi bi-key"></i> Change Password</a>
-            <a href="#"><i class="bi bi-trash3-fill"></i> Delete Profile</a>
-            <a href="#"><i class="bi bi-box-arrow-left"></i> Logout</a>
-        </nav>
-    </div>
+    {% include 'shared/side_panel.html' %}
     <div class="main-content p-5">
         <div class="header">
             <h1>Applied Jobs</h1>
         </div>
         <div class="row">
+            {% if applied_jobs %}
             <div class="col-md-12 applied-jobs-container p-4">
                 <div class="container ">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <input type="text" class="form-control search-box" placeholder="Search...">
+                    <form method="GET" class="d-flex justify-content-between align-items-center mb-3">
+                        <input type="text" name="q" class="form-control search-box" placeholder="Search..." value="{{ request.GET.q }}">
                         <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                id="dropdownSortButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                Sort by: Newest
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownSortButton">
-                                <li><a class="dropdown-item" href="#">Newest</a></li>
-                                <li><a class="dropdown-item" href="#">Oldest</a></li>
-                            </ul>
+                            <select name="sort" class="form-select" onchange="this.form.submit()">
+                                <option value="newest" {% if request.GET.sort == "newest" %}selected{% endif %}>Newest</option>
+                                <option value="oldest" {% if request.GET.sort == "oldest" %}selected{% endif %}>Oldest</option>
+                            </select>
                         </div>
-                    </div>
-
+                    </form>
                     <table class="table">
                         <thead class="custom-table-head">
                             <tr>
@@ -68,133 +39,47 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for applied_job in applied_jobs %}
                             <tr>
                                 <td class="d-flex">
                                     <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
+                                        <!-- Add an icon or image if needed -->
                                     </div>
                                     <div class="col-md-9 d-flex flex-column justify-content-between">
                                         <div class="d-flex justify-content-between">
-                                            <h5 class="job-card-title">Finance Manager & Health</h5>
+                                            <h5 class="job-card-title">{{ applied_job.job.job_title }}</h5>
                                         </div>
                                         <div class="">
                                             <p class="card-text text-nowrap">
-                                                <span class="text-muted me-2"><i
-                                                        class="fa-solid fa-briefcase"></i>&nbsp;Design</span>
-                                                <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;New
-                                                    York</span>
+                                                <span class="text-muted me-2"><i class="fa-solid fa-briefcase"></i>&nbsp;{{ applied_job.job.tag }}</span>
+                                                <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;{{ applied_job.job.location }}</span>
                                             </p>
                                         </div>
                                     </div>
                                 </td>
-                                <td>July 20, 2021</td>
-                                <td class="status-pending">Pending</td>
+                                <td>{{ applied_job.date_applied }}</td>
+                                <td class="{% if applied_job.status == 'approved' %}status-approved{% else %}status-pending{% endif %}">
+                                    {{ applied_job.status|title }}
+                                </td>
                                 <td class="actions">
-                                    <button><i class="fa-solid fa-x"></i></button>
-                                    <button><i class="fa-regular fa-eye"></i></button>
+                                    <a href="{% url 'delete_applied_job' applied_job.pk %}" style="text-decoration: none; color: black">
+                                        <i class="fa-solid fa-x"></i>
+                                    </a>
+                                    &nbsp;&nbsp;
+                                    <a href="{% url 'job_details' applied_job.job.id %}"
+                                        style="text-decoration: none; color: black">
+                                        <i class="fa-regular fa-eye"></i>
+                                    </a>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td class="d-flex">
-                                    <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                                    </div>
-                                    <div class="col-md-9 d-flex flex-column justify-content-between">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="job-card-title">Restaurant Team Member</h5>
-                                        </div>
-                                        <div class="">
-                                            <p class="card-text text-nowrap">
-                                                <span class="text-muted me-2"><i
-                                                        class="fa-solid fa-briefcase"></i>&nbsp;Customer</span>
-                                                <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;New
-                                                    York</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>May 7, 2021</td>
-                                <td class="status-pending">Pending</td>
-                                <td class="actions">
-                                    <button><i class="fa-solid fa-x"></i></button>
-                                    <button><i class="fa-regular fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="d-flex">
-                                    <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                                    </div>
-                                    <div class="col-md-9 d-flex flex-column justify-content-between">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="job-card-title">Junior Graphic Designer (Web)</h5>
-                                        </div>
-                                        <div class="">
-                                            <p class="card-text text-nowrap">
-                                                <span class="text-muted me-2"><i
-                                                        class="fa-solid fa-briefcase"></i>&nbsp;Design</span>
-                                                <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;New
-                                                    York</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>May 7, 2021</td>
-                                <td class="status-approved">Approved</td>
-                                <td class="actions">
-                                    <button><i class="fa-solid fa-x"></i></button>
-                                    <button><i class="fa-regular fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="d-flex">
-                                    <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                                    </div>
-                                    <div class="col-md-9 d-flex flex-column justify-content-between">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="job-card-title">Recruiting Coordinator</h5>
-                                        </div>
-                                        <div class="">
-                                            <p class="card-text text-nowrap">
-                                                <span class="text-muted me-2"><i
-                                                        class="fa-solid fa-briefcase"></i>&nbsp;Design</span>
-                                                <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;Los
-                                                    Angeles</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>May 7, 2021</td>
-                                <td class="status-pending">Pending</td>
-                                <td class="actions">
-                                    <button><i class="fa-solid fa-x"></i></button>
-                                    <button><i class="fa-regular fa-eye"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="d-flex">
-                                    <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
-                                    </div>
-                                    <div class="col-md-9 d-flex flex-column justify-content-between">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="job-card-title">Product Manager, Studio</h5>
-                                        </div>
-                                        <div class="">
-                                            <p class="card-text text-nowrap">
-                                                <span class="text-muted me-2"><i
-                                                        class="fa-solid fa-briefcase"></i>&nbsp;Health Care</span>
-                                                <span class="me-2"><i
-                                                        class="fa-solid fa-location-dot"></i>&nbsp;London</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>April 19, 2021</td>
-                                <td class="status-pending">Pending</td>
-                                <td class="actions">
-                                    <button><i class="fa-solid fa-x"></i></button>
-                                    <button><i class="fa-regular fa-eye"></i></button>
-                                </td>
-                            </tr>
+                            </tr>  
+                            {% endfor %}       
                         </tbody>
                     </table>
+                    {% else %}
+                    <div class="d-flex align-items-center justify-content-center">
+                        <h3>You have not applied for any jobs!</h3>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

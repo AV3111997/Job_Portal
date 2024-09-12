@@ -5,7 +5,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom-bg">
   <div class="container-fluid">
-    <a class="navbar-brand ms-5 me-5" href="#"><img width="154" height="50" src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/logo.svg" alt="" /></a>
+    <a class="navbar-brand ms-5 me-5" href="{% url 'home' %}"><img width="154" height="50" src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/logo.svg" alt=""/></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav gap-4">
@@ -66,6 +66,8 @@
           <div class="dropdown-menu mt-5 border-0" aria-labelledby="navbarDropdown">
             {% if is_candidate %}
             <a class="dropdown-item p-3" href="{% url 'candidate_profile' %}"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
+            <a class="dropdown-item p-3" href="{% url 'applied_jobs' %}"><i class="bi bi-check"></i><span
+                class="px-2">Applied Jobs</span></a>
             <a class="dropdown-item p-3" href="{% url 'candidate_saved_jobs' %}"><i class="bi bi-suitcase-lg"></i><span class="px-2">Saved Jobs</span></a>
 
             <a class="dropdown-item p-3" href="{% url 'candidate_messages' %}">
@@ -82,8 +84,8 @@
             <a class="dropdown-item p-3" href="{% url 'saved_candidates' %}"><i class="bi bi-save"></i><span class="px-2">Saved Candidates</span></a>
 
             {% endif %}
-            <a class="dropdown-item p-3" href="#"><i class="bi bi-lock"></i><span class="px-2">Change Password</span></a>
-            <a class="dropdown-item p-3" href="#"><i class="bi bi-trash3"></i><span class="px-2">Delete Profile</span></a>
+            <a class="dropdown-item p-3" href="{% url 'accounts:password_change' %}"><i class="bi bi-lock"></i><span class="px-2">Change Password</span></a>
+            <a class="dropdown-item p-3" href="{% url 'accounts:profile_delete' %}"><i class="bi bi-trash3"></i><span class="px-2">Delete Profile</span></a>
             <a href="#" class="dropdown-item p-3" onclick="document.getElementById('logout-form').submit();">
               <i class="bi bi-box-arrow-left"></i> Logout
             </a>
