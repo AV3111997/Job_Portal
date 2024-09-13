@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import  path
 from . import views
+from .views import SaveCandidateView, SavedCandidatesView
 
 
 urlpatterns = [
@@ -15,7 +16,6 @@ urlpatterns = [
     path("userdashboard", views.UserDashboardView.as_view(), name="userdashboard"),
     path("contact/", views.ContactView.as_view(), name="contact"),
     path("managejobs/", views.ManageJobsView.as_view(), name="managejobs"),
-    path("profile/", views.ProfileView.as_view(), name="profile"),
     path("about/", views.AboutView.as_view(), name="about"),
     path("terms/", views.TermView.as_view(), name="terms"),
     # path("applied_jobs", views.AppliedJobsView.as_view(), name="applied_jobs"),
@@ -55,6 +55,12 @@ urlpatterns = [
     path("result/", views.search, name="search"),
     path("upload_cv/", views.CVUploadView.as_view(), name="cv_upload"),
 
+    path('profile/<int:candidate_id>/', views.ProfileView.as_view(), name='candidate_profile'),
+    path('candidate_messages/', views.candidate_messages, name='candidate_messages'),
+    path('candidate_profile/', views.CandidateProfileView.as_view(), name='candidate_profile_view'),
+    path("save-candidate/<int:candidate_id>/", SaveCandidateView.as_view(), name='save_candidate_profile'),
+    path('saved-candidates/', SavedCandidatesView.as_view(), name='saved_candidates'),
+    
 
     path('apply/<int:job_id>/',views.ApplyForJobView.as_view(), name='apply_for_job'),
     path('applied-jobs/', views.AppliedJobsListView.as_view(), name='applied_jobs'),
@@ -63,6 +69,7 @@ urlpatterns = [
         views.DeleteAppliedJobView.as_view(),
         name="delete_applied_job",
     ),
+
 ]
 
 

@@ -10,6 +10,8 @@ from .models import (
     Location,
     Employer,
     CV,
+    CandidateMessage,
+    Review
 )
 
 class EmployerForm(forms.ModelForm):
@@ -86,6 +88,12 @@ class CandidateForm(forms.ModelForm):
             "experience": forms.Select(attrs={"class": "form-control"}),
             "salary_type": forms.Select(attrs={"class": "form-control"}),
             "job_category": forms.SelectMultiple(attrs={"class": "form-control"}),
+            'skills': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'educations': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'work_experiences': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'awards': forms.SelectMultiple(attrs={'class': 'form-control'}),         
+            'job_category': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'cv': forms.FileInput(attrs={'class': 'form-control'})
         }
 
     def __init__(self, *args, **kwargs):
@@ -180,3 +188,25 @@ class CVForm(forms.ModelForm):
     class Meta:
         model = CV
         fields = ["file"]
+
+class CandidateMessageForm(forms.ModelForm):
+    class Meta:
+        model = CandidateMessage
+        fields = ['subject', 'email', 'phone', 'message']
+        widgets = {
+            'subject': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'message': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(CandidateMessageForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating', 'comment']

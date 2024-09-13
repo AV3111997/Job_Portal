@@ -1,0 +1,29 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Messages</title>
+{% endblock title %}
+
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock css_styles %}
+
+{% block content %}
+<h2>Your Messages</h2>
+<ul>
+    {% for message in messages %}
+        <li>
+            <strong>From:</strong> {{ message.employer.company_name }}<br>
+            <strong>Subject:</strong> {{ message.subject }}<br>
+            <strong>Message:</strong> {{ message.message }}<br>
+            <strong>Sent at:</strong> {{ message.sent_at }}<br>
+            {% if not message.is_read %}
+                <span class="unread">New</span>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No messages.</li>
+    {% endfor %}
+</ul>
+{% endblock content %}

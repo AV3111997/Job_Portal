@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from accounts.models import User
-
+from django.utils import timezone
 # Create your models here.
 
 
@@ -28,11 +28,68 @@ class JobCategory(models.Model):
 
 
 class Location(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+    
+class ProfessionalSkill(models.Model):
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
+
+class Education(models.Model):
+    degree = models.CharField(max_length=100)
+    institution = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.degree} at {self.institution}"
+    
+
+class WorkExperience(models.Model):
+    job_title = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True, blank=True)
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.job_title} at {self.company_name}"  
+    
+class Award(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    date_awarded = models.DateField()
+
+    def __str__(self):
+        return self.title    
+       
+class CandidateMessage(models.Model):
+    candidate = models.ForeignKey('Candidate', on_delete=models.CASCADE, default=1)
+    employer = models.ForeignKey('Employer', on_delete=models.CASCADE,default=1)
+    subject = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    message = models.TextField()
+    is_read = models.BooleanField(default=False)  
+    sent_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message to {self.candidate.fullname}"
+
+class Review(models.Model):
+    reviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='given_reviews')
+    rating = models.PositiveSmallIntegerField(default=5)
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Review by {self.reviewer.username}"
 
 class Candidate(models.Model):
     GENDER_CHOICES = [
@@ -114,6 +171,14 @@ class Candidate(models.Model):
     job_title = models.CharField(max_length=100, verbose_name="Job Title")
     description = models.TextField()
 
+    bio = models.TextField(default='No bio available')
+    skills = models.ManyToManyField(ProfessionalSkill, blank=True, verbose_name='Professional Skills')
+    location = models.CharField(max_length=255,null=True,blank=True,verbose_name='Location')
+    educations = models.ManyToManyField(Education, blank=True, related_name='candidates')
+    work_experiences = models.ManyToManyField(WorkExperience, blank=True, related_name='candidates')
+    awards = models.ManyToManyField(Award, blank=True, related_name='candidates') 
+    cv = models.FileField(upload_to='cv_files/', null=True, blank=True)
+
 
 class SocialNetwork(models.Model):
     user = models.ForeignKey(
@@ -156,6 +221,7 @@ class Employer(models.Model):
     description = models.CharField(max_length=255)
     profile_url = models.URLField(max_length=200)
     is_open_job = models.BooleanField(default=True)
+    saved_candidates = models.ManyToManyField(Candidate, related_name='saved_by_employers', blank=True)
 
     def __str__(self):
         return self.employer_name
@@ -292,7 +358,16 @@ class CV(models.Model):
     candidate = models.ForeignKey(Candidate, related_name="candidate_cv", on_delete=models.CASCADE)
     file = models.FileField(upload_to="cvs/")
 
+ 
 
+class SavedCandidate(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    candidate = models.ForeignKey('Candidate', on_delete=models.CASCADE)
+    saved_at = models.DateTimeField(auto_now_add=True)
+    employer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='saved_candidates')
+
+    def __str__(self):
+        return f"{self.user.username} saved {self.candidate.user.username}"            
 
 class AppliedJob(models.Model):
     STATUS_CHOICES = [
@@ -309,3 +384,4 @@ class AppliedJob(models.Model):
 
     def __str__(self):
         return f"{self.candidate} applied for {self.job.job_title}"
+
