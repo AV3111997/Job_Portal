@@ -1,0 +1,80 @@
+{% extends 'shared/base.html' %} {% load static %} {% block title %}
+<title>{{employer.employer_name}} - Details</title>
+{% endblock title %} {% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/job_details.css' %}" />
+{% endblock css_styles %} {% block content %}
+<header class="bg-light text-center py-4 shadow-sm">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-2">
+                <img src="{{ employer.logo }}" alt="Company Logo" class="logt rounded-circle img-fluid">
+            </div>
+            <div class="col-md-10 text-md-start">
+                <h2 class="d-flex align-items-center gap-2">
+                    {{ employer.employer_name }}
+                </h2>
+            </div>
+        </div>
+        <div class="mt-3 mb-4">
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item me-3">
+                    <img src="{% static 'img/job_details/briefcase.png' %}" alt="Briefcase Icon" class="imget">
+                    {% for category in employer.job_category.all %}
+                    {{ category.name }}
+                    {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </li>
+                <li class="list-inline-item me-3">
+                    <img src="{% static 'img/job_details/211766_location_icon (1).png' %}" alt="Location Icon"
+                        class="imget">
+                    {{ employer.employer_contacts.first.location.name }}
+                </li>
+                <li class="list-inline-item me-3">
+                    <i class="bi bi-telephone"></i>
+                    {{ employer.phone_no }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<main class="container my-5">
+    <div class="row">
+        <section class="col-md-8">
+            <article>
+                <h4>Description</h4>
+                <p class="text-mutedt">{{ employer.description }}</p>
+            </article>
+        </section>
+        <aside class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li>Categories: {% for category in employer.job_category.all %}
+                        {{ category.name }}
+                        {% if not forloop.last %}, {% endif %}
+                        {% endfor %}</li>
+                        <li>Founded date: {{ employer.founded_date }}</li>
+                        <li>Company size: {{ employer.company_size }}</li>
+                        <li>Location: {{ employer.employer_contacts.first.location.name }}</li>
+                        <li>Phone No: {{ employer.phone_no }}</li>
+                        <li>Email: {{ employer.email }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h4>Location</h4>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb={{ job.location_map_embed_url }}" width="100%"
+                            height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</main>
+{% endblock content %}

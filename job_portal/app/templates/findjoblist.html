@@ -199,8 +199,8 @@
             <div class="job-listing">
                 <div class="d-flex justify-content-between">
                     <div class="job_image">
-                        <img src="{{ job.featured_image.url }}" alt="job-listing" style="max-width: 60px;"></div>
-                    <h2 class="job_head"><a href="">{{ job.job_title }}</a></h2>
+                        <img src="" alt="job-listing" style="max-width: 60px;"></div>
+                    <h2 class="job_head"><a href="{% url 'job_details' job.pk %}">{{ job.job_title }}</a></h2>
                     <span class="featured"><i class="fa-regular fa-bookmark"></i></span>
                 </div>
                 <p class="text-muted">
