@@ -24,6 +24,7 @@ class EmployerForm(forms.ModelForm):
             'website',
             'founded_date',
             'logo',
+            'job_category',
             'cover_photo',
             'company_size',
             'introduction_video_url',
@@ -38,6 +39,7 @@ class EmployerForm(forms.ModelForm):
             'introduction_video_url': forms.URLInput(attrs={'placeholder': 'Enter YouTube or Video URL'}),
             'profile_url': forms.URLInput(attrs={'placeholder': 'Enter your company website URL'}),
             'description': forms.Textarea(attrs={'rows': 4}),
+            "job_category": forms.SelectMultiple(attrs={"class": "form-control"}),
         }
 
     def __init__(self, *args, **kwargs):

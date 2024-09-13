@@ -211,6 +211,9 @@ class Employer(models.Model):
         null=True,
         blank=True,
     )
+    job_category = models.ManyToManyField(
+        JobCategory, verbose_name="job_category", blank=True
+    )
     logo = models.ImageField(upload_to="employer_logos/")
     cover_photo = models.ImageField(upload_to="employer_coverphoto/")
     company_size = models.CharField(max_length=20)

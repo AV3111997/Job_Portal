@@ -722,3 +722,43 @@ class DeleteAppliedJobView(DeleteView):
     success_url = reverse_lazy("applied_jobs")
 
 
+def employers_list(request):
+    keyword = request.GET.get("keyword", "")
+    location = request.GET.get("location", "")
+    category_ids = request.GET.getlist("categories", [])
+
+    employers = Employer.objects.all()
+
+    if keyword:
+        employers = employers.filter(
+            Q(employer_name__icontains=keyword)
+        )
+
+    if location:
+        employers = employers.filter(location__icontains=location)
+
+    if category_ids:
+        employers = employers.filter(job_category__id__in=category_ids).distinct()
+
+    context = {
+        "employers": employers,
+        "keyword": keyword,
+        "location": location,
+        "categories": JobCategory.objects.all(),
+        "selected_categories": category_ids,
+    }
+
+    return render(request, "employerslist.html", context)
+
+class EmployerDetailView(DetailView):
+    model = Employer
+    template_name = "employers_details.html"
+    context_object_name = "employer"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        context["employers"] = Employer.objects.exclude(pk=self.object.pk)[:4]
+        
+        return context
+
