@@ -24,19 +24,9 @@
             {% endif %}
             <h2>{{ candidate.fullname }}</h2>
             <p>{{ candidate.job_title }}</p>
-            <p>Candidate ID: {{ candidate.id }}</p>
         <div class="profile-info" >
-            <div class="skills">
-                {% for skill in candidate.skills.all %}
-                    <a href="#"><span>{{ skill.name }}</span></a>
-                {% empty %}
-                    <span>No skills listed.</span>
-                {% endfor %}
-            </div>
-            
-            
             <div class="details">
-                <a href="#"><span><i class="fas fa-map-marker-alt"></i> {{ candidate.location }}</span></a>
+                <a href="#"><span><i class="fas fa-map-marker-alt"></i> {{ candidate.candidate_contacts.first.location.name }}</span></a>
             
                 <span><i class="fas fa-money-bill-wave"></i> ${{ candidate.salary }} / {{ candidate.salary_type }}</span>
             </div>
@@ -52,7 +42,6 @@
                 {% endif %}
                 <button class="btn btn-primary">Invite</button>
                 {% if candidate %}
-                    <p>Candidate ID: {{ candidate.id }}</p>
                     <form action="{% url 'save_candidate_profile' candidate.id %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary">Save Profile</button>
@@ -174,7 +163,7 @@
                 <div class="card-body">
                     <h5 class="card-title">About {{ candidate.fullname }}</h5>
                     <!-- <p>{{ candidate.bio }}</p> -->
-                    <p>{{ candidate.bio|linebreaks }}</p>
+                    <p>{{ candidate.description|linebreaks }}</p>
                     
                     <div class="share-container">
                         <div class="share-text">Share This Post</div>
@@ -185,73 +174,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Education</h3>
-                    
-                    <!-- Education Timeline Starts Here -->
-                    <div class="timeline E">
-                        {% for education in candidate.educations.all %}
-                        <div class="timeline-item" data-letter="E">
-                            <h5 class="timeline-title">{{ education.degree }} in {{ education.field_of_study }}</h5>
-                            <span class="timeline-date" style="color: #dc3545;">
-                                {{ education.start_date }} - {{ education.end_date }}
-                            </span>
-                            <h6 class="timeline-subtitle" style="color: #dc3545;">{{ education.institution }}</h6>
-                            <p class="timeline-description">{{ education.description }}</p>
-                        </div>
-                        {% endfor %}
-                    </div>
-                   
-                    <!-- Education Timeline Ends Here -->
-                </div>
-            </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">Work & Experience</h3>
-                        <!-- work Timeline Starts Here -->
-                        <div class="timeline W">
-                            {% for experience in candidate.work_experiences.all %}
-                            <div class="timeline-item" data-letter="W">
-                                <h5 class="timeline-title">{{ experience.job_title }}</h5>
-                                <span class="timeline-date" style="color: #3078e3;">
-                                    {{ experience.start_date }} - {{ experience.end_date }}
-                                </span>
-                                <h6 class="timeline-subtitle" style="color: #3078e3;">{{ experience.company_name }}</h6>
-                                <p class="timeline-description">{{ experience.description|linebreaks }}</p>
-                            </div>  
-                            {% endfor %}  
-                            
-                        </div>
-
-                        <!-- work Timeline Ends Here -->
-                    </div>
-                </div>
-            
-                
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">Award</h3>
-                            
-                            <!-- Education Timeline Starts Here -->
-                            <div class="timeline A">
-                                {% for award in candidate.awards.all %}
-                                <div class="timeline-item" data-letter="A">
-                                    <h5 class="timeline-title">{{ award.title }}</h5>
-                                    <span class="timeline-date" style="color: #e18f2a;">
-                                        {{ award.date_awarded|date:"Y" }}
-                                    </span>
-                                    <p class="timeline-description">{{ award.description }}</p>
-                                </div>
-                                {% endfor %}
-                              
-                            </div>
-                        </div>
-                    </div>
-        
-                    
+            </div>  
                     <div class="container my-5" >
                         <h5>Related Candidates</h5>
                         {% for candidate in candidates %}    

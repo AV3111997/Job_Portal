@@ -170,10 +170,7 @@ class Candidate(models.Model):
     )
     job_title = models.CharField(max_length=100, verbose_name="Job Title")
     description = models.TextField()
-
-    bio = models.TextField(default='No bio available')
     skills = models.ManyToManyField(ProfessionalSkill, blank=True, verbose_name='Professional Skills')
-    location = models.CharField(max_length=255,null=True,blank=True,verbose_name='Location')
     educations = models.ManyToManyField(Education, blank=True, related_name='candidates')
     work_experiences = models.ManyToManyField(WorkExperience, blank=True, related_name='candidates')
     awards = models.ManyToManyField(Award, blank=True, related_name='candidates') 

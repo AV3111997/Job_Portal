@@ -6,7 +6,7 @@
     <div class="row">
             {% for job in jobs %}
             <div class="col-md-6 mb-4">
-                <div class="card job-card">
+                <div class="card job-card" style="word-wrap: break-word; overflow-wrap: break-word;">
                     <div class="card-body p-4 mt-2 mb-2">
                         <div class="row">
                             <div class="col-md-3 ms-4 custom-icon-bg d-flex justify-content-center">
@@ -15,22 +15,25 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="job-row-one">
                                         <div class="d-flex">
-                                            <a class="feat-jobs" href="{% url 'job_details' job.pk %}" style="text-decoration: none; color: inherit;">
+                                            <a class="feat-jobs" href="{% url 'job_details' job.pk %}"
+                                                style="text-decoration: none; color: inherit;">
                                                 <h5 class="job-card-title">{{job.job_title}}</h5>
                                             </a>
                                             <div class="ms-2">
                                                 <span class="text-danger">{{job.status}}</span>
                                             </div>
                                             {% if is_candidate %}
-                                            <a href="{% url 'save_job' job.id candidate_id %}"class="save-button" onclick="saveJob(this); return false;" data-job-id="{{ job.id }}">
+                                            <a href="{% url 'save_job' job.id candidate_id %}" class="save-button"
+                                                onclick="saveJob(this); return false;" data-job-id="{{ job.id }}">
                                                 <i class="fa-regular fa-star"></i>
-                                            </a>   
-                                            {% endif %}                                         
+                                            </a>
+                                            {% endif %}
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>
                                 <div class="mb-3">
-                                    <p class="card-text text-nowrap">
+                                    <p class="card-text"
+                                        style="white-space: normal; word-wrap: break-word; overflow-wrap: break-word;">
                                         <span class="text-muted me-2">
                                             <i class="fa-solid fa-briefcase"></i>&nbsp;
                                             {% for category in job.job_category.all %}
@@ -38,8 +41,13 @@
                                             {% if not forloop.last %}, {% endif %}
                                             {% endfor %}
                                         </span>
-                                        <span class="me-2"><i class="fa-solid fa-location-dot"></i>&nbsp;{{job.location}}</span>
-                                        <span><i class="fa-solid fa-money-bill"></i>&nbsp;${{job.min_salary}} - ${{job.max_salary}} / {{job.salary_type}}</span>
+                                        <span class="me-2">
+                                            <i class="fa-solid fa-location-dot"></i>&nbsp;{{job.location}}
+                                        </span>
+                                        <span>
+                                            <i class="fa-solid fa-money-bill"></i>&nbsp;${{job.min_salary}} - ${{job.max_salary}} /
+                                            {{job.salary_type}}
+                                        </span>
                                     </p>
                                 </div>
                                 <div>
@@ -47,10 +55,11 @@
                                     <span class="urgent-badge">{{job.urgency_level}}</span>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
+
             {% endfor%}
             
         </div>

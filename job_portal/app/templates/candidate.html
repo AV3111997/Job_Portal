@@ -111,7 +111,7 @@
                 </div>
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary" style="padding: 8px 50px; font-size: 18px;">Find
-                    Employers</button>
+                    Candidates</button>
             </form>
         </div>
     </div>
@@ -146,7 +146,7 @@
                 </h5>
                 <p class="mb-1">
                     <a href="#" class="text-decoration-none">{{ candidate.job_title }}</a>
-                    | <i class="fas fa-map-marker-alt"></i> {{ candidate.location }} |
+                    | <i class="fas fa-map-marker-alt"></i> {{ candidate.candidate_contacts.first.location.name }} |
                     ${{ candidate.salary }} / year
                 </p>
                 <div>
@@ -167,8 +167,8 @@
                 </svg>
             </div>
 
-            <a href="{% url 'candidate_profile' candidate_id=candidate.id %}">View Profile</a>
-            <button id="viewProfileButton"  class="view-profile-button" >View Profile</button>
+            <a href="{% url 'candidate_profile' candidate_id=candidate.id %}"><button id="viewProfileButton" class="view-profile-button">View Profile</button></a>
+            
         </div>
         {% empty %}
         <p>No candidates found.</p>
