@@ -22,7 +22,7 @@
                                             <div class="ms-2">
                                                 <span class="text-danger">{{job.status}}</span>
                                             </div>
-                                            {% if is_candidate %}
+                                            {% if is_candidate and candidate_id and not user.is_superuser %}
                                             <a href="{% url 'save_job' job.id candidate_id %}" class="save-button"
                                                 onclick="saveJob(this); return false;" data-job-id="{{ job.id }}">
                                                 <i class="fa-regular fa-star"></i>

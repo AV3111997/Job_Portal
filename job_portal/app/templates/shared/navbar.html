@@ -57,13 +57,16 @@
             <div class="d-flex p-3 gap-1">
               {% if is_candidate %}
               <span class="my-auto">Candidate</span>
-              {% else %}
+              {% elif is_employer %}
               <span class="my-auto">Employer</span>
+                {% elif user.is_superuser %}
+              <span class="my-auto">Administrator</span>
               {% endif %}
               <i class="bi bi-chevron-down my-auto"></i>
             </div>
           </a>
           <div class="dropdown-menu mt-5 border-0" aria-labelledby="navbarDropdown">
+            {% if not user.is_superuser %}
             {% if is_candidate %}
             <a class="dropdown-item p-3" href="{% url 'candidate_profile' %}"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
             <a class="dropdown-item p-3" href="{% url 'applied_jobs' %}"><i class="bi bi-check"></i><span
@@ -80,6 +83,23 @@
             <a class="dropdown-item p-3" href="{% url 'employer_profile' %}"><i class="bi bi-person"></i><span class="px-2">Profile</span></a>
             <a class="dropdown-item p-3" href="{% url 'manage_jobs' %}"><i class="bi bi-briefcase"></i><span class="px-2">Manage Jobs</span></a>
             <a class="dropdown-item p-3" href="{% url 'jobform' %}"><i class="bi bi-pencil"></i><span class="px-2">Submit Job</span></a>
+            {% endif %}
+            {% else %}
+            <a class="dropdown-item p-3" href="{% url 'manage_jobs' %}"><span class="px-2">
+                User</span></a>
+            <a class="dropdown-item p-3" href="{% url 'manage_jobs' %}"><span class="px-2">Manage
+                Candidates</span></a>
+            <a class="dropdown-item p-3" href="{% url 'manage_jobs' %}"><span class="px-2">Manage
+                Employers</span></a>
+            <hr class="dropdown-divider">
+            <a class="dropdown-item p-3" href="{% url 'manage_jobs' %}"><span class="px-2">Manage
+                Job Categories</span></a>
+            <a class="dropdown-item p-3" href="{% url 'manage_jobs' %}"><span class="px-2">Manage
+                  Languages</span></a>
+            <a class="dropdown-item p-3" href="{% url 'manage_jobs' %}"><span class="px-2">Manage
+                Locations</span></a>
+            <a class="dropdown-item p-3" href="{% url 'manage_jobs' %}"><span class="px-2">Manage
+                Proffessional Skills</span></a>
             {% endif %}
             <a class="dropdown-item p-3" href="{% url 'accounts:password_change' %}"><i class="bi bi-lock"></i><span class="px-2">Change Password</span></a>
             <a class="dropdown-item p-3" href="{% url 'accounts:profile_delete' %}"><i class="bi bi-trash3"></i><span class="px-2">Delete Profile</span></a>
