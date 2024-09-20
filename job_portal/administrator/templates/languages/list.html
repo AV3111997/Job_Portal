@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>Admin | </title>
+<title>Admin | --title-- </title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -9,5 +9,16 @@
 {% endblock css_styles %}
 
 {% block content %}
+
+<div class="container-fluid d-flex">
+    {% include 'shared/side_panel.html' %}
+    <div class="main-content p-5">
+        <div class="header">
+            <h1> --title--</h1>
+        </div>
+        <div class="row">
+        </div>
+    </div>
+</div>
 
 {% endblock %}
