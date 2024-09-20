@@ -176,7 +176,6 @@ class Candidate(models.Model):
     awards = models.ManyToManyField(Award, blank=True, related_name='candidates') 
     cv = models.FileField(upload_to='cv_files/', null=True, blank=True)
 
-
 class SocialNetwork(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="social_networks"
@@ -187,14 +186,12 @@ class SocialNetwork(models.Model):
     def __str__(self):
         return self.name
 
-
 class CandidateContact(models.Model):
     candidate = models.ForeignKey(
         Candidate, on_delete=models.CASCADE, related_name="candidate_contacts"
     )
     address = models.CharField(max_length=200, verbose_name="address")
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="candidate_contacts")
-
 
 class Employer(models.Model):
     user = models.OneToOneField(
