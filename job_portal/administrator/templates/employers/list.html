@@ -1,24 +1,47 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>Admin | --title-- </title>
-{% endblock title %}
+  <title>Admin | Employers List</title>
+{% endblock %}
 {% block css_styles %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}">
-{% endblock css_styles %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}" />
+{% endblock %}
 
 {% block content %}
-
-<div class="container-fluid d-flex">
+  <div class="container-fluid d-flex">
     {% include 'shared/side_panel.html' %}
     <div class="main-content p-5">
-        <div class="header">
-            <h1> --title--</h1>
-        </div>
-        <div class="row">
-        </div>
+      <div class="header">
+        <h1>List of Employers</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for employer in employers %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td> 
+                  {% if employer.employer_name%}
+                  {{employer.employer_name}}
+                  {% else %}
+                  Name not available
+                  {% endif %}
+                </td>
+                <td>{{employer.email}}</td>
+                <td><a href="{% url 'employer_delete' employer.pk %}" class="btn btn-danger" >Delete</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="row"></div>
     </div>
-</div>
-
+  </div>
 {% endblock %}

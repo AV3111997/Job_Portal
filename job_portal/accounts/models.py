@@ -12,7 +12,8 @@ class User(AbstractUser):
     user_type = models.CharField(
         max_length=10,
         choices=USER_TYPE_CHOICES,
-        default=None
+        default=None,
+        blank=True,null= True
     )
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=10)

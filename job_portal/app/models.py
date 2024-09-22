@@ -218,7 +218,7 @@ class Employer(models.Model):
     saved_candidates = models.ManyToManyField(Candidate, related_name='saved_by_employers', blank=True)
 
     def __str__(self):
-        return self.employer_name
+        return self.email
 
 class EmployerContact(models.Model):
     employer = models.ForeignKey(
