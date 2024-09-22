@@ -14,9 +14,31 @@
     {% include 'shared/side_panel.html' %}
     <div class="main-content p-5">
         <div class="header">
-            <h1> --title--</h1>
+            <h1> --Candidate List--</h1>
         </div>
         <div class="row">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in candidatelist %}
+                  <tr>
+                  
+                    <td>{{i.id}}</td>
+                    <td>{{i.fullname}}</td>
+                    <td><a href="{% url 'candidate_delete' i.pk %}" class="btn btn-danger">Delete</a></td>
+
+                   
+                  </tr>
+{% endfor %}
+                  
+                </tbody>
+              </table>
         </div>
     </div>
 </div>

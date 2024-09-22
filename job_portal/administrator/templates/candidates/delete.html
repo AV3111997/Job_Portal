@@ -1,0 +1,27 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}
+<title>Admin | Delete Employer</title>
+{% endblock title %}
+{% block css_styles %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}">
+{% endblock css_styles %}
+
+{% block content %}
+
+<div class="container-fluid d-flex">
+    {% include 'shared/side_panel.html' %}
+    <div class="main-content p-5">
+        <div class="header">
+            <p>Are you sure you want to delete this employer?</p>
+            <form method="POST">
+                {% csrf_token %}
+                <a href="{% url 'listcandidates'%}" class="btn btn-primary">No,Cancel</a>
+                <button type="submit" class="btn btn-danger">Confirm</button>
+            </form>                      
+        </div>
+    </div>
+</div>
+
+{% endblock %}
