@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-  <title>Admin | Employers List</title>
+  <title>Admin | Manage Employer</title>
 {% endblock %}
 {% block css_styles %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
@@ -10,7 +10,6 @@
 
 {% block content %}
   <div class="container-fluid d-flex">
-    {% include 'shared/side_panel.html' %}
     <div class="main-content p-5">
       <div class="header">
         <h1>List of Employers</h1>

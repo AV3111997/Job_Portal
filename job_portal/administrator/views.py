@@ -1,7 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
-
 from app.models import Employer,Candidate
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView 

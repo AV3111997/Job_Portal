@@ -10,11 +10,46 @@
 {% endblock css_styles %}
 
 {% block content %}
+{% if user.is_authenticated and user.is_superuser %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-4 text-center">
+            <h2>Admin Dashboard</h2>
+            <p>Welcome to the admin dashboard. Here you can manage your job portal's data.</p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-4 text-center">
+            <button class="btn btn-success w-100 text-white mb-3">
+                <a href="{% url 'listcandidates' %}" class="text-white text-decoration-none">Candidates</a>
+            </button>
+            <button class="btn btn-success w-100 text-white mb-3">
+                <a href="{% url 'employer_list' %}" class="text-white text-decoration-none">Employers</a>
+            </button>
+            <button class="btn btn-success w-100 text-white mb-3">
+                <a href="#" class="text-white text-decoration-none">Job Categories</a>
+            </button>
+            <button class="btn btn-success w-100 text-white mb-3">
+                <a href="#" class="text-white text-decoration-none">Languages</a>
+            </button>
+            <button class="btn btn-success w-100 text-white mb-3">
+                <a href="#" class="text-white text-decoration-none">Locations</a>
+            </button>
+            <button class="btn btn-success w-100 text-white mb-3">
+                <a href="#" class="text-white text-decoration-none">Skills</a>
+            </button>
+        </div>
+    </div>
+</div>
+
+{% else %}
 
 {% include 'shared/banner.html' %}
 {% include 'shared/popular_jobs_categories.html' %}
 {% include 'shared/featured_jobs.html' %}
 {% include 'shared/get_started.html' %}
 {% include 'shared/app_advertisement.html' %}
+
+{% endif %}
 
 {% endblock content %}

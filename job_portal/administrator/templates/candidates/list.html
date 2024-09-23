@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>Admin | --title-- </title>
+<title>Admin | Manage Candidates </title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -11,10 +11,9 @@
 {% block content %}
 
 <div class="container-fluid d-flex">
-    {% include 'shared/side_panel.html' %}
     <div class="main-content p-5">
         <div class="header">
-            <h1> --Candidate List--</h1>
+            <h1>List of Candidates</h1>
         </div>
         <div class="row">
             <table class="table table-striped">
@@ -22,6 +21,7 @@
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Full Name</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -31,6 +31,7 @@
                   
                     <td>{{i.id}}</td>
                     <td>{{i.fullname}}</td>
+                    <td>{{i.email}}</td>
                     <td><a href="{% url 'candidate_delete' i.pk %}" class="btn btn-danger">Delete</a></td>
 
                    
