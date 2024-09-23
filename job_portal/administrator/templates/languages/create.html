@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>Admin | --title-- </title>
+<title>Admin | add/update language </title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -12,11 +12,15 @@
 
 <div class="container-fluid d-flex">
     <div class="main-content p-5">
-        <div class="header">
-            <h1> --title--</h1>
-        </div>
-        <div class="row">
-        </div>
+         <div class="container mt-5">
+        <h1>{{ form.instance.pk|yesno:"Update Language,Add Language" }}</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{% url 'language_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
     </div>
 </div>
 

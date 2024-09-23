@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import EmployerListView,EmployerDeleteView,CandidateListView,CandidateDeleteView
+from .views import EmployerListView,EmployerDeleteView
+from .views import (EmployerListView,EmployerDeleteView ,
+    CandidateListView,CandidateDeleteView,
+    LanguageListView,
+    LanguageCreateView,
+    LanguageUpdateView,
+    LanguageDeleteView)
 
 urlpatterns = [
     # path('job_category/', views.job_category_list, name='job_category_list'),
@@ -10,6 +16,11 @@ urlpatterns = [
     path('employer/<int:pk>/delete/', EmployerDeleteView.as_view(), name='employer_delete'),
     path('listcandidates/', CandidateListView.as_view(), name='listcandidates'),
     path('candidate_delete/<int:pk>/', CandidateDeleteView.as_view(), name='candidate_delete'),
+    path('languages/', LanguageListView.as_view(), name='language_list'),
+    path('languages/add/', LanguageCreateView.as_view(), name='language_add'),
+    path('languages/update/<int:pk>/', LanguageUpdateView.as_view(), name='language_update'),
+    path('languages/delete/<int:pk>/', LanguageDeleteView.as_view(), name='language_delete'),
+    
 ]
 
 

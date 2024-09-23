@@ -11,7 +11,7 @@ from .models import (
     Employer,
     CV,
     CandidateMessage,
-    Review
+    Review, Language
 )
 
 class EmployerForm(forms.ModelForm):
@@ -210,3 +210,9 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['rating', 'comment']
+
+
+class LanguageForm(forms.ModelForm):
+    class Meta:
+        model = Language
+        fields = ['name']
