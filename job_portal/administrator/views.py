@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from app.models import Employer,Candidate
 from app.forms import LanguageForm
+from app.models import Location
+from app.forms import LocationForm
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from app.models import Employer, Language
 from django.urls import reverse_lazy
@@ -52,3 +54,25 @@ class LanguageDeleteView(DeleteView):
         self.object = self.get_object()
         self.object.delete()
         return redirect(self.success_url)
+    
+class LocationListView(ListView):
+    model = Location
+    template_name = 'locations/list.html'
+    context_object_name = 'locations'
+
+class LocationCreateView(CreateView):
+    model = Location
+    form_class = LocationForm
+    template_name = 'locations/create.html'
+    success_url = reverse_lazy('location_list')
+
+class LocationUpdateView(UpdateView):
+    model = Location
+    form_class = LocationForm
+    template_name = 'locations/create.html'  
+    success_url = reverse_lazy('location_list')
+
+class LocationDeleteView(DeleteView):
+    model = Location
+    template_name = 'locations/delete.html'
+    success_url = reverse_lazy('location_list')    

@@ -5,7 +5,11 @@ from .views import (EmployerListView,EmployerDeleteView ,
     LanguageListView,
     LanguageCreateView,
     LanguageUpdateView,
-    LanguageDeleteView)
+    LanguageDeleteView,
+    LocationListView,
+    LocationCreateView, 
+    LocationUpdateView, 
+    LocationDeleteView)
 
 urlpatterns = [
     # path('job_category/', views.job_category_list, name='job_category_list'),
@@ -20,6 +24,10 @@ urlpatterns = [
     path('languages/add/', LanguageCreateView.as_view(), name='language_add'),
     path('languages/update/<int:pk>/', LanguageUpdateView.as_view(), name='language_update'),
     path('languages/delete/<int:pk>/', LanguageDeleteView.as_view(), name='language_delete'),
+    path('locations/', LocationListView.as_view(), name='location_list'),
+    path('locations/create/', LocationCreateView.as_view(), name='location_create'),
+    path('locations/update/<int:pk>/', LocationUpdateView.as_view(), name='location_update'),
+    path('locations/delete/<int:pk>/', LocationDeleteView.as_view(), name='location_delete'),
     
 ]
 

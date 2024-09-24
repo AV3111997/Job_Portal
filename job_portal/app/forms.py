@@ -2,13 +2,13 @@ from django import forms
 from .models import (
     Candidate,
     SocialNetwork,
-    Contact,
+    CandidateContact,
+    EmployerContact,
     JobPosting,
     JobCategory,
     Qualification,
     Location,
     Employer,
-<<<<<<< HEAD
     CV,
     CandidateMessage,
     Review, Language
@@ -46,10 +46,6 @@ class EmployerForm(forms.ModelForm):
         super(EmployerForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
             field.required = False
-=======
-)
->>>>>>> origin/main
->>>>>>> origin/feature/testimonials
 
 
 class CandidateForm(forms.ModelForm):
@@ -191,7 +187,6 @@ class JobPostingForm(forms.ModelForm):
 class CVForm(forms.ModelForm):
     class Meta:
         model = CV
-<<<<<<< HEAD
         fields = ["file"]
 
 class CandidateMessageForm(forms.ModelForm):
@@ -221,6 +216,14 @@ class LanguageForm(forms.ModelForm):
     class Meta:
         model = Language
         fields = ['name']
-=======
-        fields = ['name', 'file']
->>>>>>> origin/feature/testimonials
+
+
+class LocationForm(forms.ModelForm):
+    class Meta:
+        model = Location
+        fields = ['name']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({'class': 'form-control'})

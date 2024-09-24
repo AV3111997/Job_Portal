@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>Admin | --title-- </title>
+<title>Admin | Create/Update Location</title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -13,9 +13,19 @@
 <div class="container-fluid d-flex">
     <div class="main-content p-5">
         <div class="header">
-            <h1> --title--</h1>
+            <h1>{% if form.instance.pk %}Update Location{% else %}Create Location{% endif %}</h1>
         </div>
-        <div class="row">
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <form method="POST" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">Location Name</label>
+                        {{ form.name|add_class:"form-control" }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">{% if form.instance.pk %}Update{% else %}Create{% endif %}</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
