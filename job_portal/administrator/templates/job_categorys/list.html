@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>Admin | --title-- </title>
+<title>Admin | Job category </title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -13,9 +13,37 @@
 <div class="container-fluid d-flex">
     <div class="main-content p-5">
         <div class="header">
-            <h1> --title--</h1>
-        </div>
-        <div class="row">
+            <h1>List of Job Categories</h1>
+            <a href="{% url 'jobcategory_add' %}" class="btn btn-success mb-3">Add Category</a>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if job_categorys %}
+                    {% for category in job_categorys %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <a href="{% url 'jobcategory_update' category.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url 'jobcategory_delete' category.pk %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="3">No Category available.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
