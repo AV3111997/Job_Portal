@@ -11,7 +11,9 @@ from .models import (
     Employer,
     CV,
     CandidateMessage,
-    Review, Language
+    Review, 
+    Language,
+    ProfessionalSkill
 )
 
 class EmployerForm(forms.ModelForm):
@@ -216,3 +218,19 @@ class LanguageForm(forms.ModelForm):
     class Meta:
         model = Language
         fields = ['name']
+
+class LocationForm(forms.ModelForm):
+    class Meta:
+        model = Location
+        fields = ['name']
+
+class JobCategoryForm(forms.ModelForm):
+    class Meta:
+        model = JobCategory
+        fields = ['name']
+
+class ProfessionalSkillForm(forms.ModelForm):
+    class Meta:
+        model = ProfessionalSkill
+        fields = ['name']
+

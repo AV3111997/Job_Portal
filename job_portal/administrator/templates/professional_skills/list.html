@@ -1,7 +1,7 @@
 {% extends 'shared/base.html' %}
 {% load static %}
 {% block title %}
-<title>Admin | Location List </title>
+<title>Admin | Professional Skills </title>
 {% endblock title %}
 {% block css_styles %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -13,33 +13,33 @@
 <div class="container-fluid d-flex">
     <div class="main-content p-5">
         <div class="header">
-            <h1>List of Location</h1>
-            <a href="{% url 'location_add' %}" class="btn btn-success mb-3">Add Location</a>
+            <h1>List of Professional Skills</h1>
+            <a href="{% url 'professionalskill_add' %}" class="btn btn-success mb-3">Add Skill</a>
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Id</th>
-                        <th scope="col">Location Name</th>
+                        <th scope="col">Skill Name</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% if locations %}
-                    {% for location in locations %}
+                    {% if professional_skill %}
+                    {% for skill in professional_skill %}
                     <tr>
                         <th scope="row">{{ forloop.counter }}</th>
-                        <td>{{ location.id }}</td>
-                        <td>{{ location.name }}</td>
+                        <td>{{ skill.id }}</td>
+                        <td>{{ skill.name }}</td>
                         <td>
-                            <a href="{% url 'location_update' location.pk %}" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="{% url 'location_delete' location.pk %}" class="btn btn-danger">Delete</a>
+                            <a href="{% url 'professionalskill_update' skill.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url 'professionalskill_delete' skill.pk %}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                     {% endfor %}
                     {% else %}
                     <tr>
-                        <td colspan="3">No Location available.</td>
+                        <td colspan="3">No Skills available.</td>
                     </tr>
                     {% endif %}
                 </tbody>
