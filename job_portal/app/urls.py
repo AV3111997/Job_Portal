@@ -19,7 +19,7 @@ urlpatterns = [
     path("about/", views.AboutView.as_view(), name="about"),
     path("terms/", views.TermView.as_view(), name="terms"),
     # path("applied_jobs", views.AppliedJobsView.as_view(), name="applied_jobs"),
-    path("applicants_jobs/", views.ApplicantsJobsView.as_view(), name="applicants_jobs"),
+    # path("applicants_jobs/", views.ApplicantsJobsView.as_view(), name="applicants_jobs"),
     path("manage_jobs/", views.ManageJobsView.as_view(), name="manage_jobs"),
     path(
         "candidate_profile/",
@@ -69,7 +69,11 @@ urlpatterns = [
         views.DeleteAppliedJobView.as_view(),
         name="delete_applied_job",
     ),
-
+    # path('job/<int:job_id>/applicants/', views.EmployerViewApplicants.as_view(), name='employer_view_applicants'),
+    path('job/<int:job_id>/applicants/', views.JobApplicantsView.as_view(), name='employer_view_applicants'),
+    path('job/<int:job_id>/accept/<int:candidate_id>/', views.AcceptApplicantView.as_view(), name='accept_applicant'),
+    path('job/<int:job_id>/decline/<int:candidate_id>/', views.DeclineApplicantView.as_view(), name='decline_applicant'),
+    path('job/<int:job_id>/delete/<int:candidate_id>/', views.DeleteApplicantView.as_view(), name='delete_applicant'),
 ]
 
 

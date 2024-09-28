@@ -30,7 +30,12 @@
                 {% for job in page_obj.object_list %}
                 <tr>
                     <td>{{ job.job_title }}</td>
-                    <td><a href="#">{{ job.applicants.count }} Applicant(s)</a></td>
+                    <td>
+                    <a href="#">{% if job.applicant_count > 0 %}
+                    <a href="{% url 'employer_view_applicants' job.id %}">{{ job.applicant_count }}</a>
+                    {% else %}
+                    0
+                    {% endif %}</a></td>
                     <td>{{ job.date_posted|date:"F j, Y" }}</td>
                     <td>
                         {{job.status}}

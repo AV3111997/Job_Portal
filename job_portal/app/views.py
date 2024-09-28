@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView, DetailView, View, DeleteView
 from django.views.generic.edit import FormView
+from django.db.models import Count
 from .models import (
     Candidate,
     CandidateContact,
@@ -206,10 +207,6 @@ class AppliedJobsView(TemplateView):
     template_name = "applied_jobs.html"
 
 
-class ApplicantsJobsView(TemplateView):
-    template_name = "applicants_jobs.html"
-
-
 class ManageJobsView(TemplateView):
     template_name = "manage_jobs.html"
 
@@ -225,8 +222,7 @@ class ManageJobsView(TemplateView):
         experience = self.request.GET.get("experience")
         status = self.request.GET.get("status")
 
-        # Start with all job postings
-        job_postings = JobPosting.objects.all()
+        job_postings = JobPosting.objects.all().annotate(applicant_count=Count('appliedjob'))
 
         # Apply filters if available
         if employer_id:
@@ -239,7 +235,7 @@ class ManageJobsView(TemplateView):
             job_postings = job_postings.filter(min_salary__gte=min_salary)
 
         if max_salary:
-            job_postings = job_postings.filter(max_salary__lte=max_salary)
+            job_postings = job_postings.filter(min_salary__lte=max_salary)
 
         if job_type:
             job_postings = job_postings.filter(job_type=job_type)
@@ -265,7 +261,6 @@ class ManageJobsView(TemplateView):
         context["statuses"] = JobPosting.STATUS_CHOICES
 
         return context
-
 
 class EmployeeJobsView(TemplateView):
     template_name = "employee.html"
@@ -761,4 +756,31 @@ class EmployerDetailView(DetailView):
         context["employers"] = Employer.objects.exclude(pk=self.object.pk)[:4]
         
         return context
+    
+class JobApplicantsView(ListView):
+    model = AppliedJob
+    template_name = "applicants_list.html"
+    
+    def get_queryset(self):
+        job_id = self.kwargs['job_id']
+        return AppliedJob.objects.filter(job_id=job_id).select_related('candidate')
+    
+class AcceptApplicantView(View):
+    def post(self, request, job_id, candidate_id):
+        application = get_object_or_404(AppliedJob, job_id=job_id, candidate_id=candidate_id)
+        application.status = 'accepted'
+        application.save()
+        return redirect('manage_jobs')
 
+class DeclineApplicantView(View):
+    def post(self, request, job_id, candidate_id):
+        application = get_object_or_404(AppliedJob, job_id=job_id, candidate_id=candidate_id)
+        application.status = 'declined'
+        application.save()
+        return redirect('manage_jobs')
+
+class DeleteApplicantView(View):
+    def post(self, request, job_id, candidate_id):
+        application = get_object_or_404(AppliedJob, job_id=job_id, candidate_id=candidate_id)
+        application.delete()
+        return redirect('manage_jobs')

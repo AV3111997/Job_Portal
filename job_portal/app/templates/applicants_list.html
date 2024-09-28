@@ -1,0 +1,75 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}
+  <title>Applicants Jobs</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+{% endblock %}
+{% block css_styles %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/applied_jobs.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/applicants_jobs.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid d-flex">
+  {% include 'shared/side_panel.html' %}
+  <div class="main-content p-5">
+    <h2>Applicants for Job {{ job.title }}</h2>
+    <table class="table table-striped table-hover table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>Candidate Name</th>
+          <th>Date Applied</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for application in object_list %}
+        <tr>
+          <td>
+            <a href="{% url 'candidate_profile' application.candidate.pk %}">
+              {{ application.candidate.fullname }}
+            </a>
+          </td>
+          <td>{{ application.date_applied }}</td>
+          <td>
+            {% if application.status == "accepted" %}
+            <span class="badge bg-success">Accepted</span>
+            {% elif application.status == "declined" %}
+            <span class="badge bg-danger">Declined</span>
+            {% else %}
+            <span class="badge bg-warning">{{ application.status }}</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if application.status == "pending" %}
+            <form action="{% url 'accept_applicant' application.job.id application.candidate.id %}" method="post"
+              style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-success btn-sm">Accept</button>
+            </form>
+            <form action="{% url 'decline_applicant' application.job.id application.candidate.id %}" method="post"
+              style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-warning btn-sm">Decline</button>
+            </form>
+            {% elif application.status == "accepted" %}
+            <span class="text-success">Candidate has been accepted</span>
+            {% elif application.status == "declined" %}
+            <span class="text-danger">Candidate has been declined, Remove application?</span>
+            <form action="{% url 'delete_applicant' application.job.id application.candidate.id %}" method="post"
+              style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">YES</button>
+            </form>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

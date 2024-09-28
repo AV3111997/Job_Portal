@@ -59,7 +59,13 @@
                                 </td>
                                 <td>{{ applied_job.date_applied }}</td>
                                 <td class="{% if applied_job.status == 'approved' %}status-approved{% else %}status-pending{% endif %}">
-                                    {{ applied_job.status|title }}
+                                    {% if applied_job.status == "accepted" %}
+                                    <span class="badge bg-success">Accepted</span>
+                                    {% elif applied_job.status == "declined" %}
+                                    <span class="badge bg-danger">Declined</span>
+                                    {% else %}
+                                    <span class="badge bg-warning">{{ applied_job.status }}</span>
+                                    {% endif %}
                                 </td>
                                 <td class="actions">
                                     <a href="{% url 'delete_applied_job' applied_job.pk %}" style="text-decoration: none; color: black">
